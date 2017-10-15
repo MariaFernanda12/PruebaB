@@ -41,3 +41,18 @@
     width: 150px;
     height: 150px;
 }
+#Password{
+    text-align: center;
+}
+#Password input{
+    
+    margin: 20px;
+    padding: 15px;
+    width: 30%;
+    margin-left: 35%;
+    font-size: 100%;
+    text-align: center;
+    border: none;
+    border-bottom: 1px solid;
+    color: black;
+}

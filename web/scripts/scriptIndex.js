@@ -63,7 +63,7 @@ function iniciarSesion() {
             alert("Usuario y/o contraseña incorrectos");
         } else {
             if (data.tipo == "Estudiante") {
-                window.location.href = "Usuario/homeEstudiante.html";
+                window.location.href = "Usuario/homeUser.html";
             }
             if (data.tipo == "Directivo") {
                 window.location.href = "indexDirect.html";
