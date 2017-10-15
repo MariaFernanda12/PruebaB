@@ -1,5 +1,4 @@
-$(document).ready(function () {
-    window.setTimeout("document.getElementById('contenedor_carga').style.display='none';", 1500);
+$(document).ready(function () {    
     getUser();
     document.getElementById("e").style.display = "none";
     document.getElementById("f").style.display = "none";
