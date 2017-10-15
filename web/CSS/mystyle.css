@@ -1,31 +1,43 @@
 ﻿#main{
-				
-	border:1px #F2F2F2 solid;
-	padding:10px;
-	margin:5px;
-	min-width:1020px;
-	text-align:center;
-	
+
+    border:1px #F2F2F2 solid;
+    padding:10px;
+    margin:5px;
+    min-width:1020px;
+    text-align:center;
+
 }
 
 #input-div{
-	width:500px;
-	display:inline-block;
-	vertical-align:top;
-		padding:5px;
-		border:1px #F2F2F2 solid;
+    width:500px;
+    display:inline-block;
+    vertical-align:top;
+    padding:5px;
+    border:1px #F2F2F2 solid;
 
 }
 
 #ref-div{
-	width:500px;
-	display:inline-block;
+    width:500px;
+    display:inline-block;
 
-	vertical-align:top;
-	padding:5px;
+    vertical-align:top;
+    padding:5px;
 }
 
 #user_twitter{
-				
- text-align:center;
+
+    text-align:center;
+}
+#imageUser{
+    width: 50px;
+    height: 50px;
+    border-radius: 200px 200px 200px 200px;
+    -moz-border-radius: 200px 200px 200px 200px;
+    -webkit-border-radius: 200px 200px 200px 200px;
+    border: 2px solid #faf5fa;
+}
+#ima{
+    width: 150px;
+    height: 150px;
 }
