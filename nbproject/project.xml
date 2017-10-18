@@ -11,7 +11,7 @@
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
-                    <file>${file.reference.gson-2.3.1.jar}</file>
+                    <file>${file.reference.gson-2.3.1.jar-1}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
             </web-module-libraries>
@@ -24,5 +24,10 @@
             </test-roots>
         </data>
         <libraries xmlns="http://www.netbeans.org/ns/cdnjs-libraries/1"/>
+        <spellchecker-wordlist xmlns="http://www.netbeans.org/ns/spellchecker-wordlist/1">
+            <word>Cargando</word>
+            <word>JAVASCRIPTS</word>
+            <word>LibrarySoft</word>
+        </spellchecker-wordlist>
     </configuration>
 </project>

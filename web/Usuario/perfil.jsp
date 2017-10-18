@@ -45,7 +45,7 @@
         <div class="wrapper row1">
             <header id="header" class="hoc clear">
                 <div id="logo" class="fl_center">
-                    <a href="homeEstudiante.html"><img id="imagenPrincipal" src="../Images/titulo1.png" alt=""></a>
+                    <a href="homeUser.html"><img id="imagenPrincipal" src="../Images/titulo1.png" alt=""></a>
                 </div>
 
             </header>
