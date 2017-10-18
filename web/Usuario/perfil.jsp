@@ -87,6 +87,10 @@
                             <td id="1"></td>
                         </tr>
                         <tr>                                             
+                            <td>Contraseña: </td>
+                            <td id="6"></td>
+                        </tr>
+                        <tr>                                             
                             <td>Nombre: </td>
                             <td id="2"></td>
                         </tr>

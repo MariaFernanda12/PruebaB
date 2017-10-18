@@ -15,6 +15,7 @@ function mostrarPerfil() {
         document.getElementById('3').innerHTML = response.colegio;
         document.getElementById('4').innerHTML = response.tipo;
         document.getElementById('5').innerHTML = response.cursoArea;
+        document.getElementById('6').innerHTML = response.clave;
 
     });
 
@@ -30,7 +31,6 @@ function activeChangePassword() {
 function changePassword() {
 
     if (($('#campo1').val() != "") && ($('#campo2').val() != "") && ($('#campo3').val() != "")) {
-        alert("Bien");
         var parametros = {
             "valor1": $('#campo1').val(),
             "valor2": $('#campo2').val(),
@@ -40,15 +40,19 @@ function changePassword() {
         $.ajax({
             data: parametros,
             url: "../changePassword",
-            type: "GET"
+            type: "POST"
 
         }).done(function (data) {
-            alert("Bien------------------------");
             console.log(data);
+            var usuario = data[0];
+            var newPass = data[1];
+            updateSession(usuario, newPass);            
             alert("Clave cambiada satisfactoriamente");
+            window.location.href = "perfil.jsp";
+
 
         });
-        mostrarPerfil();
+
 
     } else {
         alert("Debe llenar los campos para poder cambiar la contraseña");
@@ -56,5 +60,24 @@ function changePassword() {
 
 
 }
+function updateSession(usuario, clave) {
+
+    var parametros = {
+        "valor1": usuario,
+        "valor2": clave
+    };
+
+
+    $.ajax({
+        data: parametros,
+        url: "../Inicio",
+        type: "POST"
+
+    }).done(function (data) {
+        console.log(data);        
+    });
+}
+
+
 
 
