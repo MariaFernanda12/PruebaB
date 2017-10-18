@@ -61,24 +61,7 @@ public class DaoUsuario {
 
         return resultado;
 
-    }
-    public boolean modificarFoto(String usuario, String clave) {
-        boolean resultado = false;
-
-        try {
-            String consulta = "update usuarios set imagen=? where identificador=?";
-            PreparedStatement statement = this.conexion.prepareStatement(consulta);
-            statement.setString(1, clave);
-            statement.setString(2, usuario);
-            resultado = statement.execute();
-
-        } catch (SQLException ex) {
-            Logger.getLogger(DaoElementos.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        return resultado;
-
-    }
+    } 
 
     public Usuario validarUsuario(String usuario, String clave) {
         Usuario respuesta = new Usuario();
