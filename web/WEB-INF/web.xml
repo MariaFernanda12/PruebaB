@@ -24,6 +24,10 @@
         <servlet-name>upload</servlet-name>
         <servlet-class>com.hmkcode.FileUploadServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>changePassword</servlet-name>
+        <servlet-class>Controlador.changePassword</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>upload</servlet-name>
         <url-pattern>/upload</url-pattern>
@@ -71,6 +75,10 @@
     <servlet-mapping>
         <servlet-name>uploadServlet</servlet-name>
         <url-pattern>/uploadServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>changePassword</servlet-name>
+        <url-pattern>/changePassword</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

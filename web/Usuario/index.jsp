@@ -17,11 +17,13 @@
 
     ResultSet rs = null;
 
-    try {       
+    try {
+        
+        String usuario = (String) session.getAttribute("user");
 
         stmt = con.createStatement();
 
-        rs = stmt.executeQuery("select imagen from usuarios where identificador='12345'");
+        rs = stmt.executeQuery("select imagen from usuarios where identificador='"+usuario+"'");
 
         if (rs.next()) {
 

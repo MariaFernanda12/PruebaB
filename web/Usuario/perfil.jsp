@@ -1,3 +1,6 @@
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -8,7 +11,8 @@
         <link href="../CSS/mystyle.css" rel="stylesheet">
         <link href="../CSS/style.css" rel="stylesheet">
         <link href="../CSS/layout.css" rel="stylesheet" type="text/css" media="all">
-        <script type="text/javascript" src="../scripts/scriptHome.js"></script>    
+        <script type="text/javascript" src="../scripts/scriptHome.js"></script>
+        <link rel="shortcut icon" href="../Images/icono.png">
         <script type="text/javascript" src="../scripts/scriptPerfil.js"></script>        
         <script>
             window.setTimeout("document.getElementById('contenedor_carga').style.display='none';", 1500);
@@ -51,11 +55,11 @@
                 <div class="wrapper row2">
                     <nav id="mainav" class="hoc clear"> 
                         <ul class="clear">
-                            <li><a href="homeEstudiante.html">Home</a></li>                       
+                            <li><a href="homeUser.html">Home</a></li>                       
                             <li><a href="#" onclick="showListados();">Inventario Disponible</a></li>
                             <li><a href="#">Reservas</a></li>
                             <li><a href="#">Historial</a></li>
-                            <li><a href="#">Busquedas</a></li>
+                            <li><a href="Busquedas.html">Busquedas</a></li>
                             <li><a href="#">Convenios</a></li>
                         </ul>
                     </nav>
@@ -110,32 +114,39 @@
                 <br>
                 <br>
             </div>
+
+
             <!--Cambiar foto-->
+
             <div id="Fotico" class="wrapper row3">
 
-                <form action="uploadServlet" method="POST" enctype="multipart/form-data">
 
+
+                <form action="../uploadServlet" method="POST" enctype="multipart/form-data">
                     <input style="margin: 10px; display: inline-block; padding: 8px 18px 10px; text-transform: uppercase;" type="file" name="photo" size="50">
                     <br>
                     <input class="btn" style="margin: 15px; " type="submit" value="SUBIR ARCHIVO">
-
-
                 </form>
 
             </div>
-            
+
             <!--Cambiar Clave-->
             <div id="Password" class="wrapper row3">
-
                 <h1 class="heading">Cambiar clave en Library-Soft</h1>
                 <br>
                 <input id="campo1" type="text" placeholder="Contraseña Antigua">
                 <input id="campo2" type="text" placeholder="Nueva Contraseña">
                 <input id="campo3" type="text" placeholder="Repita Nueva Contraseña">
                 <button class="btn" style="margin: 10px;" id="cambiar" onclick="" type="button">CAMBIAR</button>
-
             </div>
         </section>
+        <%
+            String usuario = (String) session.getAttribute("user");            
+            System.out.println("hjfjkfñjafñfas"+usuario);
+
+        %>
+        
+        
         <!--Footer-->
 
         <div class="wrapper row5">

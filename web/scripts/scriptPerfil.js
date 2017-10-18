@@ -28,21 +28,31 @@ function activeChangePassword() {
     $("#Fotico").hide();
 }
 function changePassword() {
-    var parametros = {
-        "valor1": $('#campo1').val(),
-        "valor2": $('#campo2').val(),
-        "valor3": $('#campo3').val()
-    };
 
-    $.ajax({
-        data: parametros,
-        url: "Inicio",
-        type: "POST"
+    if (($('#campo1').val() != "") && ($('#campo2').val() != "") && ($('#campo3').val() != "")) {
+        var parametros = {
+            "valor1": $('#campo1').val(),
+            "valor2": $('#campo2').val(),
+            "valor3": $('#campo3').val()
+        };
 
-    }).done(function (data) {
-        console.log(data);
-        
-    });
+        $.ajax({
+            data: parametros,
+            url: "../changePassword",
+            type: "POST"
+
+        }).done(function (data) {
+            console.log(data);
+            alert("Clave cambiada satisfactoriamente");
+
+        });
+        mostrarPerfil();
+
+    } else {
+        alert("Debe llenar los campos para poder cambiar la contraseña");
+    }
+
+
 }
 
 

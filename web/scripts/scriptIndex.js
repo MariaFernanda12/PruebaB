@@ -52,25 +52,34 @@ function iniciarSesion() {
         "valor2": $('#campo2').val()
     };
 
-    $.ajax({
-        data: parametros,
-        url: "Inicio",
-        type: "POST"
+    if ($('#campo2').val() != "null") {
 
-    }).done(function (data) {
-        console.log(data);        
-        if ($.isEmptyObject(data)) {
-            alert("Usuario y/o contraseña incorrectos");
-        } else {
-            if (data.tipo == "Estudiante") {
-                window.location.href = "Usuario/homeUser.html";
+
+        $.ajax({
+            data: parametros,
+            url: "Inicio",
+            type: "POST"
+
+        }).done(function (data) {
+            console.log(data);
+            if ($.isEmptyObject(data)) {
+                alert("Usuario y/o contraseña incorrectos");
+            } else {
+                if (data.tipo == "Estudiante") {
+                    window.location.href = "Usuario/homeUser.html";
+                }
+                if (data.tipo == "Directivo") {
+                    window.location.href = "indexDirect.html";
+                }
+                if (data.tipo == "Administrativo") {
+                    window.location.href = "indexAdmin.html";
+                }
             }
-            if (data.tipo == "Directivo") {
-                window.location.href = "indexDirect.html";
-            }
-            if (data.tipo == "Administrativo") {
-                window.location.href = "indexAdmin.html";
-            }
-        }
-    });
+        });
+    }else{
+        alert("Usuario y/o contraseña incorrectos");
+        alert("Esta seguro de que ya se ha registrado");
+    }
+    
+
 }
