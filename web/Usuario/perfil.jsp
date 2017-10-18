@@ -137,14 +137,9 @@
                 <input id="campo1" type="text" placeholder="Contraseña Antigua">
                 <input id="campo2" type="text" placeholder="Nueva Contraseña">
                 <input id="campo3" type="text" placeholder="Repita Nueva Contraseña">
-                <button class="btn" style="margin: 10px;" id="cambiar" onclick="" type="button">CAMBIAR</button>
+                <button class="btn" style="margin: 10px;" id="cambiar" onclick="changePassword();" type="button">CAMBIAR</button>
             </div>
-        </section>
-        <%
-            String usuario = (String) session.getAttribute("user");            
-            System.out.println("hjfjkfñjafñfas"+usuario);
-
-        %>
+        </section>      
         
         
         <!--Footer-->

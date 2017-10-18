@@ -30,16 +30,13 @@ public class Sesion extends HttpServlet {
                 String json = new Gson().toJson(user);
                 response.setContentType("application/json");
                 response.getWriter().write(json);
-                System.out.println();
 
             } else {
                 response.getWriter().write("false");
             }
 
-        } catch (SQLException ex) {
-            Logger.getLogger(Listar.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (URISyntaxException ex) {
-            Logger.getLogger(Registro.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException | URISyntaxException ex) {
+            Logger.getLogger(Sesion.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }

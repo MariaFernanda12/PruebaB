@@ -30,6 +30,7 @@ function activeChangePassword() {
 function changePassword() {
 
     if (($('#campo1').val() != "") && ($('#campo2').val() != "") && ($('#campo3').val() != "")) {
+        alert("Bien");
         var parametros = {
             "valor1": $('#campo1').val(),
             "valor2": $('#campo2').val(),
@@ -39,9 +40,10 @@ function changePassword() {
         $.ajax({
             data: parametros,
             url: "../changePassword",
-            type: "POST"
+            type: "GET"
 
         }).done(function (data) {
+            alert("Bien------------------------");
             console.log(data);
             alert("Clave cambiada satisfactoriamente");
 
