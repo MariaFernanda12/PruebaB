@@ -103,6 +103,10 @@
     border-bottom: 1px solid;
     color: black;
 }
+.log-in p {    
+    color: black;
+}
+
 
 .log-in button {
     width: 30%;

@@ -56,3 +56,77 @@
     border-bottom: 1px solid;
     color: black;
 }
+
+
+/*Diseño Reservas */
+
+.reserv h1 {
+    text-align: center;
+    color: black;
+    padding-top: 10px;
+    font-size: 26px;
+    letter-spacing: 3px;
+}
+
+.reserv input {
+    margin: 20px;
+    padding: 15px;
+    width: 60%;
+    margin-left: 20%;
+    font-size: 100%;
+    text-align: center;
+    border: none;
+    border-bottom: 1px solid;
+    color: black;
+}
+.reserv p {    
+    color: black;
+}
+
+
+.reserv button {
+    width: 30%;
+    margin-left: 35%;
+    font-size: 90%;
+    text-align: center;
+    border: 1px solid;
+    padding: 8px 18px 10px;
+    text-transform: uppercase;
+    font-weight: 700;
+    cursor: pointer;
+    border-color: transparent;
+    color: #FFFFFF;
+    background-color: #EA5616;
+    outline: none;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+    margin-bottom: 30px;
+}
+
+.reserv button:hover {
+    background-color: green;
+}
+
+.reserv button:active {
+    background-color: green;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+@media only screen and (max-width: 500px) {
+    .reserv h1 {
+        padding-top: 10px;
+        font-size: 17px;
+    }
+    .reserv button {
+        width: 40%;
+        margin-left: 30%;
+        margin-bottom: 30px;
+    }
+}
+
+
+
+
+

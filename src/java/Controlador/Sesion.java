@@ -30,7 +30,6 @@ public class Sesion extends HttpServlet {
                 String json = new Gson().toJson(user);
                 response.setContentType("application/json");
                 response.getWriter().write(json);
-
             } else {
                 response.getWriter().write("false");
             }

@@ -45,7 +45,7 @@
         <div class="wrapper row1">
             <header id="header" class="hoc clear">
                 <div id="logo" class="fl_center">
-                    <a href="homeUser.html"><img id="imagenPrincipal" src="../Images/titulo1.png" alt=""></a>
+                    <a href="homeUser.jsp"><img id="imagenPrincipal" src="../Images/titulo1.png" alt=""></a>
                 </div>
 
             </header>
@@ -55,9 +55,9 @@
                 <div class="wrapper row2">
                     <nav id="mainav" class="hoc clear"> 
                         <ul class="clear">
-                            <li><a href="homeUser.html">Home</a></li>                       
+                            <li><a href="homeUser.jsp">Home</a></li>                       
                             <li><a href="#" onclick="showListados();">Inventario Disponible</a></li>
-                            <li><a href="#">Reservas</a></li>
+                            <li><a href="reservas.jsp">Reservas</a></li>
                             <li><a href="#">Historial</a></li>
                             <li><a href="Busquedas.html">Busquedas</a></li>
                             <li><a href="#">Convenios</a></li>

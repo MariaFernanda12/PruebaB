@@ -65,14 +65,11 @@ function iniciarSesion() {
             if ($.isEmptyObject(data)) {
                 alert("Usuario y/o contraseña incorrectos");
             } else {
-                if (data.tipo == "Estudiante") {
-                    window.location.href = "Usuario/homeUser.html";
+                if (data.tipo == "Estudiante" || data.tipo == "Docente") {
+                    window.location.href = "Usuario/homeUser.jsp";
                 }
-                if (data.tipo == "Directivo") {
-                    window.location.href = "indexDirect.html";
-                }
-                if (data.tipo == "Administrativo") {
-                    window.location.href = "indexAdmin.html";
+                if (data.tipo == "Directivo" || data.tipo == "Administrativo") {
+                    window.location.href = "Admin/homeAdmin.jsp";
                 }
             }
         });

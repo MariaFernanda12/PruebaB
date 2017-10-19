@@ -24,6 +24,19 @@ create table usuarios(
    imagen longblob
 );
 
+create table reserva(
+    idElemento integer,
+    fechaActual date,
+    fechaReserva date,
+    idSol varchar(40),
+    cursoArea varchar (40),
+    cantidad integer,
+    estado varchar, /*Activo-Terminado*/
+    foreign key (idSol) references usuarios(identificador),   
+    foreign key (idElemento) references inventario(etiqueta)   
+
+);
+
 create table prestamo(
    etiquetaInv integer, /*Clave foranea*/
    identificadorSol varchar(40),/*Clave foranea*/   
