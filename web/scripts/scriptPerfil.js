@@ -16,6 +16,8 @@ function mostrarPerfil() {
         document.getElementById('4').innerHTML = response.tipo;
         document.getElementById('5').innerHTML = response.cursoArea;
         document.getElementById('6').innerHTML = response.clave;
+        var imagen =  document.getElementById("ima");
+        imagen.src = response.imagenUsuario;
 
     });
 
@@ -46,7 +48,7 @@ function changePassword() {
             console.log(data);
             var usuario = data[0];
             var newPass = data[1];
-            updateSession(usuario, newPass);            
+            updateSession(usuario, newPass);
             alert("Clave cambiada satisfactoriamente");
             window.location.href = "perfil.jsp";
 
@@ -74,9 +76,11 @@ function updateSession(usuario, clave) {
         type: "POST"
 
     }).done(function (data) {
-        console.log(data);        
+        console.log(data);
     });
 }
+
+
 
 
 

@@ -16,6 +16,8 @@ function getUser() {
             document.getElementById('nombre').innerHTML = response.nombreSol;
             document.getElementById('col').innerHTML = response.colegio;
             document.getElementById('curso').innerHTML = response.cursoArea;
+            var imagen =  document.getElementById("imageUser");
+            imagen.src = response.imagenUsuario;
         }
     });
 }

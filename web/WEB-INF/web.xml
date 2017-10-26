@@ -32,6 +32,14 @@
         <servlet-name>Reservas</servlet-name>
         <servlet-class>Controlador.Reservas</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ListarReservas</servlet-name>
+        <servlet-class>Controlador.ListarReservas</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ConfirmacionCorreo</servlet-name>
+        <servlet-class>Controlador.ConfirmacionCorreo</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>upload</servlet-name>
         <url-pattern>/upload</url-pattern>
@@ -87,6 +95,14 @@
     <servlet-mapping>
         <servlet-name>Reservas</servlet-name>
         <url-pattern>/Reservas</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListarReservas</servlet-name>
+        <url-pattern>/ListarReservas</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ConfirmacionCorreo</servlet-name>
+        <url-pattern>/ConfirmacionCorreo</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

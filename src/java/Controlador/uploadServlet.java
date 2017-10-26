@@ -1,18 +1,22 @@
 package Controlador;
 
+import DAO.DaoUsuario;
+import Modelo.Usuario;
 import Util.conexion;
+import com.google.gson.Gson;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.URISyntaxException;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.servlet.http.Part;
 
 @MultipartConfig(maxFileSize = 169999999)
 public class uploadServlet extends HttpServlet {
@@ -29,31 +33,25 @@ public class uploadServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        String newRuta1 = request.getParameter("valor1");
+        String ruta = newRuta1.substring(1, newRuta1.length()-3);
         try {
             HttpSession session = request.getSession(false);
-            String usuario = (String) session.getAttribute("user");
-            Part filePart = request.getPart("photo");
-            InputStream inputStream = null;
-            if (filePart != null) {
-                inputStream = filePart.getInputStream();
-            }
-            
-            Connection con = this.Conexion;
-            PreparedStatement st = con.prepareStatement("update usuarios set imagen=? where identificador=?");
-            st.setBlob(1, inputStream);
-            st.setString(2, usuario);
-            int returnCode = st.executeUpdate();
-            if (returnCode == 0) {
-                response.sendRedirect("Usuario/perfil.jsp");
-
+            if (session != null) {
+                String usuario = (String) session.getAttribute("user");
+                boolean res = true;
+                DaoUsuario daoU = new DaoUsuario();
+                res = daoU.modificarImagen(usuario, ruta);
+                String json = new Gson().toJson(res);
+                response.setContentType("application/json");
+                response.getWriter().write(json);
             } else {
-                response.sendRedirect("Usuario/perfil.jsp");
-
+                response.getWriter().write("false");
             }
-            
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
+        } catch (SQLException | URISyntaxException ex) {
+            Logger.getLogger(Sesion.class.getName()).log(Level.SEVERE, null, ex);
+        }     
         
     }
     

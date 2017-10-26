@@ -12,6 +12,7 @@
         <link href="../CSS/mystyle.css" rel="stylesheet" type="text/css">
         <link rel="shortcut icon" href="../Images/icono.png">   
         <script>
+            var etiqueta;     
             $(document).ready(function () {
                 $(".modal").hide();
 
@@ -54,6 +55,7 @@
                     console.log(response);
                     window.location.href = "#about";
                     document.getElementById('element').innerHTML = response.etiqueta;
+                    etiqueta = response.etiqueta;
                     document.getElementById('nombreLibro').innerHTML = response.nombre;
                     mostrar();
                     getUser2();
@@ -103,7 +105,6 @@
                     if (response == "false") {
                         window.location.href = "index.html";
                     } else {
-                        alert(response.cursoArea);
                         document.getElementById('ident2').innerHTML = response.identificador;
                         document.getElementById('nombre2').innerHTML = response.nombreSol;
                         document.getElementById('curso2').innerHTML = response.cursoArea;
@@ -111,9 +112,25 @@
                 });
             }
 
-            function Reserva() {
+            function Reserva(fechaRes, cantidad) {
+
+                $.ajax({
+                    url: "../Sesion",
+                    type: "GET"
+
+                }).done(function (response) {
+                    console.log(response);
+                    if (response == "false") {
+                        window.location.href = "index.html";
+                    } else {
+                        idSol = response.identificador;
+                        curso = response.cursoArea;
+                    }
+                });
                 var parametros = {
-                    "": y
+                    "idElm": etiqueta,
+                    "fechaRes": fechaRes,
+                    "cantidad": cantidad
                 };
                 $.ajax({
                     data: parametros,
@@ -122,7 +139,8 @@
 
                 }).done(function (response) {
                     console.log(response);
-                    
+
+
 
 
                 });
@@ -223,11 +241,11 @@
                     <p style="color: black; text-align: center" id="ident2"></p>
                     <p style="color: black; text-align: center; font-size: 22px;">Curso:</p>     
                     <p style="color: black; text-align: center" id="curso2"></p>
-                    
+
 
                     <input id="campo1" type="text" placeholder="Cantidad">
                     <input id="campo2" type="date" placeholder="Fecha solicitada">
-                    <button id="ingresar" onclick="Reserva($('#ident2').val(), $('#campo2').val(), $('#col2').val());" type="button">Reservar</button>
+                    <button id="ingresar" onclick="Reserva($('#campo2').val(), $('#campo1').val());" type="button">Reservar</button>
 
                 </div>
                 <a class="close-btn" href="#start"><i class=" fa fa-lg fa-times-circle"></i></a>

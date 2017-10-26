@@ -19,16 +19,17 @@ public class DaoUsuario {
         conexion = Util.conexion.getConnection();
     }
 
-    public ArrayList validarRegistro(String usuario, String clave, String colegio) {
+    public ArrayList validarRegistro(String usuario, String clave, String colegio, String correo) {
         ArrayList<Boolean> arr1 = new ArrayList<>();
         boolean res = false;
         boolean res2 = false;
         try {
-            String consulta = "select * from usuarios where identificador=? and colegio=? and clave='null'";
+            String consulta = "select * from usuarios where identificador=? and colegio=? and correo=? and clave='null'";
             PreparedStatement statement
                     = this.conexion.prepareStatement(consulta);
             statement.setString(1, usuario);
             statement.setString(2, colegio);
+            statement.setString(3, correo);
             ResultSet resultado = statement.executeQuery();
             while (resultado.next()) {
                 res = true;
@@ -44,7 +45,6 @@ public class DaoUsuario {
 
     }
 
-   
     public boolean modificarClave(String usuario, String clave) {
         boolean resultado = false;
 
@@ -61,7 +61,25 @@ public class DaoUsuario {
 
         return resultado;
 
-    } 
+    }
+
+    public boolean modificarImagen(String usuario, String rutaImagen) {
+        boolean resultado = false;
+
+        try {
+            String consulta = "update usuarios set imagen=? where identificador=?";
+            PreparedStatement statement = this.conexion.prepareStatement(consulta);
+            statement.setString(1, rutaImagen);
+            statement.setString(2, usuario);
+            resultado = statement.execute();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoElementos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return resultado;
+
+    }
 
     public Usuario validarUsuario(String usuario, String clave) {
         Usuario respuesta = new Usuario();
@@ -94,4 +112,17 @@ public class DaoUsuario {
         return respuesta;
     }
 
+    public boolean modificarEstado(String usuario) {
+        boolean resultado = false;
+
+        try {
+            String consulta = "update usuarios set estado=? where identificador =?";
+            PreparedStatement statement = this.conexion.prepareStatement(consulta);
+            statement.setString(1, "true");
+            statement.setString(2, usuario);
+            resultado = statement.execute();
+        } catch (Exception e) {
+        }
+        return resultado;
+    }
 }

@@ -55,7 +55,7 @@
                         <li class="active"><a href="homeUser.html">Home</a></li>                       
                         <li><a href="Listados.html">Inventario Disponible</a></li>
                         <li><a href="reservas.jsp">Reservas</a></li>
-                        <li><a href="#">Historial</a></li>
+                        <li><a href="historial.html">Historial</a></li>
                         <li><a href="Busquedas.html">Busquedas</a></li>
                         <li><a href="#">Convenios</a></li>
                     </ul>

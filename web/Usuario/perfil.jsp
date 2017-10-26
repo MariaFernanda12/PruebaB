@@ -16,6 +16,48 @@
         <script type="text/javascript" src="../scripts/scriptPerfil.js"></script>        
         <script>
             window.setTimeout("document.getElementById('contenedor_carga').style.display='none';", 1500);
+            $(function () {
+                $("#myForm").on("submit", function (e) {
+                    e.preventDefault();
+                    var f = $(this);
+                    var formData = new FormData(document.getElementById("myForm"));
+                    formData.append("dato", "valor");
+                    $.ajax({
+                        url: "https://kingmathew.000webhostapp.com/ftpfunc.php",
+                        type: "POST",
+                        dataType: "html",
+                        data: formData,
+                        cache: false,
+                        contentType: false,
+                        processData: false
+                    }).done(function (res) {
+                        console.log(res);
+                        actualizarRuta(res);
+
+                    });
+                });
+            });
+
+            function actualizarRuta(ruta) {
+
+                var parametros = {
+                    "valor1": ruta
+                };
+                $.ajax({
+                    data: parametros,
+                    url: "../uploadServlet",
+                    type: "POST"
+
+                }).done(function (data) {
+                    console.log(data);
+                    location.reload(true);
+                });
+
+            }
+
+
+
+
         </script>
     </head>
 
@@ -37,7 +79,7 @@
                         <li><p id="col"></p></li>
                         <li><p id="curso"></p></li>
                         <li><a onclick="closeSesion();" title="Cerrar Sesión"><i class="fa fa-lg fa-power-off"></i></a></li>
-                        <li><a href="#miPerfil"  title="Mi Perfil"><img alt="NotFound" id="imageUser" src="index.jsp"/></a></li>
+                        <li><a href="#miPerfil"  title="Mi Perfil"><img alt="NotFound" id="imageUser" src=""/></a></li>
                     </ul>
                 </div>
             </div>
@@ -75,7 +117,7 @@
                 <table>
                     <thead>                    
                         <tr>  
-                            <td><img alt="NotFound" id="ima" src="index.jsp"/></td>
+                            <td><img alt="NotFound" id="ima" src=""/></td>
                         </tr>
 
                     </thead>                            
@@ -126,8 +168,10 @@
 
 
 
-                <form action="../uploadServlet" method="POST" enctype="multipart/form-data">
-                    <input style="margin: 10px; display: inline-block; padding: 8px 18px 10px; text-transform: uppercase;" type="file" name="photo" size="50">
+
+
+                <form method="POST" id="myForm" enctype="multipart/form-data">
+                    <input style="margin: 10px; display: inline-block; padding: 8px 18px 10px; text-transform: uppercase;" type="file" name="archivo" size="50">
                     <br>
                     <input class="btn" style="margin: 15px; " type="submit" value="SUBIR ARCHIVO">
                 </form>
@@ -144,8 +188,8 @@
                 <button class="btn" style="margin: 10px;" id="cambiar" onclick="changePassword();" type="button">CAMBIAR</button>
             </div>
         </section>      
-        
-        
+
+
         <!--Footer-->
 
         <div class="wrapper row5">

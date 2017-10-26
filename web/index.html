@@ -116,16 +116,16 @@
             <figure class="hoc clear">
                 <ul class="nospace group logos">
                     <li class="one_quarter first">
-                        <img src="Images/demo/1.png" alt="">
+                        <img src="" alt="">
                     </li>
                     <li class="one_quarter">
-                        <img src="Images/demo/2.png" alt="">
+                        <img src="" alt="">
                     </li>
                     <li class="one_quarter">
-                        <img src="Images/demo/3.png" alt="">
+                        <img src="" alt="">
                     </li>
                     <li class="one_quarter">
-                        <img src="Images/demo/4.png" alt="">
+                        <img src="" alt="">
                     </li>
                 </ul>
             </figure>
@@ -202,7 +202,8 @@
                     <input type="text" name="identificador" id="identificador" placeholder="Numero de identificación">
                     <input name="pwd1" id="pwd1" type="password" placeholder="Contraseña">
                     <input name="pwd2" id="pwd2" type="password" placeholder="Repita Contraseña">
-                    <button onclick="validarRegistro($('#identificador').val(), $('#pwd1').val(), $('#pwd2').val(), $('#colegio').val());" type="button" id="registrarse">REGISTRARSE</button>
+                    <input name="pwd3" id="pwd3" type="text" placeholder="Correo">
+                    <button onclick="validarRegistro($('#identificador').val(), $('#pwd1').val(), $('#pwd2').val(), $('#colegio').val(),$('#pwd3').val());" type="button" id="registrarse">REGISTRARSE</button>
                 </div>
                 <a class="close-btn" href="#start2"><i class=" fa fa-lg fa-times-circle"></i></a>
             </div>

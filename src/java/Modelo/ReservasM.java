@@ -1,41 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Modelo;
 
-/**
- *
- * @author Mateo Ortiz
- */
+
 public class ReservasM {
     int etiquetaInv;
-    int identificadorsol;
-    String fechaDev;
+    String identificadorsol;
+    String fechaRes;
     String fechaActual;
-    int cantidadPrestamo;
+    int cantidadRes;    
     String estado;
-  
 
-    public ReservasM(int etiquetaInv, int identificadorsol, String fechaDev, String fechaActual, int cantidadPrestamo, String estado) {
-        this.etiquetaInv = etiquetaInv;
-        this.identificadorsol = identificadorsol;
-        this.fechaDev = fechaDev;
-        this.fechaActual = fechaActual;
-        this.cantidadPrestamo = cantidadPrestamo;
-        this.estado = estado;
-    }
-
-    
-    public String getEstado() {
-        return estado;
-    }
-
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
-   
     public int getEtiquetaInv() {
         return etiquetaInv;
     }
@@ -44,20 +18,20 @@ public class ReservasM {
         this.etiquetaInv = etiquetaInv;
     }
 
-    public int getIdentificadorsol() {
+    public String getIdentificadorsol() {
         return identificadorsol;
     }
 
-    public void setIdentificadorsol(int identificadorsol) {
+    public void setIdentificadorsol(String identificadorsol) {
         this.identificadorsol = identificadorsol;
     }
 
-    public String getFechaDev() {
-        return fechaDev;
+    public String getFechaRes() {
+        return fechaRes;
     }
 
-    public void setFechaDev(String fechaDev) {
-        this.fechaDev = fechaDev;
+    public void setFechaRes(String fechaRes) {
+        this.fechaRes = fechaRes;
     }
 
     public String getFechaActual() {
@@ -66,14 +40,27 @@ public class ReservasM {
 
     public void setFechaActual(String fechaActual) {
         this.fechaActual = fechaActual;
+    } 
+
+    public int getCantidadRes() {
+        return cantidadRes;
     }
 
-    public int getCantidadPrestamo() {
-        return cantidadPrestamo;
+    public void setCantidadRes(int cantidadRes) {
+        this.cantidadRes = cantidadRes;
     }
 
-    public void setCantidadPrestamo(int cantidadPrestamo) {
-        this.cantidadPrestamo = cantidadPrestamo;
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    @Override
+    public String toString() {
+        return "ReservasM{" + "etiquetaInv=" + etiquetaInv + ", identificadorsol=" + identificadorsol + ", fechaRes=" + fechaRes + ", fechaActual=" + fechaActual + ", cantidadRes=" + cantidadRes + ", estado=" + estado + '}';
     }
     
     

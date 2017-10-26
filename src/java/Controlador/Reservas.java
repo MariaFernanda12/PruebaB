@@ -4,11 +4,8 @@ import DAO.DaoReservas;
 import Modelo.Elemento;
 import Modelo.ReservasM;
 import com.google.gson.Gson;
-import com.sun.org.apache.xml.internal.serializer.ElemDesc;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.net.URISyntaxException;
-import java.sql.Date;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -16,39 +13,44 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.*;
+import javax.servlet.http.HttpSession;
+
 public class Reservas extends HttpServlet {
-    
-    
-     @Override
+
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-     
+
         try {
-             Date fecha = new Date(System.currentTimeMillis());
-//             System.out.println(fecha.getDate()+"/"+fecha.getMonth()+"/"+2017);
-            int IndentificadorInv = Integer.valueOf(request.getParameter("identificador"));
-            int idenDelSolici = Integer.valueOf(request.getParameter("ident2"));
-            int cantidad =Integer.valueOf(request.getParameter("campo1"));
-            String fechaSolicitada = request.getParameter("campo2");
-            String FechaActual=fecha.getDate()+"/"+fecha.getMonth()+"/"+2017;
-            
+            HttpSession session = request.getSession(false);
+            String usuario = (String) session.getAttribute("user");
+            java.util.Date utilDate = new java.util.Date();
+            long lnMilisegundos = utilDate.getTime();
+
+            String idElm = request.getParameter("idElm");
+            java.sql.Date sqlDate = new java.sql.Date(lnMilisegundos);
+            String fechaRes = request.getParameter("fechaRes");
+            String cantidad = request.getParameter("cantidad");
+            String estado = "Pendiente";
+
             DaoReservas daoR = new DaoReservas();
-           ReservasM res=new ReservasM( IndentificadorInv,idenDelSolici, fechaSolicitada, FechaActual,cantidad,"Reservado");
-           daoR.insertar(res);
-           
-            
-            
+            ReservasM reserva = new ReservasM();
+            reserva.setEtiquetaInv(Integer.parseInt(idElm));
+            reserva.setCantidadRes(Integer.parseInt(cantidad));
+            reserva.setFechaRes(fechaRes);
+            reserva.setFechaActual(sqlDate.toString());
+            reserva.setEstado(estado);
+            reserva.setIdentificadorsol(usuario);
+            System.out.println(reserva.toString());
+            boolean respuesta = false;
+            respuesta = daoR.insertar(reserva);
 
         } catch (URISyntaxException | SQLException ex) {
             Logger.getLogger(Reservas.class.getName()).log(Level.SEVERE, null, ex);
         }
-             
 
     }
-    
-    
-    
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
