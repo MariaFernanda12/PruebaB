@@ -24,12 +24,11 @@ public class DaoUsuario {
         boolean res = false;
         boolean res2 = false;
         try {
-            String consulta = "select * from usuarios where identificador=? and colegio=? and correo=? and clave='null'";
+            String consulta = "select * from usuarios where identificador=? and colegio=? and clave='null'";
             PreparedStatement statement
                     = this.conexion.prepareStatement(consulta);
             statement.setString(1, usuario);
             statement.setString(2, colegio);
-            statement.setString(3, correo);
             ResultSet resultado = statement.executeQuery();
             while (resultado.next()) {
                 res = true;
@@ -38,14 +37,32 @@ public class DaoUsuario {
             ex.printStackTrace();
         }
         if (res == true) {
-            res2 = modificarClave(usuario, clave);
+            res2 = modificarClave(usuario, clave, correo);
         }
         arr1.add(res);
         return arr1;
 
     }
 
-    public boolean modificarClave(String usuario, String clave) {
+    public boolean modificarClave(String usuario, String clave, String correo) {
+        boolean resultado = false;
+
+        try {
+            String consulta = "update usuarios set clave=?, correo=? where identificador=?";
+            PreparedStatement statement = this.conexion.prepareStatement(consulta);
+            statement.setString(1, clave);
+            statement.setString(2, correo);
+            statement.setString(3, usuario);
+            resultado = statement.execute();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoElementos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return resultado;
+
+    }
+    public boolean modificarClave2(String usuario, String clave) {
         boolean resultado = false;
 
         try {

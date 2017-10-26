@@ -32,7 +32,7 @@ public class changePassword extends HttpServlet {
                 boolean change = false;
                 DaoUsuario daoU = new DaoUsuario();
                 if (oldClave.equals(Clave)) {
-                    change = daoU.modificarClave(usuario, newClave);
+                    change = daoU.modificarClave2(usuario, newClave);
                     System.out.println(change);
                     a.add(usuario);
                     a.add(newClave);                    

@@ -19,6 +19,7 @@ import javax.mail.*;
 import java.util.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.servlet.RequestDispatcher;
 
 public class Registro extends HttpServlet {
 
@@ -26,71 +27,71 @@ public class Registro extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
     }
-    public String getCadenaAlfanumAleatoria(int longitud) {
-		String cadenaAleatoria = "";
-		long milis = new java.util.GregorianCalendar().getTimeInMillis();
-		Random r = new Random(milis);
-		int i = 0;
-		while (i < longitud) {
-			char c = (char) r.nextInt(255);
-			if ((c >= '0' && c <= 9) || (c >= 'A' && c <= 'Z')) {
-				cadenaAleatoria += c;
-				i++;
-			}
-		}
-		return cadenaAleatoria;
-	}
 
-    public String identificador;
-    public String cadena;
+    public String getCadenaAlfanumAleatoria(int longitud) {
+        String cadenaAleatoria = "";
+        long milis = new java.util.GregorianCalendar().getTimeInMillis();
+        Random r = new Random(milis);
+        int i = 0;
+        while (i < longitud) {
+            char c = (char) r.nextInt(255);
+            if ((c >= '0' && c <= 9) || (c >= 'A' && c <= 'Z')) {
+                cadenaAleatoria += c;
+                i++;
+            }
+        }
+        return cadenaAleatoria;
+    }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        identificador = request.getParameter("identificador");
+        String identificador = request.getParameter("identificador");
         String clave = request.getParameter("pwd2");
         String colegio = request.getParameter("colegio");
         String correo = request.getParameter("pwd3");
-        cadena = getCadenaAlfanumAleatoria(8);
+        String cadena = getCadenaAlfanumAleatoria(8);
+        request.setAttribute("id", identificador);
+        request.setAttribute("cadena", cadena);
+        RequestDispatcher rd = request.getRequestDispatcher("ConfirmacionCorreo");
+        rd.forward(request, response);
 
         try {
             DaoUsuario daoU = new DaoUsuario();
             ArrayList<Boolean> arr1 = null;
             arr1 = daoU.validarRegistro(identificador, clave, colegio, correo);
             Properties props = new Properties();
-			props.setProperty("mail.smtp.host", "smtp.gmail.com");
-			props.setProperty("mail.smtp.starttls.enable", "true");
-			props.setProperty("mail.smtp.port", "587");
-			props.setProperty("mail.smtp.user", "librarisoft@gmail.com");
-			props.setProperty("mail.smtp.auth", "true");
+            props.setProperty("mail.smtp.host", "smtp.gmail.com");
+            props.setProperty("mail.smtp.starttls.enable", "true");
+            props.setProperty("mail.smtp.port", "587");
+            props.setProperty("mail.smtp.user", "librarisoft@gmail.com");
+            props.setProperty("mail.smtp.auth", "true");
 
-			// Preparamos la sesion
-			Session session = Session.getDefaultInstance(props);
+            // Preparamos la sesion
+            Session session = Session.getDefaultInstance(props);
 
-			// Construimos el mensaje
-			MimeMessage message = new MimeMessage(session);
-			// la persona k tiene k verificar
-			message.setFrom(new InternetAddress("librarisoft@gmail.com"));
-			message.addRecipient(Message.RecipientType.TO, new InternetAddress(correo));
-			message.addHeader("Disposition-Notification-To", "librarisoft@gmail.com");
-			message.setSubject("Correo de verificacion, porfavor no responder");
-			message.setText(
-					" Este es un correo de verificacion \n"
-							+ "Gracias por escribirse a LibrarySoft \n"
-							+ "Porfavor haga click en el siguiente enlace\n"
-							+ "para seguir con la verificacion de sus datos \n"
-							+ "  <a href='http://localhost:8080/LIBRARYSOFT-1.0/Usuario/ConfirmacionCorreo?usuario=" + identificador + "&aleatorio=" + cadena
-							+ "'>Enlace</a>  ", "ISO-8859-1", "html");
+            // Construimos el mensaje
+            MimeMessage message = new MimeMessage(session);
+            // la persona k tiene k verificar
+            message.setFrom(new InternetAddress("librarisoft@gmail.com"));
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress(correo));
+            message.addHeader("Disposition-Notification-To", "librarisoft@gmail.com");
+            message.setSubject("Correo de verificacion, porfavor no responder");
+            message.setText(
+                    " Este es un correo de verificacion \n"
+                    + "Gracias por escribirse a LibrarySoft \n"
+                    + "Porfavor haga click en el siguiente enlace\n"
+                    + "para seguir con la verificacion de sus datos \n"
+                    + "  <a href='http://localhost:8080/LibrarySoft-1.0/ConfirmacionCorreo?usuario=" + identificador + "&aleatorio=" + cadena
+                    + "'>Enlace</a>  ", "ISO-8859-1", "html");
 
-			// Lo enviamos.
-			
-			System.out.println("URL:"+"http://localhost:8080/LIBRARYSOFT-1.0/ConfirmacionCorreo?usuario=" + identificador + "&aleatorio=" + cadena);
-			Transport t = session.getTransport("smtp");
-			t.connect("librarisoft@gmail.com", "Somoslosmejores");
-			t.sendMessage(message, message.getAllRecipients());
+            // Lo enviamos.
+            Transport t = session.getTransport("smtp");
+            t.connect("librarysoftcol@gmail.com", "thebestteam");
+            t.sendMessage(message, message.getAllRecipients());
 
-			// Cierre.
-			t.close();
+            // Cierre.
+            t.close();
             String json = new Gson().toJson(arr1);
             response.setContentType("application/json");
             response.getWriter().write(json);

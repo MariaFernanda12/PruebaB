@@ -35,16 +35,21 @@ public class ConfirmacionCorreo extends HttpServlet {
             String ale = request.getParameter("aleatorio");
             response.setContentType("text/html;charset=UTF-8");
             PrintWriter out = response.getWriter();
+
+            String id = (String) request.getAttribute("id");
+            String cad = (String) request.getAttribute("cadena");
+            
+            System.out.println(id+"---------"+cad);
+
             try {
                 String cliente = request.getRemoteAddr();
                 out.println("");
                 out.println("");
                 out.println("");
                 out.println("");
-                Registro re = new Registro();
-                if (usu.equals(re.identificador)) {
-                    if (ale.equals(re.identificador)) {
 
+                if (usu.equals(id)) {
+                    if (ale.equals(cad)) {
                         out.println("<h3>Bienvenido Usuario:" + usu + "</h3>");
                         out.println("<b>Gracias por verificar su Usuario</b>");
                         out.println("");
