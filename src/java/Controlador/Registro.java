@@ -20,6 +20,7 @@ import java.util.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.RequestDispatcher;
+import javax.servlet.http.HttpSession;
 
 public class Registro extends HttpServlet {
 
@@ -51,10 +52,9 @@ public class Registro extends HttpServlet {
         String colegio = request.getParameter("colegio");
         String correo = request.getParameter("pwd3");
         String cadena = getCadenaAlfanumAleatoria(8);
-        request.setAttribute("id", identificador);
-        request.setAttribute("cadena", cadena);
-        RequestDispatcher rd = request.getRequestDispatcher("ConfirmacionCorreo");
-        rd.forward(request, response);
+        HttpSession session1 = request.getSession();
+        session1.setAttribute("identificador", identificador);
+        session1.setAttribute("cadena", cadena);
 
         try {
             DaoUsuario daoU = new DaoUsuario();

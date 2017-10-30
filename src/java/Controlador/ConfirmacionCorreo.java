@@ -36,20 +36,18 @@ public class ConfirmacionCorreo extends HttpServlet {
             response.setContentType("text/html;charset=UTF-8");
             PrintWriter out = response.getWriter();
 
-            String id = (String) request.getAttribute("id");
-            String cad = (String) request.getAttribute("cadena");
-            
-            System.out.println(id+"---------"+cad);
-
+            String u = (String) request.getSession().getAttribute("identificador");
+            String aleatorio = (String) request.getSession().getAttribute("cadena");
+            System.out.println(u);
+            System.out.println(aleatorio);
             try {
-                String cliente = request.getRemoteAddr();
                 out.println("");
                 out.println("");
                 out.println("");
                 out.println("");
 
-                if (usu.equals(id)) {
-                    if (ale.equals(cad)) {
+                if (usu.equals(u)) {
+                    if (ale.equals(aleatorio)) {
                         out.println("<h3>Bienvenido Usuario:" + usu + "</h3>");
                         out.println("<b>Gracias por verificar su Usuario</b>");
                         out.println("");
