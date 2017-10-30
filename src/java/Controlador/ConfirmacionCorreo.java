@@ -3,31 +3,19 @@ package Controlador;
 import DAO.DaoUsuario;
 import java.io.IOException;
 import java.io.PrintWriter;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class ServletActivacionCuenta
- */
 public class ConfirmacionCorreo extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
     public ConfirmacionCorreo() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
-    /**
-     * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse
-     * response)
-     */
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         try {
@@ -38,47 +26,288 @@ public class ConfirmacionCorreo extends HttpServlet {
 
             String u = (String) request.getSession().getAttribute("identificador");
             String aleatorio = (String) request.getSession().getAttribute("cadena");
-            System.out.println(u);
-            System.out.println(aleatorio);
             try {
-                out.println("");
-                out.println("");
-                out.println("");
-                out.println("");
-
                 if (usu.equals(u)) {
                     if (ale.equals(aleatorio)) {
-                        out.println("<h3>Bienvenido Usuario:" + usu + "</h3>");
-                        out.println("<b>Gracias por verificar su Usuario</b>");
-                        out.println("");
-                        out.println("");
-                        System.out.println("El Usuario a confirmado su Alta Nueva!");
+                        out.println("<!DOCTYPE html>\n"
+                                + "<html>\n"
+                                + "    <head>\n"
+                                + "        <title>LibrarySoft</title>\n"
+                                + "        <meta charset=\"utf-8\">\n"
+                                + "        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no\">\n"
+                                + "        <link href=\"CSS/layout.css\" rel=\"stylesheet\" type=\"text/css\" media=\"all\">\n"
+                                + "        <link rel=\"shortcut icon\" href=\"Images/icono.png\">\n"
+                                + "        <style>\n"
+                                + "        #myDiv {\n"
+                                + "            -webkit-animation: background 3s cubic-bezier(1, 0, 0, 1) infinite;\n"
+                                + "            animation: background 3s cubic-bezier(1, 0, 0, 1) infinite;\n"
+                                + "        }\n"
+                                + "\n"
+                                + "\n"
+                                + "        @-webkit-keyframes background {\n"
+                                + "            0% {\n"
+                                + "                color: #fff;\n"
+                                + "            }\n"
+                                + "            80% {\n"
+                                + "                color: #ff6347;\n"
+                                + "            }\n"
+                                + "\n"
+                                + "        }\n"
+                                + "\n"
+                                + "        @keyframes background {\n"
+                                + "            0% {\n"
+                                + "                color: #fff;\n"
+                                + "            }\n"
+                                + "            80% {\n"
+                                + "                color: #ff6347;\n"
+                                + "            }\n"
+                                + "        }\n"
+                                + "        </style>\n"
+                                + "        <script>\n"
+                                + "             function iniciarSesion() {\n"
+                                + "\n"
+                                + "    var parametros = {\n"
+                                + "        \"valor1\": $('#campo1').val(),\n"
+                                + "        \"valor2\": $('#campo2').val()\n"
+                                + "    };\n"
+                                + "\n"
+                                + "    if ($('#campo2').val() != \"null\") {\n"
+                                + "\n"
+                                + "\n"
+                                + "        $.ajax({\n"
+                                + "            data: parametros,\n"
+                                + "            url: \"Inicio\",\n"
+                                + "            type: \"POST\"\n"
+                                + "\n"
+                                + "        }).done(function (data) {\n"
+                                + "            console.log(data);\n"
+                                + "            if ($.isEmptyObject(data)) {\n"
+                                + "                alert(\"Usuario y/o contraseña incorrectos\");\n"
+                                + "            } else {\n"
+                                + "                if (data.tipo == \"Estudiante\" || data.tipo == \"Docente\") {\n"
+                                + "                    window.location.href = \"Usuario/homeUser.jsp\";\n"
+                                + "                }\n"
+                                + "                if (data.tipo == \"Directivo\" || data.tipo == \"Administrativo\") {\n"
+                                + "                    window.location.href = \"Admin/homeAdmin.jsp\";\n"
+                                + "                }\n"
+                                + "            }\n"
+                                + "        });\n"
+                                + "    }else{\n"
+                                + "        alert(\"Usuario y/o contraseña incorrectos\");\n"
+                                + "        alert(\"Esta seguro de que ya se ha registrado\");\n"
+                                + "    }\n"
+                                + "    \n"
+                                + "\n"
+                                + "}\n"
+                                + " function mostrar() {\n"
+                                + "    $(\".modal\").show();\n"
+                                + "}\n"
+                                + "        </script>\n"
+                                + "        <script>\n"
+                                + "            window.setTimeout(\"document.getElementById('contenedor_carga').style.display='none';\", 900);\n"
+                                + "        </script>\n"
+                                + "\n"
+                                + "    </head>\n"
+                                + "\n"
+                                + "    <body id=\"top\">\n"
+                                + "        <div id=\"contenedor_carga\">\n"
+                                + "            <img src=\"Images/titulo1.png\" alt=\"\">\n"
+                                + "            <div id=\"carga\"></div>\n"
+                                + "            <div class=\"tag\">\n"
+                                + "                <p>Cargando...</p>\n"
+                                + "            </div>\n"
+                                + "        </div>\n"
+                                + "        <div class=\"wrapper row0\">\n"
+                                + "            <div class=\"page-container\">\n"
+                                + "                <div id=\"topbar\" class=\"hoc clear\">\n"
+                                + "                    <ul>\n"
+                                + "                        <li>librarysoft.com.co</li>\n"
+                                + "                        <li><a href=\"index.html\" title=\"Inicio\"><i class=\"fa fa-lg fa-home\"></i></a></li>\n"
+                                + "                        <li><a id=\"myDiv\" href=\"#about\" title=\"Iniciar Sesión\" onclick=\"mostrar()\"><i class=\"fa fa-lg fa-sign-in\"></i></a></li>\n"
+                                + "                    </ul>\n"
+                                + "                </div>\n"
+                                + "            </div>\n"
+                                + "        </div>\n"
+                                + "        <div class=\"wrapper row1\">\n"
+                                + "            <header id=\"header\" class=\"hoc clear\">\n"
+                                + "                <div id=\"logo\" class=\"fl_left\">\n"
+                                + "                    <a href=\"index.html\"><img id=\"imagenPrincipal\" src=\"Images/titulo1.png\" alt=\"\"></a>\n"
+                                + "                </div>\n"
+                                + "                <div class=\"fl_right\"><h3>Bienvenido</h3>\n"
+                                + "               <i class=\"fa fa-lg fa-arrow-up\"></i>\n"
+                                + "               <b>Gracias por verificar su correo ahora puede iniciar sesión</b>\n"
+                                + "               <i class=\"fa fa-lg fa-arrow-up\"></i>\n"
+                                + "            </header>\n"
+                                + "        </div>\n"
+                                + "        <div class=\"bgded\" style=\"background-image:url('Images/background1.jpg');\">\n"
+                                + "            <div class=\"wrapper row2\">\n"
+                                + "                <nav id=\"mainav\" class=\"hoc clear\">\n"
+                                + "                    <ul class=\"clear\">\n"
+                                + "                        <li class=\"active\"><a href=\"index.html\">Inicio</a></li>\n"
+                                + "                        <li><a href=\"#beneficios\">Nuestros Beneficios</a></li>\n"
+                                + "                        <li><a href=\"#contactenos\">Contáctanos</a></li>\n"
+                                + "                        <li><a href=\"#\">Quienes Somos</a></li>\n"
+                                + "                    </ul>\n"
+                                + "                </nav>\n"
+                                + "            </div>\n"
+                                + "            <div class=\"wrapper overlay\">\n"
+                                + "                <article id=\"pageintro\" class=\"hoc clear\">\n"
+                                + "                    <h2 class=\"heading\">Bienvenido a Library Soft</h2>\n"
+                                + "                    <p>Pensada para colegios y universidades.</p>\n"
+                                + "                    <footer><a class=\"btn\" href=\"#\">Conoce más</a></footer>\n"
+                                + "                </article>\n"
+                                + "            </div>\n"
+                                + "        </div>\n"
+                                + "        <div class=\"wrapper row3\">\n"
+                                + "            <section class=\"hoc container clear\" id=\"beneficios\">\n"
+                                + "                <div class=\"sectiontitle\">\n"
+                                + "                    <h6 class=\"heading\">Nuestros beneficios</h6>\n"
+                                + "                    <p>Conoce las ventajas de pertenecer a esta red</p>\n"
+                                + "                </div>\n"
+                                + "                <ul class=\"nospace group elements\">\n"
+                                + "                    <li class=\"one_third first\">\n"
+                                + "                        <article><a href=\"#\"><i class=\"fa fa-eye\"></i></a>\n"
+                                + "                            <h6 class=\"heading\">Manejo y control de inventario</h6>\n"
+                                + "                            <p>Controla tu inventario para saber lo que tienes y poder administrarlo [&hellip;]</p>\n"
+                                + "                            <footer><a href=\"#\">View Details &raquo;</a></footer>\n"
+                                + "                        </article>\n"
+                                + "                    </li>\n"
+                                + "                    <li class=\"one_third\">\n"
+                                + "                        <article><a href=\"#\"><i class=\"fa fa-calendar\"></i></a>\n"
+                                + "                            <h6 class=\"heading\">Reserva de libros para los usuarios</h6>\n"
+                                + "                            <p>Reserva un libro para tener prioridad sobre el prestamo [&hellip;]</p>\n"
+                                + "                            <footer><a href=\"#\">Ver Detalles &raquo;</a></footer>\n"
+                                + "                        </article>\n"
+                                + "                    </li>\n"
+                                + "                    <li class=\"one_third\">\n"
+                                + "                        <article><a href=\"#\"><i class=\"fa fa-bar-chart\"></i></a>\n"
+                                + "                            <h6 class=\"heading\">Estadisticas</h6>\n"
+                                + "                            <p>Mostramos estadiscticas útiles que plasman como se está moviendo el sistema [&hellip;]</p>\n"
+                                + "                            <footer><a href=\"#\">Ver Detalles &raquo;</a></footer>\n"
+                                + "                        </article>\n"
+                                + "                    </li>\n"
+                                + "                    <li class=\"one_third first\">\n"
+                                + "                        <article><a href=\"#\"><i class=\"fa fa-search\"></i></a>\n"
+                                + "                            <h6 class=\"heading\">Busquedas inteligentes</h6>\n"
+                                + "                            <p>Busca un libro o un elemento dentro de tu inventario, consulta disponibilidad y mucho más [&hellip;]</p>\n"
+                                + "                            <footer><a href=\"#\">Ver Detalles &raquo;</a></footer>\n"
+                                + "                        </article>\n"
+                                + "                    </li>\n"
+                                + "                    <li class=\"one_third\">\n"
+                                + "                        <article><a href=\"#\"><i class=\"fa fa-bell-o\"></i></a>\n"
+                                + "                            <h6 class=\"heading\">Control de paz y salvo</h6>\n"
+                                + "                            <p>Te mostramos la lista de estudiantes con prestamos pendientes [&hellip;]</p>\n"
+                                + "                            <footer><a href=\"#\">Ver Detalles &raquo;</a></footer>\n"
+                                + "                        </article>\n"
+                                + "                    </li>\n"
+                                + "                    <li class=\"one_third\">\n"
+                                + "                        <article><a href=\"#\"><i class=\"fa fa-link\"></i></a>\n"
+                                + "                            <h6 class=\"heading\">Enlace con otras instituciones</h6>\n"
+                                + "                            <p>Accede a otros libros que no posee tu institución gracias a los enlaces y convenios [&hellip;]</p>\n"
+                                + "                            <footer><a href=\"#\">Ver Detalles &raquo;</a></footer>\n"
+                                + "                        </article>\n"
+                                + "                    </li>\n"
+                                + "                </ul>\n"
+                                + "            </section>\n"
+                                + "        </div>\n"
+                                + "        <div class=\"wrapper bgded overlay light\" style=\"background-image:url('Images/black.png');\">\n"
+                                + "            <figure class=\"hoc clear\">\n"
+                                + "                <ul class=\"nospace group logos\">\n"
+                                + "                    <li class=\"one_quarter first\">\n"
+                                + "                        <img class=\"images\" src=\"Images/1.jpg\" alt=\"\">\n"
+                                + "                    </li>\n"
+                                + "                    <li class=\"one_quarter\">\n"
+                                + "                        <img class=\"images\" src=\"Images/2.jpg\" alt=\"\">\n"
+                                + "                    </li>\n"
+                                + "                    <li class=\"one_quarter\">\n"
+                                + "                        <img class=\"images\" src=\"Images/3.jpg\" alt=\"\">\n"
+                                + "                    </li>\n"
+                                + "                    <li class=\"one_quarter\">\n"
+                                + "                        <img class=\"images\" src=\"Images/4.jpg\" alt=\"\">\n"
+                                + "                    </li>\n"
+                                + "                </ul>\n"
+                                + "            </figure>\n"
+                                + "        </div>\n"
+                                + "        <div class=\"wrapper row4\">\n"
+                                + "            <footer id=\"footer\" class=\"hoc clear\">\n"
+                                + "                <div class=\"one_third first\" style=\"text-align: center\">\n"
+                                + "                    <h6 class=\"heading\">Visita nuestras redes sociales</h6>\n"
+                                + "                    <ul class=\"faico clear\">\n"
+                                + "                        <li><a class=\"faicon-facebook\" href=\"#\"><i class=\"fa fa-facebook\"></i></a></li>\n"
+                                + "                        <li><a class=\"faicon-twitter\" href=\"#\"><i class=\"fa fa-twitter\"></i></a></li>\n"
+                                + "                        <li><a class=\"faicon-linkedin\" href=\"#\"><i class=\"fa fa-linkedin\"></i></a></li>\n"
+                                + "                        <li><a class=\"faicon-google-plus\" href=\"#\"><i class=\"fa fa-google-plus\"></i></a></li>\n"
+                                + "                        <li><a class=\"faicon-youtube\" href=\"#\"><i class=\"fa fa-youtube-play\"></i></a></li>\n"
+                                + "                    </ul>\n"
+                                + "                </div>\n"
+                                + "\n"
+                                + "                <div id=\"contactenos\" class=\"fl_right\">\n"
+                                + "                    <h6 class=\"heading\">Contáctanos</h6>\n"
+                                + "                    <br>\n"
+                                + "                    <ul class=\"linklist\" style=\"text-align: left; margin-left: 0;\">\n"
+                                + "                        <li><i class=\"fa fa-envelope-o\"></i> librarysoftcol@gmail.com</li>\n"
+                                + "                    </ul>\n"
+                                + "                    <br>\n"
+                                + "                    <p style=\"padding: 0; text-align: left; font-size: 17px\">Escribenos y asociate a nuestra red</p>\n"
+                                + "                    <br>\n"
+                                + "                    <form method=\"post\" action=\"#\" id=\"contacto\">\n"
+                                + "                        <fieldset>\n"
+                                + "                            <input class=\"btmspace-15\" type=\"text\" value=\"\" placeholder=\"Nombre o institución\">\n"
+                                + "                            <input class=\"btmspace-15\" type=\"text\" value=\"\" placeholder=\"Correo electrónico\">\n"
+                                + "                            <textarea rows=\"4\" cols=\"50\" class=\"btmspace-15\" name=\"comment\" form=\"contacto\" placeholder=\"Escriba su mensaje aquí...\"></textarea>\n"
+                                + "                            <button type=\"submit\" value=\"submit\">Enviar</button>\n"
+                                + "                        </fieldset>\n"
+                                + "                    </form>\n"
+                                + "                </div>\n"
+                                + "            </footer>\n"
+                                + "        </div>\n"
+                                + "        <div class=\"wrapper row5\">\n"
+                                + "            <div id=\"copyright\" class=\"hoc clear\">\n"
+                                + "                <p>LibrarySoft &copy; 2017 - Todos los derechos reservados - <a href=\"#\">www.librarysoft.com.co</a></p>\n"
+                                + "            </div>\n"
+                                + "        </div>\n"
+                                + "        <a id=\"backtotop\" href=\"#top\"><i class=\"fa fa-chevron-up\"></i></a>\n"
+                                + "\n"
+                                + "        <!--Ventana modal de inicio de sesión-->\n"
+                                + "\n"
+                                + "        <span id=\"start\" class=\"target\"></span>\n"
+                                + "        <span id=\"about\" class=\"target\"></span>\n"
+                                + "        <div class=\"modal\">\n"
+                                + "            <div class=\"content\">\n"
+                                + "                <div class=\"log-in\">\n"
+                                + "\n"
+                                + "                    <h1 class=\"heading\">Iniciar Sesión en Library-Soft</h1>\n"
+                                + "                    <input id=\"campo1\" type=\"text\" placeholder=\"Usuario\">\n"
+                                + "                    <input id=\"campo2\" type=\"password\" placeholder=\"Contraseña\">\n"
+                                + "                    <button id=\"ingresar\" onclick=\"iniciarSesion();\" type=\"button\">INGRESAR</button>\n"
+                                + "\n"
+                                + "                </div>\n"
+                                + "                <a class=\"close-btn\" href=\"#start\"><i class=\" fa fa-lg fa-times-circle\"></i></a>\n"
+                                + "            </div>\n"
+                                + "        </div>\n"
+                                + "        <script language=\"JavaScript\" type=\"text/javascript\" src=\"scripts/jquery.min.js\"></script>\n"
+                                + "        <script language=\"JavaScript\" type=\"text/javascript\" src=\"scripts/jquery.backtotop.js\"></script>\n"
+                                + "        <script language=\"JavaScript\" type=\"text/javascript\" src=\"scripts/jquery.mobilemenu.js\"></script>  \n"
+                                + "\n"
+                                + "    </body>\n"
+                                + "</html>");
                         DaoUsuario usuario = new DaoUsuario();
                         usuario.modificarEstado(usu);
                     } else {
                         out.println("<h3>ERROR!</h3>");
                         out.println("<b>Lo sentimos no es el numero de registro</b>");
-                        out.println("");
-                        out.println("");
-                        System.out.println("Lo sentimos no es el numero de registro");
                     }
                 } else {
                     out.println("<h3>ERROR!</h3>");
                     out.println("<b>No existe usuario</b>");
-                    out.println("");
-                    out.println("");
-                    System.out.println("No existe usuario!");
                 }
 
             } catch (Exception e) {
-                // TODO: handle exception
-                System.out.println("Error de escritura:" + e);
             } finally {
                 out.close();
             }
 
         } catch (Exception e) {
-            // TODO: handle exception
             System.out.println("error" + e);
         }
 

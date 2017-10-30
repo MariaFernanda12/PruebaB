@@ -1,7 +1,6 @@
-$(document).ready(function () {
+window.onload = function(){
     $(".modal").hide();
-
-});
+};
 
 function mostrar() {
     $(".modal").show();
@@ -27,8 +26,7 @@ function validarRegistro(identificador, pwd1, pwd2, colegio, correo) {
                 var valor = [];
                 valor = response;
                 if (valor[0] == true) {
-                    alert("Usuario registrado satisfactoriamente ahora puede iniciar sesión");
-                    window.location.href = "#about";
+                    alert("Usuario registrado satisfactoriamente, por favor verifique su correo para terminar el registro");
                 } else {
                     if (valor[0] == false) {
                         alert("Usted no se encuentra asociado a esta institución");

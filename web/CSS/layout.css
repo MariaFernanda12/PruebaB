@@ -1510,3 +1510,10 @@ table a,
         margin-right: 0;
     }
 }
+
+@media screen and (max-width:750px) {
+    .images {
+        width: 60%;
+    }
+
+}

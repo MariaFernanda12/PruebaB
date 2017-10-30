@@ -19,7 +19,6 @@ import javax.mail.*;
 import java.util.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpSession;
 
 public class Registro extends HttpServlet {
@@ -78,19 +77,20 @@ public class Registro extends HttpServlet {
             message.addHeader("Disposition-Notification-To", "librarisoft@gmail.com");
             message.setSubject("Correo de verificacion, porfavor no responder");
             message.setText(
-                    " Este es un correo de verificacion \n"
-                    + "Gracias por escribirse a LibrarySoft \n"
+                    " <img src='https://kingmathew.000webhostapp.com/images/titulo1.png' alt='Not-Found'> \n"
+                    + "<br> \n"
+                    + " Este es un correo de verificacion \n"
+                    + "Gracias por registrarse en LibrarySoft \n"
                     + "Porfavor haga click en el siguiente enlace\n"
-                    + "para seguir con la verificacion de sus datos \n"
-                    + "  <a href='http://localhost:8080/LibrarySoft-1.0/ConfirmacionCorreo?usuario=" + identificador + "&aleatorio=" + cadena
-                    + "'>Enlace</a>  ", "ISO-8859-1", "html");
+                    + "para verificar su cuenta \n"
+                    + "<br> \n"
+                    + " <a href='http://localhost:8080/LibrarySoft-1.0/ConfirmacionCorreo?usuario=" + identificador + "&aleatorio=" + cadena
+                    + "'>Enlace de verificación</a>  ", "ISO-8859-1", "html");
 
             // Lo enviamos.
             Transport t = session.getTransport("smtp");
             t.connect("librarysoftcol@gmail.com", "thebestteam");
             t.sendMessage(message, message.getAllRecipients());
-
-            // Cierre.
             t.close();
             String json = new Gson().toJson(arr1);
             response.setContentType("application/json");
