@@ -1,6 +1,6 @@
-$(document).ready(function () {    
+$(document).ready(function () {
     getUser();
-    
+
 });
 function getUser() {
     $.ajax({
@@ -9,14 +9,14 @@ function getUser() {
 
     }).done(function (response) {
         console.log(response);
-        if (response == "false") {
-            window.location.href = "index.html";
+        if ($.isEmptyObject(response)) {
+            window.location.href = "../index.html";
         } else {
             document.getElementById('ident').innerHTML = response.identificador;
             document.getElementById('nombre').innerHTML = response.nombreSol;
             document.getElementById('col').innerHTML = response.colegio;
             document.getElementById('curso').innerHTML = response.cursoArea;
-            var imagen =  document.getElementById("imageUser");
+            var imagen = document.getElementById("imageUser");
             imagen.src = response.imagenUsuario;
         }
     });

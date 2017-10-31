@@ -31,7 +31,10 @@ public class Sesion extends HttpServlet {
                 response.setContentType("application/json");
                 response.getWriter().write(json);
             } else {
-                response.getWriter().write("false");
+                String res = "false";
+                String json = new Gson().toJson(res);
+                response.setContentType("application/json");
+                response.getWriter().write(json);
             }
 
         } catch (SQLException | URISyntaxException ex) {
