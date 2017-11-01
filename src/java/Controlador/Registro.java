@@ -63,7 +63,7 @@ public class Registro extends HttpServlet {
             props.setProperty("mail.smtp.host", "smtp.gmail.com");
             props.setProperty("mail.smtp.starttls.enable", "true");
             props.setProperty("mail.smtp.port", "587");
-            props.setProperty("mail.smtp.user", "librarisoft@gmail.com");
+            props.setProperty("mail.smtp.user", "librarysoftcol@gmail.com");
             props.setProperty("mail.smtp.auth", "true");
 
             // Preparamos la sesion
