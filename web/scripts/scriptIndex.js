@@ -1,4 +1,4 @@
-window.onload = function(){
+window.onload = function () {
     $(".modal").hide();
 };
 
@@ -13,7 +13,7 @@ function validarRegistro(identificador, pwd1, pwd2, colegio, correo) {
                 "identificador": identificador,
                 "colegio": colegio,
                 "pwd2": pwd2,
-                "pwd3":correo
+                "pwd3": correo
 
             };
             $.ajax({
@@ -64,18 +64,24 @@ function iniciarSesion() {
             if ($.isEmptyObject(data)) {
                 alert("Usuario y/o contraseña incorrectos");
             } else {
-                if (data.tipo == "Estudiante" || data.tipo == "Docente") {
-                    window.location.href = "Usuario/homeUser.jsp";
+                if (data.estado != "true") {
+                    alert("Por favor realice la verificación por correo");
+                } else {
+                    if (data.tipo == "Estudiante" || data.tipo == "Docente") {
+                        window.location.href = "Usuario/homeUser.jsp";
+                    }
+                    if (data.tipo == "Directivo" || data.tipo == "Administrativo") {
+                        window.location.href = "Admin/homeAdmin.jsp";
+                    }
+
                 }
-                if (data.tipo == "Directivo" || data.tipo == "Administrativo") {
-                    window.location.href = "Admin/homeAdmin.jsp";
-                }
+
             }
         });
-    }else{
+    } else {
         alert("Usuario y/o contraseña incorrectos");
         alert("Esta seguro de que ya se ha registrado");
     }
-    
+
 
 }

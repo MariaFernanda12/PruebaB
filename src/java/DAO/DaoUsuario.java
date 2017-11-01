@@ -119,6 +119,8 @@ public class DaoUsuario {
                 user.setColegio(resultado.getString("colegio"));
                 user.setClave(resultado.getString("clave"));
                 user.setImagenUsuario(resultado.getString("imagen"));
+                user.setCorreo(resultado.getString("correo"));
+                user.setEstado(resultado.getString("estado"));
                 respuesta = user;
             }
 

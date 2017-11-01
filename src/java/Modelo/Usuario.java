@@ -9,6 +9,24 @@ public class Usuario {
     String colegio;/*Colegio al que pertenece el estudiante*/
     String clave;/*Clave para el inicio de sesión*/
     String imagenUsuario; /*Imagen personalizada del usuario*/
+    String correo; /*Correo*/
+    String estado; /*Estado de verificación*/
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
 
     public String getClave() {
         return clave;
@@ -21,13 +39,11 @@ public class Usuario {
     public void setImagenUsuario(String imagenUsuario) {
         this.imagenUsuario = imagenUsuario;
     }
-    
 
     public void setClave(String clave) {
         this.clave = clave;
     }
 
-    
     public String getIdentificador() {
         return identificador;
     }
@@ -66,14 +82,11 @@ public class Usuario {
 
     public void setColegio(String colegio) {
         this.colegio = colegio;
-    } 
+    }
 
     @Override
     public String toString() {
         return "Usuario{" + "identificador=" + identificador + ", nombreSol=" + nombreSol + ", tipo=" + tipo + ", cursoArea=" + cursoArea + ", colegio=" + colegio + ", clave=" + clave + ", imagenUsuario=" + imagenUsuario + '}';
     }
-
-   
-    
 
 }
