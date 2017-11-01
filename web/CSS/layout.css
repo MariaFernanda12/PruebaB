@@ -7,6 +7,36 @@
     width: 350px;
 }
 
+.valid {
+    color: green;
+}
+
+.valid:before {
+    position: relative;
+    left: -35px;
+    content: "✔";
+}
+
+/* Add a red text color and an "x" when the requirements are wrong */
+
+.invalid {
+    color: red;
+}
+
+.invalid:before {
+    position: relative;
+    left: -35px;
+    content: "✖";
+}
+
+.divcito h3{
+    color: black;
+    text-align: center;
+}﻿
+.divcito p{
+    text-align: center;
+}﻿
+
 *,
 *:after,
 *:before {

@@ -10,7 +10,6 @@
         <script>
             window.setTimeout("document.getElementById('contenedor_carga').style.display='none';", 900);
         </script>
-
     </head>
 
     <body id="top">
@@ -187,27 +186,38 @@
                 <a class="close-btn" href="#start"><i class=" fa fa-lg fa-times-circle"></i></a>
             </div>
         </div>
-        <!--Ventana modal de inicio de registro-->
+        <!--Ventana modal de registro-->
         <span id="start2" class="target2"></span>
         <span id="about2" class="target2"></span>
-        <div class="modal2">
+        <div class="modal2" style="overflow: auto">
             <div class="content2">
-                <div class="sign-in">
+                <div class="sign-in" >                   
                     <h1 class="heading">Registrarse en Library-Soft</h1>
                     <select name="colegio" id="colegio">
                         <option value="" disabled selected>Colegio o Universidad</option>
                         <option>Colegio 1</option>
                         <option>Colegio 2</option>
                     </select>
-                    <input type="text" name="identificador" id="identificador" placeholder="Numero de identificación">
-                    <input name="pwd1" id="pwd1" type="password" placeholder="Contraseña">
-                    <input name="pwd2" id="pwd2" type="password" placeholder="Repita Contraseña">
-                    <input name="pwd3" id="pwd3" type="text" placeholder="Correo">
-                    <button onclick="validarRegistro($('#identificador').val(), $('#pwd1').val(), $('#pwd2').val(), $('#colegio').val(),$('#pwd3').val());" type="button" id="registrarse">REGISTRARSE</button>
+                    <input type="text" name="identificador" id="identificador" placeholder="Numero de identificación" required>
+                    <input type="password" id="pwd1" placeholder="Contraseña" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
+                    <input name="pwd2" id="pwd2" type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="Repita Contraseña" required>
+                    <input name="pwd3" id="pwd3" type="email" placeholder="Correo" required>
+                    <button onclick="validarRegistro();" type="button" id="registrarse">REGISTRARSE</button>
+
+
+                </div>
+                <div id="divPass" class="divcito">
+                    <h3>La contraseña debe cumplir lo siguiente:</h3>
+                    <p style="text-align: center" id="letter" class="invalid">Al menos una <b>letra minúscula</b></p>
+                    <p style="text-align: center" id="capital" class="invalid">Al menos una <b>lera mayúscula</b> letter</p>
+                    <p style="text-align: center" id="number" class="invalid">Al menos un <b>número</b></p>
+                    <p style="text-align: center" id="length" class="invalid">Mínimo <b>8 caracteres</b></p>
+                    <p style="text-align: center" id="coin" class="invalid">Las claves <b>deben coincidir</b></p>
                 </div>
                 <a class="close-btn" href="#start2"><i class=" fa fa-lg fa-times-circle"></i></a>
             </div>
-        </div>
+        </div>        
+
         <script language="JavaScript" type="text/javascript" src="scripts/jquery.min.js"></script>
         <script language="JavaScript" type="text/javascript" src="scripts/jquery.backtotop.js"></script>
         <script language="JavaScript" type="text/javascript" src="scripts/jquery.mobilemenu.js"></script>  
