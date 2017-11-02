@@ -150,7 +150,7 @@
                         </tr>
 
                         <tr>                                             
-                            <td>Curso: </td>
+                            <td>Cargo: </td>
                             <td id="5"></td>
                         </tr> 
                     </thead>                            
