@@ -10,11 +10,8 @@
         <link href="../CSS/mystyle.css" rel="stylesheet" type="text/css">
         <link rel="shortcut icon" href="../Images/icono.png">   
         <script>
-            var etiqueta;
             $(document).ready(function () {
                 $(".modal").hide();
-
-
             });
 
             function mostrar() {
@@ -39,7 +36,6 @@
                     }
                 });
             }
-
             function pp(x) {
                 var y = x.rowIndex;
                 var parametros = {
@@ -49,7 +45,6 @@
                     data: parametros,
                     url: "../Reservas",
                     type: "POST"
-
                 }).done(function (response) {
                     console.log(response);
                     var cantidad = response.cantidadDisponible;
@@ -61,13 +56,10 @@
                     var input = document.getElementById("campo1");
                     input.setAttribute("max", cantidad);
                     mostrar();
-                    getUser2();
-
-
                 });
-
-
             }
+
+
             function Buscar() {
 
                 var tableReg = document.getElementById('tabla');
@@ -98,46 +90,17 @@
                     }
                 }
             }
-            function getUser2() {
-                $.ajax({
-                    url: "../Sesion",
-                    type: "GET"
 
-                }).done(function (response) {
-                    console.log(response);
-                    if (response == "false") {
-                        window.location.href = "index.html";
-                    } else {
-                        document.getElementById('ident2').innerHTML = response.identificador;
-                        document.getElementById('nombre2').innerHTML = response.nombreSol;
-                        document.getElementById('curso2').innerHTML = response.cursoArea;
-                    }
-                });
-            }
-
-            function Reserva(fechaRes, cantidad) {
-
-                $.ajax({
-                    url: "../Sesion",
-                    type: "GET"
-
-                }).done(function (response) {
-                    console.log(response);
-                    if (response == "false") {
-                        window.location.href = "index.html";
-                    } else {
-                        idSol = response.identificador;
-                        curso = response.cursoArea;
-                    }
-                });
+            function Reserva(fechaRes, cantidad, idSol) {
                 var parametros = {
+                    "idSol": idSol,
                     "idElm": etiqueta,
                     "fechaRes": fechaRes,
                     "cantidad": cantidad
                 };
                 $.ajax({
                     data: parametros,
-                    url: "../Reservas",
+                    url: "../NewPrestamo",
                     type: "GET"
 
                 }).done(function (response) {
@@ -246,8 +209,7 @@
                     <p style="color: black; text-align: center; font-size: 22px;">Elemento:</p>
                     <p style="color: black; text-align: center" id="nombreLibro"></p>
                     <p style="color: black; text-align: center; font-size: 22px;">Id del libro:</p>
-                    <p style="color: black; text-align: center" id="element"></p>
-                    <p style="color: black; text-align: center; font-size: 22px;">Reservado por:</p>                   
+                    <p style="color: black; text-align: center" id="element"></p>                  
                     <input id="campoSol" type="text" placeholder="ID solicitante">  
                     <p style="color: black; text-align: center" id="curso2"></p>
                     <p style="color: black; text-align: center; font-size: 22px;">Cantidad Disponible:</p>   
@@ -255,7 +217,7 @@
                     <input id="campo1" type="number" min="1" placeholder="Cantidad a prestar" onkeydown="return false">
                     <p style="color: black; text-align: center; font-size: 22px;">Fecha de devolución:</p> 
                     <input id="campo2" type="date" placeholder="Fecha solicitada">
-                    <button id="ingresar" onclick="Reserva($('#campo2').val(), $('#campo1').val());" type="button">Prestar</button>
+                    <button id="ingresar" onclick="Reserva($('#campo2').val(), $('#campo1').val(), $('#campoSol').val());" type="button">Prestar</button>
 
                 </div>
                 <a class="close-btn" href="#start"><i class=" fa fa-lg fa-times-circle"></i></a>

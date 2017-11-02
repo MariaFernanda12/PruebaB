@@ -40,6 +40,10 @@
         <servlet-name>ConfirmacionCorreo</servlet-name>
         <servlet-class>Controlador.ConfirmacionCorreo</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>NewPrestamo</servlet-name>
+        <servlet-class>Controlador.NewPrestamo</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>upload</servlet-name>
         <url-pattern>/upload</url-pattern>
@@ -103,6 +107,10 @@
     <servlet-mapping>
         <servlet-name>ConfirmacionCorreo</servlet-name>
         <url-pattern>/ConfirmacionCorreo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NewPrestamo</servlet-name>
+        <url-pattern>/NewPrestamo</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

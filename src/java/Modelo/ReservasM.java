@@ -62,6 +62,10 @@ public class ReservasM {
     public String toString() {
         return "ReservasM{" + "etiquetaInv=" + etiquetaInv + ", identificadorsol=" + identificadorsol + ", fechaRes=" + fechaRes + ", fechaActual=" + fechaActual + ", cantidadRes=" + cantidadRes + ", estado=" + estado + '}';
     }
+
+    public void getIdentificadorsol(int idsol) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     
     

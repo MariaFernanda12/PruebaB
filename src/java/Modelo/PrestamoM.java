@@ -4,7 +4,7 @@ package Modelo;
 
 public class PrestamoM {
     int etiquetaInv;
-    String identificadorsol;
+    int identificadorsol;
     String fechaDev;
     String fechaActual;
     int cantidadPrestamo;    
@@ -17,15 +17,6 @@ public class PrestamoM {
     public void setEtiquetaInv(int etiquetaInv) {
         this.etiquetaInv = etiquetaInv;
     }
-
-    public String getIdentificadorsol() {
-        return identificadorsol;
-    }
-
-    public void setIdentificadorsol(String identificadorsol) {
-        this.identificadorsol = identificadorsol;
-    }
-
     public String getFechaDev() {
         return fechaDev;
     }
@@ -58,10 +49,22 @@ public class PrestamoM {
         this.estado = estado;
     }
 
+    public int getIdentificadorsol() {
+        return identificadorsol;
+    }
+
+    public void setIdentificadorsol(int identificadorsol) {
+        this.identificadorsol = identificadorsol;
+    }
+
+  
+
     @Override
     public String toString() {
         return "PrestamoM{" + "etiquetaInv=" + etiquetaInv + ", identificadorsol=" + identificadorsol + ", fechaDev=" + fechaDev + ", fechaActual=" + fechaActual + ", cantidadPrestamo=" + cantidadPrestamo + ", estado=" + estado + '}';
     }
+
+    
 
     
     
