@@ -2,16 +2,13 @@ package DAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import Modelo.Elemento;
 import Modelo.PrestamoM;
 import Modelo.ReservasM;
 import java.net.URISyntaxException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
 
 public class DaoPrestamos {
 
@@ -34,7 +31,7 @@ public class DaoPrestamos {
             //-----------------------------------
 
             statement.setInt(1, elm.getEtiquetaInv());
-            statement.setInt(2, elm.getIdentificadorsol());
+            statement.setString(2, elm.getIdentificadorsol());
             statement.setString(3, elm.getFechaDev());
             statement.setString(4, elm.getFechaActual());
             statement.setInt(5, elm.getCantidadPrestamo());
@@ -49,6 +46,38 @@ public class DaoPrestamos {
         }
 
         return resultado;
+    }
+    
+    public ArrayList<PrestamoM> listarTodo() {
+        //1.Consulta
+
+        ArrayList<PrestamoM> respuesta = new ArrayList();
+        String consulta = "select * from prestamo";
+        try {
+            //Statement
+            Statement statement
+                    = this.conexion.createStatement();
+            //Ejecucion
+            ResultSet resultado
+                    = statement.executeQuery(consulta);
+            //----------------------------
+            //Recorrido sobre el resultado
+            while (resultado.next()) {
+                PrestamoM elm = new PrestamoM();
+                elm.setEtiquetaInv(resultado.getInt("etiquetaInv"));
+                elm.setFechaActual(resultado.getString("fechaActual"));
+                elm.setFechaDev(resultado.getString("fechaDev"));
+                elm.setIdentificadorsol(resultado.getString("identificadorSol"));
+                elm.setCantidadPrestamo(resultado.getInt("cantidadPrestamo"));
+                elm.setEstado(resultado.getString("estado"));
+                respuesta.add(elm);
+            }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+        return respuesta;
     }
 
     

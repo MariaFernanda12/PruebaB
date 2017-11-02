@@ -1,10 +1,7 @@
 package Controlador;
 
 import DAO.DaoPrestamos;
-import DAO.DaoReservas;
-import Modelo.Elemento;
 import Modelo.PrestamoM;
-import Modelo.ReservasM;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -23,20 +20,18 @@ public class NewPrestamo extends HttpServlet {
             throws ServletException, IOException {
 
         try {
-            
-            
+
             java.util.Date utilDate = new java.util.Date();
             long lnMilisegundos = utilDate.getTime();
+          
 
-            
             java.sql.Date sqlDate = new java.sql.Date(lnMilisegundos);
-            int idsol = Integer.valueOf(request.getParameter("campoSol"));
-            int idlibro = Integer.valueOf(request.getParameter("element"));
-            int  cantidad = Integer.valueOf(request.getParameter("campo1"));
-            String fechadev=request.getParameter("campo2");
-            
-            
-            DaoPrestamos pretamos=new DaoPrestamos();           
+            String idsol = request.getParameter("idSol");
+            int idlibro = Integer.valueOf(request.getParameter("idElm"));
+            int cantidad = Integer.valueOf(request.getParameter("cantidad"));
+            String fechadev = request.getParameter("fechaRes");
+
+            DaoPrestamos pretamos = new DaoPrestamos();
             PrestamoM reserva = new PrestamoM();
             reserva.setEtiquetaInv(idlibro);
             reserva.setCantidadPrestamo(cantidad);
@@ -56,12 +51,6 @@ public class NewPrestamo extends HttpServlet {
             Logger.getLogger(Reservas.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-       
     }
 
 }

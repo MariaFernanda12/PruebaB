@@ -4,19 +4,13 @@ package Modelo;
 
 public class PrestamoM {
     int etiquetaInv;
-    int identificadorsol;
+    String identificadorsol;
     String fechaDev;
     String fechaActual;
     int cantidadPrestamo;    
     String estado;
 
-    public int getEtiquetaInv() {
-        return etiquetaInv;
-    }
-
-    public void setEtiquetaInv(int etiquetaInv) {
-        this.etiquetaInv = etiquetaInv;
-    }
+    
     public String getFechaDev() {
         return fechaDev;
     }
@@ -49,13 +43,23 @@ public class PrestamoM {
         this.estado = estado;
     }
 
-    public int getIdentificadorsol() {
+    public int getEtiquetaInv() {
+        return etiquetaInv;
+    }
+
+    public void setEtiquetaInv(int etiquetaInv) {
+        this.etiquetaInv = etiquetaInv;
+    }
+
+    public String getIdentificadorsol() {
         return identificadorsol;
     }
 
-    public void setIdentificadorsol(int identificadorsol) {
+    public void setIdentificadorsol(String identificadorsol) {
         this.identificadorsol = identificadorsol;
     }
+
+   
 
   
 
