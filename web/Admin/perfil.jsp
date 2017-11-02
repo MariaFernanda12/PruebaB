@@ -97,7 +97,7 @@
                 <div class="wrapper row2">
                     <nav id="mainav" class="hoc clear"> 
                         <ul class="clear">
-                            <li class="active"><a href="homeAdmin.jsp">Home</a></li>                       
+                            <li><a href="homeAdmin.jsp">Home</a></li>                       
                             <li><a href="Listados.html">Inventario Disponible</a></li>
                             <li><a href="Prestamos.html">Prestamos</a></li>
                             <li><a href="Devoluciones.html">Devoluciones</a></li>
