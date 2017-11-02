@@ -47,7 +47,9 @@ public class Reservas extends HttpServlet {
             response.setContentType("application/json");
             response.getWriter().write(json);
 
-        } catch (URISyntaxException | SQLException ex) {
+        } catch (SQLException ex) {
+            Logger.getLogger(Reservas.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (URISyntaxException ex) {
             Logger.getLogger(Reservas.class.getName()).log(Level.SEVERE, null, ex);
         }
 
@@ -65,7 +67,9 @@ public class Reservas extends HttpServlet {
             response.setContentType("application/json");
             response.getWriter().write(json);
 
-        } catch (URISyntaxException | SQLException ex) {
+        } catch (SQLException ex) {
+            Logger.getLogger(Reservas.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (URISyntaxException ex) {
             Logger.getLogger(Reservas.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

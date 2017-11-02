@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 import java.sql.SQLException;
+import javax.servlet.http.HttpSession;
 
 public class ListarReservas extends HttpServlet {
 
@@ -20,12 +21,16 @@ public class ListarReservas extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            ArrayList<ReservasM> lista = null;
-            DaoReservas daoR = new DaoReservas();
-            lista = daoR.listarTodo();
-            String json = new Gson().toJson(lista);
-            response.setContentType("application/json");
-            response.getWriter().write(json);
+            HttpSession session = request.getSession(false);
+            if (session != null) {
+                String usuario = (String) session.getAttribute("user");
+                ArrayList<ReservasM> lista = null;
+                DaoReservas daoR = new DaoReservas();
+                lista = daoR.listarTodo(usuario);
+                String json = new Gson().toJson(lista);
+                response.setContentType("application/json");
+                response.getWriter().write(json);
+            }
 
         } catch (URISyntaxException ex) {
             Logger.getLogger(Listar.class.getName()).log(Level.SEVERE, null, ex);

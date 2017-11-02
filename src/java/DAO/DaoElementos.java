@@ -84,6 +84,7 @@ public class DaoElementos {
     public ArrayList<Elemento> listarPorArea(String area) {
         ArrayList<Elemento> respuesta = new ArrayList();
         String consulta = "select * from inventario where area = '" + area + "'";
+        System.out.println(consulta);
         try {
 
             Statement statement

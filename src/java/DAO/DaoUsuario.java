@@ -20,7 +20,7 @@ public class DaoUsuario {
     }
 
     public ArrayList validarRegistro(String usuario, String clave, String colegio, String correo) {
-        ArrayList<Boolean> arr1 = new ArrayList<>();
+        ArrayList<Boolean> arr1 = new ArrayList<Boolean>();
         boolean res = false;
         boolean res2 = false;
         try {

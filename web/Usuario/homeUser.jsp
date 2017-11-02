@@ -52,7 +52,7 @@
             <div class="wrapper row2">
                 <nav id="mainav" class="hoc clear"> 
                     <ul class="clear">
-                        <li class="active"><a href="homeUser.html">Home</a></li>                       
+                        <li class="active"><a href="homeUser.jsp">Home</a></li>                       
                         <li><a href="Listados.html">Inventario Disponible</a></li>
                         <li><a href="reservas.jsp">Reservas</a></li>
                         <li><a href="historial.html">Historial</a></li>

@@ -26,14 +26,14 @@ create table usuarios(
    estado varchar(50) 
 );
 
+
 create table reserva(
     idElemento integer,
-    fechaActual date,
-    fechaReserva date,
+    fechaActual varchar(40),
+    fechaReserva varchar(40),
     idSol varchar(40),
-    cursoArea varchar (40),
     cantidad integer,
-    estado varchar, /*Activo-Terminado*/
+    estado varchar (40), /*Activo-Terminado*/
     foreign key (idSol) references usuarios(identificador),   
     foreign key (idElemento) references inventario(etiqueta)   
 

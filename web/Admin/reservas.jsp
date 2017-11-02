@@ -1,5 +1,6 @@
-<!DOCTYPE html>
 
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
     <head>
         <title>Library Soft</title>
@@ -11,61 +12,150 @@
         <link href="../CSS/mystyle.css" rel="stylesheet" type="text/css">
         <link rel="shortcut icon" href="../Images/icono.png">   
         <script>
-            window.setTimeout("document.getElementById('contenedor_carga').style.display='none';", 1500);
+            var etiqueta;
+            $(document).ready(function () {
+                $(".modal").hide();
 
-            window.onload = function () {
-                getUser();
+
+            });
+
+            function mostrar() {
+                $(".modal").show();
+            }
+            window.setTimeout("document.getElementById('contenedor_carga').style.display='none';", 1500);
+            $(document).ready(function () {
+                obtenerData();
+            });
+            function obtenerData() {
+                var indic = 1;
+                $.ajax({
+                    type: 'GET'
+                    , url: "../BuscarElementoPorNombre"
+                    , async: true
+                    , cache: false
+                    , success: function (resp) {
+                        $.each(resp, function (indice, Elemento) {
+                            $("#tabla").append($("<tr id='" + indic + "' onclick='pp(this);'> ").append(("<td>" + Elemento.etiqueta + "</td>" + "<td>" + Elemento.nombre + "</td>" + "<td>" + Elemento.cantidadDisponible + "</td>" + "<td>" + Elemento.ubicacion + "</td>" + "<td>" + Elemento.propiedad + "</td>" + "<td>" + Elemento.responsable + "</td>" + "<td>" + Elemento.area + "</td>" + "<td>" + Elemento.colegio + "</td>")))
+                            indic++;
+                        });
+                    }
+                });
+            }
+
+            function pp(x) {
+                var y = x.rowIndex;
+                var parametros = {
+                    "identificador": y
+                };
+                $.ajax({
+                    data: parametros,
+                    url: "../Reservas",
+                    type: "POST"
+
+                }).done(function (response) {
+                    console.log(response);
+                    var cantidad = response.cantidadDisponible;
+                    window.location.href = "#about";
+                    document.getElementById('element').innerHTML = response.etiqueta;
+                    etiqueta = response.etiqueta;
+                    document.getElementById('nombreLibro').innerHTML = response.nombre;
+                    document.getElementById('cantidad').innerHTML = response.cantidadDisponible;
+                    var input = document.getElementById("campo1");
+                    input.setAttribute("max", cantidad);
+                    mostrar();
+                    getUser2();
+
+
+                });
+
 
             }
-            function getUser() {
+            function Buscar() {
+
+                var tableReg = document.getElementById('tabla');
+                var searchText = document.getElementById('Busqueda').value.toLowerCase();
+                var cellsOfRow = "";
+                var found = false;
+                var compareWith = "";
+
+                for (var i = 1; i < tableReg.rows.length; i++)
+                {
+                    cellsOfRow = tableReg.rows[i].getElementsByTagName('td');
+                    found = false;
+                    // Recorremos todas las celdas
+                    for (var j = 0; j < cellsOfRow.length && !found; j++)
+                    {
+                        compareWith = cellsOfRow[j].innerHTML.toLowerCase();
+                        // Buscamos el texto en el contenido de la celda
+                        if (searchText.length == 0 || (compareWith.indexOf(searchText) > -1))
+                        {
+                            found = true;
+                        }
+                    }
+                    if (found)
+                    {
+                        tableReg.rows[i].style.display = '';
+                    } else {
+                        tableReg.rows[i].style.display = 'none';
+                    }
+                }
+            }
+            function getUser2() {
                 $.ajax({
                     url: "../Sesion",
                     type: "GET"
 
                 }).done(function (response) {
                     console.log(response);
-                    if ($.isEmptyObject(response)) {
-                        window.location.href = "../index.html";
+                    if (response == "false") {
+                        window.location.href = "index.html";
                     } else {
-                        document.getElementById('ident').innerHTML = response.identificador;
-                        document.getElementById('nombre').innerHTML = response.nombreSol;
-                        document.getElementById('col').innerHTML = response.colegio;
-                        document.getElementById('curso').innerHTML = response.cursoArea;
-                        var imagen = document.getElementById("imageUser");
-                        imagen.src = response.imagenUsuario;
+                        document.getElementById('ident2').innerHTML = response.identificador;
+                        document.getElementById('nombre2').innerHTML = response.nombreSol;
+                        document.getElementById('curso2').innerHTML = response.cursoArea;
                     }
                 });
             }
 
-            function listarPorArea() {
-                var area = document.getElementById("area").value;
-                var indic = 1;
-                var parametros = {
-                    "valor1": area
-                };
+            function Reserva(fechaRes, cantidad) {
+
                 $.ajax({
-                    data: parametros,
-                    url: "../ListarPorArea",
+                    url: "../Sesion",
                     type: "GET"
 
                 }).done(function (response) {
                     console.log(response);
-                    $("#tabla").empty();
-                    $.each(response, function (indice, Elemento) {
-                        $("#tabla").append($("<tr>").append(("<td style='width: 100px;'>" + Elemento.etiqueta + "</td>"
-                                + "<td style='width: 400px;'>" + Elemento.nombre + "</td>" 
-                                + "<td style='width: 400px;'>" + Elemento.cantidadDisponible + "</td>"
-                                + "<td style='width: 400px;'>" + Elemento.ubicacion + "</td>" 
-                                + "<td style='width: 400px;'>" + Elemento.propiedad + "</td>"
-                                + "<td style='width: 400px;'> " + Elemento.responsable + "</td>"
-                                + "<td style='width: 400px;'>" + Elemento.area + "</td>"
-                                + "<td style='width: 400px;'>" + Elemento.colegio + "</td>")));
-                        indic++;
-                    });
+                    if (response == "false") {
+                        window.location.href = "index.html";
+                    } else {
+                        idSol = response.identificador;
+                        curso = response.cursoArea;
+                    }
+                });
+                var parametros = {
+                    "idElm": etiqueta,
+                    "fechaRes": fechaRes,
+                    "cantidad": cantidad
+                };
+                $.ajax({
+                    data: parametros,
+                    url: "../Reservas",
+                    type: "GET"
+
+                }).done(function (response) {
+                    console.log(response);
+                    if (response != false) {
+                        alert("No se pudo realizar la reserva");
+                    } else {
+                        alert("Reserva realizada satisfactoriamente");
+                        window.location.href = "historial.html";
+                    }
+
+
 
                 });
-            }
 
+            }
         </script>
     </head>
     <body id="top">
@@ -86,7 +176,7 @@
                         <li><p id="col"></p></li>
                         <li><p id="curso"></p></li>
                         <li><a onclick="closeSesion();" title="Cerrar Sesión"><i class="fa fa-lg fa-power-off"></i></a></li>
-                        <li><a href="perfil.jsp"  title="Mi Perfil"><img alt="NotFound" id="imageUser" src=""/></a></li>
+                        <li><a href="perfil.jsp"  title="Mi Perfil"><img alt="NotFound" id="imageUser" /></a></li>
 
                     </ul>
                 </div>
@@ -104,18 +194,21 @@
             <div class="wrapper row2">
                 <nav id="mainav" class="hoc clear"> 
                     <ul class="clear">
-                        <li><a href="homeUser.jsp">Home</a></li>                       
-                        <li class="active" ><a href="Listados.html">Inventario Disponible</a></li>
-                        <li><a href="reservas.jsp">Reservas</a></li>
+                        <li class="active"><a href="homeAdmin.jsp">Home</a></li>                       
+                        <li><a href="Listados.html">Inventario Disponible</a></li>
+                        <li><a href="Prestamos.html">Prestamos</a></li>
+                        <li><a href="Devoluciones.html">Devoluciones</a></li>
+                        <li><a href="reservas.jsp">Reservas Pendientes</a></li>
                         <li><a href="historial.html">Historial</a></li>
                         <li><a href="Busquedas.html">Busquedas</a></li>
                         <li><a href="#">Convenios</a></li>
+                        <li><a href="#">Cargar base de datos</a></li>
                     </ul>
                 </nav>
             </div>
             <div class="wrapper overlay">
                 <div id="breadcrumb" class="hoc clear"> 
-                    <h1 style="font-size: 62px">Inventario</h1>
+                    <h1 style="font-size: 62px">Reservas</h1>
                 </div>
             </div>
 
@@ -123,54 +216,53 @@
                 <main class="hoc container clear"> 
                     <div class="content">
                         <div>
-                            <h1 class="heading">Inventario por Área</h1>
-                            <select style="text-align: center; margin: 0 auto;" name="area" id="area" onchange="listarPorArea();">
-                                <option value="" disabled selected>--Seleccione el Área--</option>
-                                <option>Enciclopedia</option>
-                                <option>Diccionarios</option>
-                                <option>Español</option>
-                                <option>Matemáticas</option>
-                                <option>Física</option>
-                                <option>Química</option>
-                                <option>Sociales</option>
-                                <option>Ingles</option>
-                                <option>Ciencias Naturales</option>
-                                <option>Preescolar</option>
-                                <option>Filosofía</option>
-                                <option>Religión</option>
-                                <option>Ética</option>
-                                <option>Informática</option>
-                                <option>Atlas</option>
-                                <option>Salud y Educación Sexual</option>
-                                <option>Dibujo Técnico</option>
-                                <option>Libros Institucionales</option>
-                                <option>Material Didáctico</option>
-                                <option>Multimedia</option>
-                                <option>Equipo</option>
-                            </select>                            
+                            <input id="Busqueda"  onkeyup="Buscar()" class="btmspace-15" type="text" style="width: 70%; margin-left: 15%; text-align: center;"  placeholder="Busca el Library soft">
                         </div>
-                        <br>
-                        <br>
-                        <table border="1" id="tabla1">
+                        <table border="1" id="tabla">
                             <thead>
                                 <tr>
-                                    <th style="width: 100px;">Etiqueta</th>
-                                    <th style="width: 400px;">Nombre</th>
-                                    <th style="width: 400px;">CantidadDisponible</th>
-                                    <th style="width: 400px;">Ubicacion</th>
-                                    <th style="width: 400px;">Propiedad</th>
-                                    <th style="width: 400px;">Responsable</th> 
-                                    <th style="width: 400px;">Area</th>
-                                    <th style="width: 400px;">Colegio</th>
+                                    <th>Etiqueta</th>
+                                    <th>Nombre</th>
+                                    <th>CantidadDisponible</th>
+                                    <th>Ubicacion</th>
+                                    <th>Propiedad</th>
+                                    <th>Responsable</th> 
+                                    <th>Area</th>
+                                    <th>Colegio</th>
 
                                 </tr>
                             </thead>
+
                         </table>
-                        <table border="1" id="tabla">
-                            <thead>                                
-                            </thead>
-                        </table>
-                    </div> 
+                    </div>
+                </main>
+            </div>
+        </div>
+        <span id="start" class="target"></span>
+        <span id="about" class="target"></span>
+        <div class="modal" style="overflow: auto">
+            <div class="content">
+                <div class="reserv">
+
+                    <h1 class="heading">Reservar en Library-Soft</h1>
+                    <p style="color: black; text-align: center; font-size: 22px;">Elemento:</p>
+                    <p style="color: black; text-align: center" id="nombreLibro"></p>
+                    <p style="color: black; text-align: center; font-size: 22px;">Id del libro:</p>
+                    <p style="color: black; text-align: center" id="element"></p>
+                    <p style="color: black; text-align: center; font-size: 22px;">Reservado por:</p>                   
+                    <p style="color: black; text-align: center" id="nombre2"></p>
+                    <p style="color: black; text-align: center" id="ident2"></p>
+                    <p style="color: black; text-align: center; font-size: 22px;">Curso:</p>     
+                    <p style="color: black; text-align: center" id="curso2"></p>
+                    <p style="color: black; text-align: center; font-size: 22px;">Cantidad Disponible:</p>   
+                    <p style="color: black; text-align: center" id="cantidad"></p>
+                    <input id="campo1" type="number" min="1" placeholder="Cantidad a reservar">
+                    <p style="color: black; text-align: center; font-size: 22px;">Fecha de entrega:</p> 
+                    <input id="campo2" type="date" placeholder="Fecha solicitada">
+                    <button id="ingresar" onclick="Reserva($('#campo2').val(), $('#campo1').val());" type="button">Reservar</button>
+
+                </div>
+                <a class="close-btn" href="#start"><i class=" fa fa-lg fa-times-circle"></i></a>
             </div>
         </div>
 

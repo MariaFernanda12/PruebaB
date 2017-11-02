@@ -24,7 +24,7 @@ public class changePassword extends HttpServlet {
         try {
             HttpSession session = request.getSession(false);
             if (session != null) {
-                ArrayList<String> a = new ArrayList<>();
+                ArrayList<String> a = new ArrayList<String>();
                 String usuario = (String) session.getAttribute("user");
                 String oldClave = (String) session.getAttribute("pass");
                 String newClave = request.getParameter("valor3");
@@ -48,8 +48,10 @@ public class changePassword extends HttpServlet {
                 response.getWriter().write("false");
             }
 
-        } catch (SQLException | URISyntaxException ex) {
-            Logger.getLogger(Sesion.class.getName()).log(Level.SEVERE, null, ex);
+          } catch (URISyntaxException ex) {
+            Logger.getLogger(changePassword.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(changePassword.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }

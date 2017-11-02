@@ -37,7 +37,9 @@ public class Sesion extends HttpServlet {
                 response.getWriter().write(json);
             }
 
-        } catch (SQLException | URISyntaxException ex) {
+       } catch (SQLException ex) {
+            Logger.getLogger(Sesion.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (URISyntaxException ex) {
             Logger.getLogger(Sesion.class.getName()).log(Level.SEVERE, null, ex);
         }
 

@@ -37,7 +37,7 @@
                         <li><p id="col"></p></li>
                         <li><p id="curso"></p></li>
                         <li><a onclick="closeSesion();" title="Cerrar Sesión"><i class="fa fa-lg fa-power-off"></i></a></li>
-                        <li><a href="perfil.jsp"  title="Mi Perfil"><img alt="NotFound" id="imageUser" src="index.jsp"/></a></li>
+                        <li><a href="perfil.jsp"  title="Mi Perfil"><img alt="NotFound" id="imageUser"/></a></li>
                     </ul>
                 </div>
             </div>
@@ -54,10 +54,12 @@
             <div class="wrapper row2">
                 <nav id="mainav" class="hoc clear"> 
                     <ul class="clear">
-                        <li class="active"><a href="homeUser.html">Home</a></li>                       
+                        <li class="active"><a href="homeAdmin.jsp">Home</a></li>                       
                         <li><a href="Listados.html">Inventario Disponible</a></li>
-                        <li><a href="#">Reservas</a></li>
-                        <li><a href="#">Historial</a></li>
+                        <li><a href="Prestamos.html">Prestamos</a></li>
+                        <li><a href="Devoluciones.html">Devoluciones</a></li>
+                        <li><a href="reservas.jsp">Reservas Pendientes</a></li>
+                        <li><a href="historial.html">Historial</a></li>
                         <li><a href="Busquedas.html">Busquedas</a></li>
                         <li><a href="#">Convenios</a></li>
                         <li><a href="#">Cargar base de datos</a></li>
@@ -117,20 +119,20 @@
                 </ul>
             </section>
         </div>
-        <div id="c" class="wrapper bgded overlay light" style="background-image:url('Images/demo/backgrounds/black.jpg');">
+        <div id="c" class="wrapper bgded overlay light" style="background-image:url('../Images/black.png');">
             <figure class="hoc clear">
                 <ul class="nospace group logos">
                     <li class="one_quarter first">
-                        <img src="Images/demo/1.png" alt="">
+                        <img class="images" src="../Images/1.jpg" alt="">
                     </li>
                     <li class="one_quarter">
-                        <img src="Images/demo/2.png" alt="">
+                        <img class="images" src="../Images/2.jpg" alt="">
                     </li>
                     <li class="one_quarter">
-                        <img src="Images/demo/3.png" alt="">
+                        <img class="images" src="../Images/3.jpg" alt="">
                     </li>
                     <li class="one_quarter">
-                        <img src="Images/demo/4.png" alt="">
+                        <img class="images" src="../Images/4.jpg" alt="">
                     </li>
                 </ul>
             </figure>

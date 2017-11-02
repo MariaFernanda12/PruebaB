@@ -74,11 +74,11 @@ public class DaoReservas {
         return resultado;
     }
     
-     public ArrayList<ReservasM> listarTodo() {
+     public ArrayList<ReservasM> listarTodo(String usuario) {
         //1.Consulta
 
         ArrayList<ReservasM> respuesta = new ArrayList();
-        String consulta = "select * from reserva";
+        String consulta = "select * from reserva where idsol=  '" + usuario + "'";
         try {
             //Statement
             Statement statement

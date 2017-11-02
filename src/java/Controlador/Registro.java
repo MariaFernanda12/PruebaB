@@ -63,7 +63,7 @@ public class Registro extends HttpServlet {
             props.setProperty("mail.smtp.host", "smtp.gmail.com");
             props.setProperty("mail.smtp.starttls.enable", "true");
             props.setProperty("mail.smtp.port", "587");
-            props.setProperty("mail.smtp.user", "librarysoftcol@gmail.com");
+            props.setProperty("mail.smtp.user", "librarysoftcolombia@gmail.com");
             props.setProperty("mail.smtp.auth", "true");
 
             // Preparamos la sesion
@@ -72,9 +72,9 @@ public class Registro extends HttpServlet {
             // Construimos el mensaje
             MimeMessage message = new MimeMessage(session);
             // la persona k tiene k verificar
-            message.setFrom(new InternetAddress("librarisoft@gmail.com"));
+            message.setFrom(new InternetAddress("librarisoftcolombia@gmail.com"));
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(correo));
-            message.addHeader("Disposition-Notification-To", "librarisoft@gmail.com");
+            message.addHeader("Disposition-Notification-To", "librarisoftcolombia@gmail.com");
             message.setSubject("Correo de verificacion, porfavor no responder");
             message.setText(
                     " <img src='https://kingmathew.000webhostapp.com/images/titulo1.png' alt='Not-Found'> \n"
@@ -84,12 +84,12 @@ public class Registro extends HttpServlet {
                     + "Porfavor haga click en el siguiente enlace\n"
                     + "para verificar su cuenta \n"
                     + "<br> \n"
-                    + " <a href='http://localhost:8080/LibrarySoft-1.0/ConfirmacionCorreo?usuario=" + identificador + "&aleatorio=" + cadena
+                    + "  <a href='http://librarysoft.herokuapp.com/myApp/ConfirmacionCorreo?usuario=" + identificador + "&aleatorio=" + cadena
                     + "'>Enlace de verificación</a>  ", "ISO-8859-1", "html");
 
             // Lo enviamos.
             Transport t = session.getTransport("smtp");
-            t.connect("librarysoftcol@gmail.com", "thebestteam");
+            t.connect("librarysoftcolombia@gmail.com", "thebestteam");
             t.sendMessage(message, message.getAllRecipients());
             t.close();
             String json = new Gson().toJson(arr1);

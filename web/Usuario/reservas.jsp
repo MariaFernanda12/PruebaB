@@ -16,6 +16,7 @@
             $(document).ready(function () {
                 $(".modal").hide();
 
+
             });
 
             function mostrar() {
@@ -53,10 +54,14 @@
 
                 }).done(function (response) {
                     console.log(response);
+                    var cantidad = response.cantidadDisponible;
                     window.location.href = "#about";
                     document.getElementById('element').innerHTML = response.etiqueta;
                     etiqueta = response.etiqueta;
                     document.getElementById('nombreLibro').innerHTML = response.nombre;
+                    document.getElementById('cantidad').innerHTML = response.cantidadDisponible;
+                    var input = document.getElementById("campo1");
+                    input.setAttribute("max", cantidad);
                     mostrar();
                     getUser2();
 
@@ -138,7 +143,7 @@
                     type: "GET"
 
                 }).done(function (response) {
-                    console.log(response);                    
+                    console.log(response);
                     if (response != false) {
                         alert("No se pudo realizar la reserva");
                     } else {
@@ -190,7 +195,7 @@
                 <nav id="mainav" class="hoc clear"> 
                     <ul class="clear">
                         <li><a href="homeUser.jsp">Home</a></li>                       
-                        <li><a href="#" onclick="showListados();">Inventario Disponible</a></li>
+                        <li><a href="Listados.html">Inventario Disponible</a></li>
                         <li class="active"><a href="reservas.jsp">Reservas</a></li>
                         <li><a href="historial.html">Historial</a></li>
                         <li><a href="Busquedas.html">Busquedas</a></li>
@@ -246,7 +251,9 @@
                     <p style="color: black; text-align: center" id="ident2"></p>
                     <p style="color: black; text-align: center; font-size: 22px;">Curso:</p>     
                     <p style="color: black; text-align: center" id="curso2"></p>
-                    <input id="campo1" type="text" placeholder="Cantidad">
+                    <p style="color: black; text-align: center; font-size: 22px;">Cantidad Disponible:</p>   
+                    <p style="color: black; text-align: center" id="cantidad"></p>
+                    <input id="campo1" type="number" min="1" placeholder="Cantidad a reservar">
                     <p style="color: black; text-align: center; font-size: 22px;">Fecha de entrega:</p> 
                     <input id="campo2" type="date" placeholder="Fecha solicitada">
                     <button id="ingresar" onclick="Reserva($('#campo2').val(), $('#campo1').val());" type="button">Reservar</button>
