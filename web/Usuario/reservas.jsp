@@ -12,7 +12,7 @@
         <link href="../CSS/mystyle.css" rel="stylesheet" type="text/css">
         <link rel="shortcut icon" href="../Images/icono.png">   
         <script>
-            var etiqueta;     
+            var etiqueta;
             $(document).ready(function () {
                 $(".modal").hide();
 
@@ -138,8 +138,13 @@
                     type: "GET"
 
                 }).done(function (response) {
-                    console.log(response);
-
+                    console.log(response);                    
+                    if (response != false) {
+                        alert("No se pudo realizar la reserva");
+                    } else {
+                        alert("Reserva realizada satisfactoriamente");
+                        window.location.href = "historial.html";
+                    }
 
 
 
@@ -166,7 +171,7 @@
                         <li><p id="col"></p></li>
                         <li><p id="curso"></p></li>
                         <li><a onclick="closeSesion();" title="Cerrar Sesión"><i class="fa fa-lg fa-power-off"></i></a></li>
-                        <li><a href="perfil.jsp"  title="Mi Perfil"><img alt="NotFound" id="imageUser" src="index.jsp"/></a></li>
+                        <li><a href="perfil.jsp"  title="Mi Perfil"><img alt="NotFound" id="imageUser" /></a></li>
 
                     </ul>
                 </div>
@@ -187,7 +192,7 @@
                         <li><a href="homeUser.jsp">Home</a></li>                       
                         <li><a href="#" onclick="showListados();">Inventario Disponible</a></li>
                         <li class="active"><a href="reservas.jsp">Reservas</a></li>
-                        <li><a href="#">Historial</a></li>
+                        <li><a href="historial.html">Historial</a></li>
                         <li><a href="Busquedas.html">Busquedas</a></li>
                         <li><a href="#">Convenios</a></li>
                     </ul>
@@ -227,7 +232,7 @@
         </div>
         <span id="start" class="target"></span>
         <span id="about" class="target"></span>
-        <div class="modal">
+        <div class="modal" style="overflow: auto">
             <div class="content">
                 <div class="reserv">
 
@@ -241,9 +246,8 @@
                     <p style="color: black; text-align: center" id="ident2"></p>
                     <p style="color: black; text-align: center; font-size: 22px;">Curso:</p>     
                     <p style="color: black; text-align: center" id="curso2"></p>
-
-
                     <input id="campo1" type="text" placeholder="Cantidad">
+                    <p style="color: black; text-align: center; font-size: 22px;">Fecha de entrega:</p> 
                     <input id="campo2" type="date" placeholder="Fecha solicitada">
                     <button id="ingresar" onclick="Reserva($('#campo2').val(), $('#campo1').val());" type="button">Reservar</button>
 

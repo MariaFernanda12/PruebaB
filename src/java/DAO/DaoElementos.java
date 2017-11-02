@@ -101,6 +101,7 @@ public class DaoElementos {
                 elm.setPropiedad(resultado.getString("propiedad"));
                 elm.setResponsable(resultado.getString("responsable"));
                 elm.setArea(resultado.getString("area"));
+                elm.setColegio(resultado.getString("colegio"));
                 respuesta.add(elm);
             }
 

@@ -23,7 +23,6 @@ public class ListarPorArea extends HttpServlet {
             ArrayList<Elemento> lista = null;
             DaoElementos daoE = new DaoElementos();
             String area = request.getParameter("valor1");
-            System.out.println(area);
             lista = daoE.listarPorArea(area);
             String json = new Gson().toJson(lista);
             response.setContentType("application/json");

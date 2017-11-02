@@ -41,9 +41,11 @@ public class Reservas extends HttpServlet {
             reserva.setFechaActual(sqlDate.toString());
             reserva.setEstado(estado);
             reserva.setIdentificadorsol(usuario);
-            System.out.println(reserva.toString());
             boolean respuesta = false;
             respuesta = daoR.insertar(reserva);
+            String json = new Gson().toJson(respuesta);
+            response.setContentType("application/json");
+            response.getWriter().write(json);
 
         } catch (URISyntaxException | SQLException ex) {
             Logger.getLogger(Reservas.class.getName()).log(Level.SEVERE, null, ex);
