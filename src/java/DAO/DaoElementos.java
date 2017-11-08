@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import Modelo.Elemento;
+import Modelo.inventario;
 import java.net.URISyntaxException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,7 +19,7 @@ public class DaoElementos {
         conexion = Util.conexion.getConnection();
     }
 
-    public boolean insertar(Elemento elm) {
+    public boolean insertar(inventario elm) {
         boolean resultado = false;
         try {
             //1.Establecer la consulta
@@ -46,10 +46,10 @@ public class DaoElementos {
         return resultado;
     }
 
-    public ArrayList<Elemento> listarTodo() {
+    public ArrayList<inventario> listarTodo() {
         //1.Consulta
 
-        ArrayList<Elemento> respuesta = new ArrayList();
+        ArrayList<inventario> respuesta = new ArrayList();
         String consulta = "select * from inventario";
         try {
             //Statement
@@ -61,7 +61,7 @@ public class DaoElementos {
             //----------------------------
             //Recorrido sobre el resultado
             while (resultado.next()) {
-                Elemento elm = new Elemento();
+                inventario elm = new inventario();
                 elm.setEtiqueta(resultado.getInt("etiqueta"));
                 elm.setNombre(resultado.getString("nombre"));
                 elm.setCantidadDisponible(resultado.getInt("cantidadDisponible"));
@@ -81,8 +81,8 @@ public class DaoElementos {
         return respuesta;
     }
 
-    public ArrayList<Elemento> listarPorArea(String area) {
-        ArrayList<Elemento> respuesta = new ArrayList();
+    public ArrayList<inventario> listarPorArea(String area) {
+        ArrayList<inventario> respuesta = new ArrayList();
         String consulta = "select * from inventario where area = '" + area + "'";
         System.out.println(consulta);
         try {
@@ -94,7 +94,7 @@ public class DaoElementos {
                     = statement.executeQuery(consulta);
 
             while (resultado.next()) {
-                Elemento elm = new Elemento();
+                inventario elm = new inventario();
                 elm.setEtiqueta(resultado.getInt("etiqueta"));
                 elm.setNombre(resultado.getString("nombre"));
                 elm.setCantidadDisponible(resultado.getInt("cantidadDisponible"));
@@ -113,15 +113,15 @@ public class DaoElementos {
         return respuesta;
     }
 
-    public ArrayList<Elemento> buscarPorNombre(String nombre) {
-        ArrayList<Elemento> respuesta = new ArrayList();
+    public ArrayList<inventario> buscarPorNombre(String nombre) {
+        ArrayList<inventario> respuesta = new ArrayList();
         try {
             String consulta = "select * from inventario where nombre like '%" + nombre + "%'";
             PreparedStatement statement
                     = this.conexion.prepareStatement(consulta);
             ResultSet resultado = statement.executeQuery();
             while (resultado.next()) {
-                Elemento elm = new Elemento();
+                inventario elm = new inventario();
                 elm.setEtiqueta(resultado.getInt("etiqueta"));
                 elm.setNombre(resultado.getString("nombre"));
                 elm.setCantidadDisponible(resultado.getInt("cantidadDisponible"));
@@ -139,8 +139,8 @@ public class DaoElementos {
         return respuesta;
     }
 
-    public Elemento buscar(int etiqueta) {
-        Elemento elm = null;
+    public inventario buscar(int etiqueta) {
+        inventario elm = null;
 
         try {
             String consulta = "select * from inventario where etiqueta = ?";
@@ -151,7 +151,7 @@ public class DaoElementos {
 
             ResultSet resultado = statement.executeQuery();
             if (resultado.next()) {
-                elm = new Elemento();
+                elm = new inventario();
                 elm.setEtiqueta(resultado.getInt("etiqueta"));
                 elm.setNombre(resultado.getString("nombre"));
                 elm.setCantidadDisponible(resultado.getInt("cantidadDisponible"));
@@ -202,8 +202,8 @@ public class DaoElementos {
 
     }
 
-    public ArrayList<Elemento> cantidadElementosPorArea() {
-        ArrayList<Elemento> arr = new ArrayList<Elemento>();
+    public ArrayList<inventario> cantidadElementosPorArea() {
+        ArrayList<inventario> arr = new ArrayList<inventario>();
 
         try {
             String consulta = "select area,  sum(cantidaddisponible) as Total from inventario group by area";
@@ -212,8 +212,8 @@ public class DaoElementos {
 
             ResultSet resultado = statement.executeQuery();
             while (resultado.next()) {
-                Elemento elm = new Elemento();
-                elm = new Elemento();
+                inventario elm = new inventario();
+                elm = new inventario();
                 elm.setArea(resultado.getString("area"));
                 elm.setCantidadDisponible(resultado.getInt("total"));
                 arr.add(elm);

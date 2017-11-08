@@ -3,8 +3,7 @@ package DAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import Modelo.PrestamoM;
-import Modelo.ReservasM;
+import Modelo.prestamo;
 import java.net.URISyntaxException;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -21,7 +20,7 @@ public class DaoPrestamos {
     
     
     
-    public boolean insertar(PrestamoM elm) {
+    public boolean insertar(prestamo elm) {
         boolean resultado = false;
         try {
             //1.Establecer la consulta
@@ -31,7 +30,7 @@ public class DaoPrestamos {
             //-----------------------------------
 
             statement.setInt(1, elm.getEtiquetaInv());
-            statement.setString(2, elm.getIdentificadorsol());
+            statement.setString(2, elm.getIdentificadorSol());
             statement.setString(3, elm.getFechaDev());
             statement.setString(4, elm.getFechaActual());
             statement.setInt(5, elm.getCantidadPrestamo());
@@ -48,10 +47,10 @@ public class DaoPrestamos {
         return resultado;
     }
     
-    public ArrayList<PrestamoM> listarTodo() {
+    public ArrayList<prestamo> listarTodo() {
         //1.Consulta
 
-        ArrayList<PrestamoM> respuesta = new ArrayList();
+        ArrayList<prestamo> respuesta = new ArrayList();
         String consulta = "select * from prestamo";
         try {
             //Statement
@@ -63,11 +62,11 @@ public class DaoPrestamos {
             //----------------------------
             //Recorrido sobre el resultado
             while (resultado.next()) {
-                PrestamoM elm = new PrestamoM();
+                prestamo elm = new prestamo();
                 elm.setEtiquetaInv(resultado.getInt("etiquetaInv"));
                 elm.setFechaActual(resultado.getString("fechaActual"));
                 elm.setFechaDev(resultado.getString("fechaDev"));
-                elm.setIdentificadorsol(resultado.getString("identificadorSol"));
+                elm.setIdentificadorSol(resultado.getString("identificadorSol"));
                 elm.setCantidadPrestamo(resultado.getInt("cantidadPrestamo"));
                 elm.setEstado(resultado.getString("estado"));
                 respuesta.add(elm);

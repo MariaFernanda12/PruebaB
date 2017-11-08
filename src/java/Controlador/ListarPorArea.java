@@ -1,7 +1,7 @@
 package Controlador;
 
 import DAO.DaoElementos;
-import Modelo.Elemento;
+import Modelo.inventario;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
@@ -20,7 +20,7 @@ public class ListarPorArea extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            ArrayList<Elemento> lista = null;
+            ArrayList<inventario> lista = null;
             DaoElementos daoE = new DaoElementos();
             String area = request.getParameter("valor1");
             if (area.equals("EspaÃ±ol")) {

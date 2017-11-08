@@ -2,7 +2,7 @@
 package Modelo;
 
 
-public class ReservasM {
+public class reserva {
     int etiquetaInv;
     String identificadorsol;
     String fechaRes;

@@ -1,7 +1,7 @@
 package Controlador;
 
 import DAO.DaoPrestamos;
-import Modelo.PrestamoM;
+import Modelo.prestamo;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
@@ -22,7 +22,7 @@ public class ListarPrestamos extends HttpServlet {
         try {
 
             
-            ArrayList<PrestamoM> lista = null;
+            ArrayList<prestamo> lista = null;
             DaoPrestamos daoR = new DaoPrestamos();
             lista = daoR.listarTodo();
             String json = new Gson().toJson(lista);

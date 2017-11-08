@@ -1,15 +1,15 @@
 package Modelo;
 
-public class Elemento {
+public class inventario {
 
-    int etiqueta;/*Número de identificación del libro o el elemento*/
-    String nombre;/*Nombre del libro o del elemento*/
-    int cantidadDisponible;/*Si la cantidad disponible es <= 0 entonces no se puede prestar*/
-    String ubicacion;/*Puede ser en aulas de clase biblioteca o incluso otra sede*/
-    String propiedad;/*Colegio o Alcaldia*/
-    String responsable;/*Bibliotecólogo o docentes*/
-    String area;/*Area o tipo de elemento*/
-    String colegio;
+    public int etiqueta;/*Número de identificación del libro o el elemento*/
+    public String nombre;/*Nombre del libro o del elemento*/
+    public int cantidadDisponible;/*Si la cantidad disponible es <= 0 entonces no se puede prestar*/
+    public String ubicacion;/*Puede ser en aulas de clase biblioteca o incluso otra sede*/
+    public String propiedad;/*Colegio o Alcaldia*/
+    public String responsable;/*Bibliotecólogo o docentes*/
+    public String area;/*Area o tipo de elemento*/
+    public String colegio;
 
     public String getColegio() {
         return colegio;

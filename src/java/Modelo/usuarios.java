@@ -1,6 +1,6 @@
 package Modelo;
 
-public class Usuario {
+public class usuarios {
 
     String identificador;/*Número de identificación*/
     String nombreSol;/*Nombre del solicitante*/

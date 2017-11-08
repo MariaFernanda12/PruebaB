@@ -1,7 +1,7 @@
 package Controlador;
 
 import DAO.DaoUsuario;
-import Modelo.Usuario;
+import Modelo.usuarios;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.net.URISyntaxException;

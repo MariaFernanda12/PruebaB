@@ -1,10 +1,10 @@
 package DAO;
 
-import Modelo.Elemento;
+import Modelo.inventario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import Modelo.ReservasM;
+import Modelo.reserva;
 import java.net.URISyntaxException;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -20,8 +20,8 @@ public class DaoReservas {
         conexion = Util.conexion.getConnection();
     }
 
-    public Elemento buscar(int etiqueta) {
-        Elemento elm = null;
+    public inventario buscar(int etiqueta) {
+        inventario elm = null;
 
         try {
             String consulta = "select * from inventario where etiqueta = ?";
@@ -32,7 +32,7 @@ public class DaoReservas {
 
             ResultSet resultado = statement.executeQuery();
             if (resultado.next()) {
-                elm = new Elemento();
+                elm = new inventario();
                 elm.setEtiqueta(resultado.getInt("etiqueta"));
                 elm.setNombre(resultado.getString("nombre"));
                 elm.setCantidadDisponible(resultado.getInt("cantidadDisponible"));
@@ -48,7 +48,7 @@ public class DaoReservas {
         return elm;
     }
 
-    public boolean insertar(ReservasM res) {
+    public boolean insertar(reserva res) {
         boolean resultado = false;
         try {
             //1.Establecer la consulta
@@ -74,10 +74,10 @@ public class DaoReservas {
         return resultado;
     }
     
-     public ArrayList<ReservasM> listarTodo(String usuario) {
+     public ArrayList<reserva> listarTodo(String usuario) {
         //1.Consulta
 
-        ArrayList<ReservasM> respuesta = new ArrayList();
+        ArrayList<reserva> respuesta = new ArrayList();
         String consulta = "select * from reserva where idsol=  '" + usuario + "'";
         try {
             //Statement
@@ -89,7 +89,7 @@ public class DaoReservas {
             //----------------------------
             //Recorrido sobre el resultado
             while (resultado.next()) {
-                ReservasM elm = new ReservasM();
+                reserva elm = new reserva();
                 elm.setEtiquetaInv(resultado.getInt("idElemento"));
                 elm.setFechaActual(resultado.getString("fechaActual"));
                 elm.setFechaRes(resultado.getString("fechaReserva"));

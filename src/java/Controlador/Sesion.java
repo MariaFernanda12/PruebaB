@@ -1,7 +1,7 @@
 package Controlador;
 
 import DAO.DaoUsuario;
-import Modelo.Usuario;
+import Modelo.usuarios;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -24,7 +24,7 @@ public class Sesion extends HttpServlet {
             if (session != null) {
                 String usuario = (String) session.getAttribute("user");
                 String password = (String) session.getAttribute("pass");
-                Usuario user;
+                usuarios user;
                 DaoUsuario daoU = new DaoUsuario();
                 user = daoU.validarUsuario(usuario, password);
                 String json = new Gson().toJson(user);

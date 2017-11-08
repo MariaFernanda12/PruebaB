@@ -1,7 +1,7 @@
 package Controlador;
 
 import DAO.DaoElementos;
-import Modelo.Elemento;
+import Modelo.inventario;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.sql.SQLException;
@@ -27,7 +27,7 @@ public class BuscarElementoPorNombre extends HttpServlet {
         try {
 
             dao = new DaoElementos();
-            ArrayList<Elemento> c = new ArrayList<Elemento>();
+            ArrayList<inventario> c = new ArrayList<inventario>();
             c = dao.listarTodo();
             String json = new Gson().toJson(c);
             response.setContentType("application/json;charset=UTF-8");

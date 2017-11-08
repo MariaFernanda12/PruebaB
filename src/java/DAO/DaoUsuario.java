@@ -1,6 +1,6 @@
 package DAO;
 
-import Modelo.Usuario;
+import Modelo.usuarios;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -98,8 +98,8 @@ public class DaoUsuario {
 
     }
 
-    public Usuario validarUsuario(String usuario, String clave) {
-        Usuario respuesta = new Usuario();
+    public usuarios validarUsuario(String usuario, String clave) {
+        usuarios respuesta = new usuarios();
         String consulta = "select * from usuarios where identificador= '" + usuario + "' and clave='" + clave + "'";
         try {
             //Statement
@@ -111,7 +111,7 @@ public class DaoUsuario {
             //----------------------------
             //Recorrido sobre el resultado
             while (resultado.next()) {
-                Usuario user = new Usuario();
+                usuarios user = new usuarios();
                 user.setIdentificador(resultado.getString("identificador"));
                 user.setNombreSol(resultado.getString("nombreSol"));
                 user.setTipo(resultado.getString("tipo"));

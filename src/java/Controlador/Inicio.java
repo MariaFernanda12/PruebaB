@@ -1,7 +1,7 @@
 package Controlador;
 
 import DAO.DaoUsuario;
-import Modelo.Usuario;
+import Modelo.usuarios;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.logging.Level;
@@ -22,7 +22,7 @@ public class Inicio extends HttpServlet {
         String identificador = request.getParameter("valor1");
         String clave = request.getParameter("valor2");
         try {
-            Usuario user;
+            usuarios user;
             DaoUsuario daoU = new DaoUsuario();
             user = daoU.validarUsuario(identificador, clave);
             if (identificador.equals(user.getIdentificador())) {

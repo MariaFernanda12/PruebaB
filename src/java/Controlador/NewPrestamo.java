@@ -1,7 +1,7 @@
 package Controlador;
 
 import DAO.DaoPrestamos;
-import Modelo.PrestamoM;
+import Modelo.prestamo;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -32,13 +32,13 @@ public class NewPrestamo extends HttpServlet {
             String fechadev = request.getParameter("fechaRes");
 
             DaoPrestamos pretamos = new DaoPrestamos();
-            PrestamoM reserva = new PrestamoM();
+            prestamo reserva = new prestamo();
             reserva.setEtiquetaInv(idlibro);
             reserva.setCantidadPrestamo(cantidad);
             reserva.setFechaDev(fechadev);
             reserva.setFechaActual(sqlDate.toString());
             reserva.setEstado("prestado");
-            reserva.setIdentificadorsol(idsol);
+            reserva.setIdentificadorSol(idsol);
             boolean respuesta = false;
             respuesta = pretamos.insertar(reserva);
             String json = new Gson().toJson(respuesta);
