@@ -2,6 +2,7 @@ package TX;
 
 import DAO.DaoElementos;
 import Modelo.inventario;
+import java.lang.reflect.Field;
 import java.net.URISyntaxException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -20,25 +21,23 @@ public class SQLinventario {
         conexion = Util.conexion.getConnection();
     }
 
-    public boolean insertar(inventario elm) {
+    public boolean insertar(inventario elm) throws IllegalArgumentException, IllegalAccessException {
         boolean resultado = false;
         try {
-            //1.Establecer la consulta
-            String consulta = "insert into inventario values(?,?,?,?,?,?,?)";
-            //2. Crear el PreparedStament
+            Field[] f = elm.getClass().getDeclaredFields();
+            String consulta = "insert into " + elm.getClass().getSimpleName() + " values(" + "'";
+            for (int i = 0; i < f.length; i++) {
+                if (i == f.length - 1) {
+                    consulta = consulta + f[i].get(elm) + "'";
+                } else {
+                    consulta = consulta + f[i].get(elm) + "'" + "," + "'";
+                }
+
+            }
+            consulta = consulta + ")";
+            System.out.println(consulta);
             PreparedStatement statement = this.conexion.prepareStatement(consulta);
-            //-----------------------------------
-
-            statement.setInt(1, elm.getEtiqueta());
-            statement.setString(2, elm.getNombre());
-            statement.setInt(3, elm.getCantidadDisponible());
-            statement.setString(4, elm.getUbicacion());
-            statement.setString(5, elm.getPropiedad());
-            statement.setString(6, elm.getResponsable());
-            statement.setString(7, elm.getArea());
-
-            //3. Hacer la ejecucion
-            resultado = statement.execute();
+            statement.execute();
 
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -48,21 +47,15 @@ public class SQLinventario {
     }
 
     public ArrayList<inventario> listarTodo() {
-        //1.Consulta
-
         ArrayList<inventario> respuesta = new ArrayList();
-        String consulta = "select * from inventario";
+        inventario elm = new inventario();
+        String consulta = "select * from "+elm.getClass().getSimpleName()+"";
         try {
-            //Statement
             Statement statement
                     = this.conexion.createStatement();
-            //Ejecucion
             ResultSet resultado
                     = statement.executeQuery(consulta);
-            //----------------------------
-            //Recorrido sobre el resultado
-            while (resultado.next()) {
-                inventario elm = new inventario();
+            while (resultado.next()) {                
                 elm.setEtiqueta(resultado.getInt("etiqueta"));
                 elm.setNombre(resultado.getString("nombre"));
                 elm.setCantidadDisponible(resultado.getInt("cantidadDisponible"));
