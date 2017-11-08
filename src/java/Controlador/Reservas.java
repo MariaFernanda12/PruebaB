@@ -3,6 +3,7 @@ package Controlador;
 import DAO.DaoReservas;
 import Modelo.inventario;
 import Modelo.reserva;
+import TX.SQL;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -32,8 +33,6 @@ public class Reservas extends HttpServlet {
             String fechaRes = request.getParameter("fechaRes");
             String cantidad = request.getParameter("cantidad");
             String estado = "Pendiente";
-
-            DaoReservas daoR = new DaoReservas();
             reserva reserva = new reserva();
             reserva.setIdElemento(Integer.parseInt(idElm));
             reserva.setCantidad(Integer.parseInt(cantidad));
@@ -42,6 +41,7 @@ public class Reservas extends HttpServlet {
             reserva.setEstado(estado);
             reserva.setIdSol(usuario);
             boolean respuesta = false;
+            SQL daoR = new SQL();
             respuesta = daoR.insertar(reserva);
             String json = new Gson().toJson(respuesta);
             response.setContentType("application/json");
@@ -50,6 +50,10 @@ public class Reservas extends HttpServlet {
         } catch (SQLException ex) {
             Logger.getLogger(Reservas.class.getName()).log(Level.SEVERE, null, ex);
         } catch (URISyntaxException ex) {
+            Logger.getLogger(Reservas.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalArgumentException ex) {
+            Logger.getLogger(Reservas.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
             Logger.getLogger(Reservas.class.getName()).log(Level.SEVERE, null, ex);
         }
 
