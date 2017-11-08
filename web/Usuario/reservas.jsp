@@ -30,8 +30,8 @@
                     , async: true
                     , cache: false
                     , success: function (resp) {
-                        $.each(resp, function (indice, Elemento) {
-                            $("#tabla").append($("<tr id='" + indic + "' onclick='pp(this);'> ").append(("<td>" + Elemento.etiqueta + "</td>" + "<td>" + Elemento.nombre + "</td>" + "<td>" + Elemento.cantidadDisponible + "</td>" + "<td>" + Elemento.ubicacion + "</td>" + "<td>" + Elemento.propiedad + "</td>" + "<td>" + Elemento.responsable + "</td>" + "<td>" + Elemento.area + "</td>" + "<td>" + Elemento.colegio + "</td>")))
+                        $.each(resp, function (indice, inventario) {
+                            $("#tabla").append($("<tr id='" + indic + "' onclick='pp(this);'> ").append(("<td>" + inventario.etiqueta + "</td>" + "<td>" + inventario.nombre + "</td>" + "<td>" + inventario.cantidadDisponible + "</td>" + "<td>" + inventario.ubicacion + "</td>" + "<td>" + inventario.propiedad + "</td>" + "<td>" + inventario.responsable + "</td>" + "<td>" + inventario.area + "</td>" + "<td>" + inventario.colegio + "</td>")))
                             indic++;
                         });
                     }
@@ -221,7 +221,7 @@
                 <div class="reserv">
 
                     <h1 class="heading">Reservar en Library-Soft</h1>
-                    <p style="color: black; text-align: center; font-size: 22px;">Elemento:</p>
+                    <p style="color: black; text-align: center; font-size: 22px;">inventario:</p>
                     <p style="color: black; text-align: center" id="nombreLibro"></p>
                     <p style="color: black; text-align: center; font-size: 22px;">Id del libro:</p>
                     <p style="color: black; text-align: center" id="element"></p>

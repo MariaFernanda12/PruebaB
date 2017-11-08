@@ -14,15 +14,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 
-
 public class BuscarElementoPorNombre extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        String nombre = request.getParameter("Busqueda");
-
         DaoElementos dao;
         try {
 
@@ -30,7 +26,7 @@ public class BuscarElementoPorNombre extends HttpServlet {
             ArrayList<inventario> c = new ArrayList<inventario>();
             c = dao.listarTodo();
             String json = new Gson().toJson(c);
-            response.setContentType("application/json;charset=UTF-8");
+            response.setContentType("application/json;");
             response.getWriter().write(json);
         } catch (URISyntaxException ex) {
             Logger.getLogger(BuscarElementoPorNombre.class.getName()).log(Level.SEVERE, null, ex);

@@ -3,7 +3,7 @@ package Controlador;
 import DAO.DaoReservas;
 import Modelo.inventario;
 import Modelo.reserva;
-import TX.SQL;
+import TX.SQLreserva;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -41,7 +41,7 @@ public class Reservas extends HttpServlet {
             reserva.setEstado(estado);
             reserva.setIdSol(usuario);
             boolean respuesta = false;
-            SQL daoR = new SQL();
+            SQLreserva daoR = new SQLreserva();
             respuesta = daoR.insertar(reserva);
             String json = new Gson().toJson(respuesta);
             response.setContentType("application/json");
@@ -64,8 +64,9 @@ public class Reservas extends HttpServlet {
             throws ServletException, IOException {
         try {
             String valor = request.getParameter("identificador");
+            System.out.println(valor+"------------------");
             inventario elm = new inventario();
-            DaoReservas daoR = new DaoReservas();
+            SQLreserva daoR = new SQLreserva();
             elm = daoR.buscar(Integer.valueOf(valor));
             String json = new Gson().toJson(elm);
             response.setContentType("application/json");

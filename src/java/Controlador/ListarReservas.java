@@ -2,6 +2,7 @@ package Controlador;
 
 import DAO.DaoReservas;
 import Modelo.reserva;
+import TX.SQLreserva;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
@@ -25,7 +26,7 @@ public class ListarReservas extends HttpServlet {
             if (session != null) {
                 String usuario = (String) session.getAttribute("user");
                 ArrayList<reserva> lista = null;
-                DaoReservas daoR = new DaoReservas();
+                SQLreserva daoR = new SQLreserva();
                 lista = daoR.listarTodo(usuario);
                 String json = new Gson().toJson(lista);
                 response.setContentType("application/json");
