@@ -35,12 +35,12 @@ public class Reservas extends HttpServlet {
 
             DaoReservas daoR = new DaoReservas();
             reserva reserva = new reserva();
-            reserva.setEtiquetaInv(Integer.parseInt(idElm));
-            reserva.setCantidadRes(Integer.parseInt(cantidad));
-            reserva.setFechaRes(fechaRes);
+            reserva.setIdElemento(Integer.parseInt(idElm));
+            reserva.setCantidad(Integer.parseInt(cantidad));
+            reserva.setFechaReserva(fechaRes);
             reserva.setFechaActual(sqlDate.toString());
             reserva.setEstado(estado);
-            reserva.setIdentificadorsol(usuario);
+            reserva.setIdSol(usuario);
             boolean respuesta = false;
             respuesta = daoR.insertar(reserva);
             String json = new Gson().toJson(respuesta);

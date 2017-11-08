@@ -57,11 +57,11 @@ public class DaoReservas {
             PreparedStatement statement = this.conexion.prepareStatement(consulta);
             //-----------------------------------
 
-            statement.setInt(1, res.getEtiquetaInv());
+            statement.setInt(1, res.getIdElemento());
             statement.setString(2, res.getFechaActual());
-            statement.setString(3, res.getFechaRes());
-            statement.setString(4, res.getIdentificadorsol());
-            statement.setInt(5, res.getCantidadRes());
+            statement.setString(3, res.getFechaReserva());
+            statement.setString(4, res.getIdSol());
+            statement.setInt(5, res.getCantidad());
             statement.setString(6, res.getEstado());
 
             //3. Hacer la ejecucion
@@ -90,11 +90,11 @@ public class DaoReservas {
             //Recorrido sobre el resultado
             while (resultado.next()) {
                 reserva elm = new reserva();
-                elm.setEtiquetaInv(resultado.getInt("idElemento"));
+                elm.setIdElemento(resultado.getInt("idElemento"));
                 elm.setFechaActual(resultado.getString("fechaActual"));
-                elm.setFechaRes(resultado.getString("fechaReserva"));
-                elm.setIdentificadorsol(resultado.getString("idSol"));
-                elm.setCantidadRes(resultado.getInt("cantidad"));
+                elm.setFechaReserva(resultado.getString("fechaReserva"));
+                elm.setIdSol(resultado.getString("idSol"));
+                elm.setCantidad(resultado.getInt("cantidad"));
                 elm.setEstado(resultado.getString("estado"));
                 respuesta.add(elm);
             }

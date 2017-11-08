@@ -1,37 +1,20 @@
-
 package Modelo;
 
-
 public class reserva {
-    int etiquetaInv;
-    String identificadorsol;
-    String fechaRes;
-    String fechaActual;
-    int cantidadRes;    
-    String estado;
 
-    public int getEtiquetaInv() {
-        return etiquetaInv;
+    public int idElemento;
+    public String fechaActual;
+    public String fechaReserva;
+    public String idSol;
+    public int cantidad;
+    public String estado;
+
+    public int getIdElemento() {
+        return idElemento;
     }
 
-    public void setEtiquetaInv(int etiquetaInv) {
-        this.etiquetaInv = etiquetaInv;
-    }
-
-    public String getIdentificadorsol() {
-        return identificadorsol;
-    }
-
-    public void setIdentificadorsol(String identificadorsol) {
-        this.identificadorsol = identificadorsol;
-    }
-
-    public String getFechaRes() {
-        return fechaRes;
-    }
-
-    public void setFechaRes(String fechaRes) {
-        this.fechaRes = fechaRes;
+    public void setIdElemento(int idElemento) {
+        this.idElemento = idElemento;
     }
 
     public String getFechaActual() {
@@ -40,14 +23,30 @@ public class reserva {
 
     public void setFechaActual(String fechaActual) {
         this.fechaActual = fechaActual;
-    } 
-
-    public int getCantidadRes() {
-        return cantidadRes;
     }
 
-    public void setCantidadRes(int cantidadRes) {
-        this.cantidadRes = cantidadRes;
+    public String getFechaReserva() {
+        return fechaReserva;
+    }
+
+    public void setFechaReserva(String fechaReserva) {
+        this.fechaReserva = fechaReserva;
+    }
+
+    public String getIdSol() {
+        return idSol;
+    }
+
+    public void setIdSol(String idSol) {
+        this.idSol = idSol;
+    }
+
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
     }
 
     public String getEstado() {
@@ -60,14 +59,7 @@ public class reserva {
 
     @Override
     public String toString() {
-        return "ReservasM{" + "etiquetaInv=" + etiquetaInv + ", identificadorsol=" + identificadorsol + ", fechaRes=" + fechaRes + ", fechaActual=" + fechaActual + ", cantidadRes=" + cantidadRes + ", estado=" + estado + '}';
+        return "reserva{" + "idElemento=" + idElemento + ", fechaActual=" + fechaActual + ", fechaReserva=" + fechaReserva + ", idSol=" + idSol + ", cantidad=" + cantidad + ", estado=" + estado + '}';
     }
 
-    public void getIdentificadorsol(int idsol) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
-    
-    
-    
 }
