@@ -15,7 +15,6 @@ function mostrarPerfil() {
         document.getElementById('3').innerHTML = response.colegio;
         document.getElementById('4').innerHTML = response.tipo;
         document.getElementById('5').innerHTML = response.cursoArea;
-        document.getElementById('6').innerHTML = response.clave;
         var imagen =  document.getElementById("ima");
         imagen.src = response.imagen;
 

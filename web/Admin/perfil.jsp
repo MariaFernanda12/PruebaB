@@ -112,7 +112,7 @@
                 </div>
                 <div class="wrapper overlay">
                     <div id="breadcrumb" class="hoc clear"> 
-                        <h1 style="font-size: 62px">Mi Perfil</h1>
+                        <img src="../Images/tituloPerfil.png" alt="NF">
                     </div>
                 </div>
 
@@ -131,10 +131,6 @@
                         <tr>                                             
                             <td>ID: </td>
                             <td id="1"></td>
-                        </tr>
-                        <tr>                                             
-                            <td>Contraseña: </td>
-                            <td id="6"></td>
                         </tr>
                         <tr>                                             
                             <td>Nombre: </td>
