@@ -77,6 +77,11 @@ public class inventario {
     public void setArea(String area) {
         this.area = area;
     }
+
+    @Override
+    public String toString() {
+        return "cantidadDisponible=" + cantidadDisponible + ", area=" + area;
+    }
   
 
 }

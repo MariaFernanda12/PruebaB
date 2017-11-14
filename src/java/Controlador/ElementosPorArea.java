@@ -19,14 +19,23 @@ public class ElementosPorArea extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         try {
+        try {
             ArrayList<inventario> lista = null;
             SQLinventario sql = new SQLinventario();
             lista = sql.cantidadElementosPorArea();
-            String json = new Gson().toJson(lista);
+            String a = "";
+//            for (inventario model : lista) {
+                a = "{\n"
+                        + " label: 'Español',\n"
+                        + " backgroundColor: \"rgba(151,187,205,0.5)\",\n"
+                        + " data: [50]\n"
+                        + " }\n"
+                        + " \n";
+//            }            
+            String json = new Gson().toJson(a);
             response.setContentType("application/json");
             response.getWriter().write(json);
-            
+
         } catch (URISyntaxException ex) {
             Logger.getLogger(Listar.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
@@ -34,5 +43,4 @@ public class ElementosPorArea extends HttpServlet {
         }
     }
 
-   
 }
