@@ -200,7 +200,7 @@ public class SQLinventario {
         ArrayList<inventario> arr = new ArrayList<inventario>();
 
         try {
-            String consulta = "select area,  sum(cantidaddisponible) as Total from inventario group by area";
+            String consulta = "select area,  sum(cantidaddisponible) as total from inventario group by area";
             PreparedStatement statement
                     = this.conexion.prepareStatement(consulta);
 

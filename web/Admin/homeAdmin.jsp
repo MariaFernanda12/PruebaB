@@ -37,7 +37,7 @@
                         <li><p id="col"></p></li>
                         <li><p id="curso"></p></li>
                         <li><a onclick="closeSesion();" title="Cerrar Sesión"><i class="fa fa-lg fa-power-off"></i></a></li>
-                        <li><a href="perfil.jsp"  title="Mi Perfil"><img alt="NotFound" id="imageUser"/></a></li>
+                        <li><a href="perfil.jsp"  title="Mi Perfil"><img alt="NotFound" id="imageUser" src=""/></a></li>
                     </ul>
                 </div>
             </div>
@@ -61,6 +61,7 @@
                         <li><a href="reservas.jsp">Reservas Pendientes</a></li>
                         <li><a href="historial.html">Historial</a></li>
                         <li><a href="Busquedas.html">Busquedas</a></li>
+                        <li><a href="Estadisticas.html">Estadísticas</a></li>
                         <li><a href="#">Convenios</a></li>
                         <li><a href="#">Cargar base de datos</a></li>
                     </ul>
