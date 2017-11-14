@@ -1,5 +1,6 @@
 package Controlador;
 
+import DAO.DaoElementos;
 import DAO.DaoReservas;
 import Modelo.inventario;
 import Modelo.reserva;
@@ -64,10 +65,9 @@ public class Reservas extends HttpServlet {
             throws ServletException, IOException {
         try {
             String valor = request.getParameter("identificador");
-            System.out.println(valor+"------------------");
             inventario elm = new inventario();
-            SQLreserva daoR = new SQLreserva();
-            elm = daoR.buscar(Integer.valueOf(valor));
+            DaoElementos daoR = new DaoElementos();
+            elm = daoR.buscar(valor).get(0);
             String json = new Gson().toJson(elm);
             response.setContentType("application/json");
             response.getWriter().write(json);

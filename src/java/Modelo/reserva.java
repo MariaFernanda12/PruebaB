@@ -2,18 +2,18 @@ package Modelo;
 
 public class reserva {
 
-    public int idElemento;
+    public String idElemento;
     public String fechaActual;
     public String fechaReserva;
     public String idSol;
-    public int cantidad;
+    public String cantidad;
     public String estado;
 
-    public int getIdElemento() {
+    public String getIdElemento() {
         return idElemento;
     }
 
-    public void setIdElemento(int idElemento) {
+    public void setIdElemento(String idElemento) {
         this.idElemento = idElemento;
     }
 
@@ -41,11 +41,11 @@ public class reserva {
         this.idSol = idSol;
     }
 
-    public int getCantidad() {
+    public String getCantidad() {
         return cantidad;
     }
 
-    public void setCantidad(int cantidad) {
+    public void setCantidad(String cantidad) {
         this.cantidad = cantidad;
     }
 
@@ -61,5 +61,16 @@ public class reserva {
     public String toString() {
         return "reserva{" + "idElemento=" + idElemento + ", fechaActual=" + fechaActual + ", fechaReserva=" + fechaReserva + ", idSol=" + idSol + ", cantidad=" + cantidad + ", estado=" + estado + '}';
     }
+
+    public reserva(String idSol) {
+        this.idElemento = null;
+        this.fechaActual = null;
+        this.fechaReserva = null;
+        this.idSol = idSol;
+        this.cantidad = null;
+        this.estado = null;
+    }
+
+    
 
 }

@@ -2,31 +2,35 @@ package Modelo;
 
 public class inventario {
 
-    public int etiqueta;/*Número de identificación del libro o el elemento*/
+    public String etiqueta;/*Número de identificación del libro o el elemento*/
     public String nombre;/*Nombre del libro o del elemento*/
-    public int cantidadDisponible;/*Si la cantidad disponible es <= 0 entonces no se puede prestar*/
+    public String cantidadDisponible;/*Si la cantidad disponible es <= 0 entonces no se puede prestar*/
     public String ubicacion;/*Puede ser en aulas de clase biblioteca o incluso otra sede*/
     public String propiedad;/*Colegio o Alcaldia*/
     public String responsable;/*Bibliotecólogo o docentes*/
     public String area;/*Area o tipo de elemento*/
     public String colegio;
 
-    public String getColegio() {
-        return colegio;
-    }
-
-    public void setColegio(String colegio) {
+    public inventario(String etiqueta, String nombre, String cantidadDisponible, String ubicacion, String propiedad, String responsable, String area, String colegio) {
+        this.etiqueta = etiqueta;
+        this.nombre = nombre;
+        this.cantidadDisponible = cantidadDisponible;
+        this.ubicacion = ubicacion;
+        this.propiedad = propiedad;
+        this.responsable = responsable;
+        this.area = area;
         this.colegio = colegio;
     }
-    
-    
+
+    public inventario() {
+    }
     
 
-    public int getEtiqueta() {
+    public String getEtiqueta() {
         return etiqueta;
     }
 
-    public void setEtiqueta(int etiqueta) {
+    public void setEtiqueta(String etiqueta) {
         this.etiqueta = etiqueta;
     }
 
@@ -38,11 +42,11 @@ public class inventario {
         this.nombre = nombre;
     }
 
-    public int getCantidadDisponible() {
+    public String getCantidadDisponible() {
         return cantidadDisponible;
     }
 
-    public void setCantidadDisponible(int cantidadDisponible) {
+    public void setCantidadDisponible(String cantidadDisponible) {
         this.cantidadDisponible = cantidadDisponible;
     }
 
@@ -78,10 +82,17 @@ public class inventario {
         this.area = area;
     }
 
+    public String getColegio() {
+        return colegio;
+    }
+
+    public void setColegio(String colegio) {
+        this.colegio = colegio;
+    }
+
     @Override
     public String toString() {
-        return "cantidadDisponible=" + cantidadDisponible + ", area=" + area;
+        return "inventario{" + "etiqueta=" + etiqueta + ", nombre=" + nombre + ", cantidadDisponible=" + cantidadDisponible + ", ubicacion=" + ubicacion + ", propiedad=" + propiedad + ", responsable=" + responsable + ", area=" + area + ", colegio=" + colegio + '}';
     }
-  
 
 }

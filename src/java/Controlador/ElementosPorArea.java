@@ -1,7 +1,7 @@
 package Controlador;
 
 import Modelo.inventario;
-import TX.SQLinventario;
+import TX.SQLgen;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
@@ -21,7 +21,7 @@ public class ElementosPorArea extends HttpServlet {
             throws ServletException, IOException {
         try {
             ArrayList<inventario> lista = null;
-            SQLinventario sql = new SQLinventario();
+            SQLgen sql = new SQLgen();
             lista = sql.cantidadElementosPorArea();
             String a = "";
 //            for (inventario model : lista) {

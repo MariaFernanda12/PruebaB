@@ -19,6 +19,7 @@ public class ListarPorArea extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         try {
             ArrayList<inventario> lista = null;
             DaoElementos daoE = new DaoElementos();
@@ -76,16 +77,16 @@ public class ListarPorArea extends HttpServlet {
                     }
                 }
             }
-
+            
             String json = new Gson().toJson(lista);
             response.setContentType("application/json");
             response.getWriter().write(json);
-
         } catch (URISyntaxException ex) {
-            Logger.getLogger(Listar.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ListarPorArea.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(Listar.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ListarPorArea.class.getName()).log(Level.SEVERE, null, ex);
         }
+
     }
 
 }

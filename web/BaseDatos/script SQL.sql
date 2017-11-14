@@ -4,9 +4,9 @@ use biblioteca;
 
 
 create table inventario(
-  etiqueta integer primary key, /*Número de identificación del libro o el elemento, único y clave primaria*/
+  etiqueta varchar(100) primary key, /*Número de identificación del libro o el elemento, único y clave primaria*/
   nombre varchar(200) not null, /*Nombre del libro o del elemento*/
-  cantidadDisponible integer,   /*Si la cantidad disponible es <= 0 entonces no se puede prestar*/
+  cantidadDisponible varchar(50),   /*Si la cantidad disponible es <= 0 entonces no se puede prestar*/
   ubicacion varchar(30) not null, /*Puede ser en aulas de clase biblioteca o incluso otra sede*/
   propiedad varchar(30) not null, /*Colegio, Alcaldia, Otro*/
   responsable varchar(30) not null,/*Bibliotecólogo o docentes*/
@@ -50,7 +50,7 @@ create table prestamo(
    foreign key (etiquetaInv) references inventario(etiqueta)   
 );
 
-insert into inventario values(001,'Grandes Personajes Ed. Nauta',3,'Biblioteca','I. E. Antonio Nariño','Arnulfo','Enciclopedia','Colegio 1');
+insert into inventario values('001','Grandes Personajes Ed. Nauta','3','Biblioteca','I. E. Antonio Nariño','Arnulfo','Enciclopedia','Colegio 1');
 insert into inventario values(002,'Centrales Hidroeléctricas Tomo I ',2,'Biblioteca','I. E. Antonio Nariño','Arnulfo','Enciclopedia','Colegio 1');
 insert into inventario values(003,'Espasapocket enciclopedia 2007',2,'Biblioteca','I. E. Antonio Nariño','Arnulfo','Enciclopedia','Colegio 1');
 insert into inventario values(004,'Mentor interactivo En. Temática Infantil ED. Océano ',1,'Biblioteca','I. E. Antonio Nariño','Arnulfo','Enciclopedia','Colegio 1');
