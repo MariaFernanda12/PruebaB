@@ -4,7 +4,6 @@ import DAO.DaoElementos;
 import DAO.DaoReservas;
 import Modelo.inventario;
 import Modelo.reserva;
-import TX.SQLreserva;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -28,29 +27,28 @@ public class Reservas extends HttpServlet {
             String usuario = (String) session.getAttribute("user");
             java.util.Date utilDate = new java.util.Date();
             long lnMilisegundos = utilDate.getTime();
-
+            
             String idElm = request.getParameter("idElm");
             java.sql.Date sqlDate = new java.sql.Date(lnMilisegundos);
             String fechaRes = request.getParameter("fechaRes");
             String cantidad = request.getParameter("cantidad");
             String estado = "Pendiente";
             reserva reserva = new reserva();
-            reserva.setIdElemento(Integer.parseInt(idElm));
-            reserva.setCantidad(Integer.parseInt(cantidad));
+            reserva.setIdElemento(idElm);
+            reserva.setCantidad(cantidad);
             reserva.setFechaReserva(fechaRes);
             reserva.setFechaActual(sqlDate.toString());
             reserva.setEstado(estado);
             reserva.setIdSol(usuario);
             boolean respuesta = false;
-            SQLreserva daoR = new SQLreserva();
+            DaoReservas daoR = new DaoReservas();
             respuesta = daoR.insertar(reserva);
             String json = new Gson().toJson(respuesta);
             response.setContentType("application/json");
             response.getWriter().write(json);
-
-        } catch (SQLException ex) {
-            Logger.getLogger(Reservas.class.getName()).log(Level.SEVERE, null, ex);
         } catch (URISyntaxException ex) {
+            Logger.getLogger(Reservas.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
             Logger.getLogger(Reservas.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IllegalArgumentException ex) {
             Logger.getLogger(Reservas.class.getName()).log(Level.SEVERE, null, ex);

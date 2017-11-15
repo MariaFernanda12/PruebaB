@@ -32,15 +32,15 @@ public class NewPrestamo extends HttpServlet {
             String fechadev = request.getParameter("fechaRes");
 
             DaoPrestamos pretamos = new DaoPrestamos();
-            prestamo reserva = new prestamo();
-            reserva.setEtiquetaInv(idlibro);
-            reserva.setCantidadPrestamo(cantidad);
-            reserva.setFechaDev(fechadev);
-            reserva.setFechaActual(sqlDate.toString());
-            reserva.setEstado("prestado");
-            reserva.setIdentificadorSol(idsol);
+            prestamo prestamo = new prestamo();
+            prestamo.setEtiquetaInv(idlibro);
+            prestamo.setCantidadPrestamo(cantidad);
+            prestamo.setFechaDev(fechadev);
+            prestamo.setFechaActual(sqlDate.toString());
+            prestamo.setEstado("prestado");
+            prestamo.setIdentificadorSol(idsol);
             boolean respuesta = false;
-            respuesta = pretamos.insertar(reserva);
+            respuesta = pretamos.insertar(prestamo);
             String json = new Gson().toJson(respuesta);
             response.setContentType("application/json");
             response.getWriter().write(json);
@@ -49,6 +49,10 @@ public class NewPrestamo extends HttpServlet {
             Logger.getLogger(Reservas.class.getName()).log(Level.SEVERE, null, ex);
         } catch (URISyntaxException ex) {
             Logger.getLogger(Reservas.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalArgumentException ex) {
+            Logger.getLogger(NewPrestamo.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(NewPrestamo.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }

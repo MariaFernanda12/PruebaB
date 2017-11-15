@@ -3,7 +3,6 @@ package Controlador;
 
 import DAO.DaoReservas;
 import Modelo.reserva;
-import TX.SQLreserva;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.servlet.ServletException;

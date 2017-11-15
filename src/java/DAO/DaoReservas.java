@@ -15,6 +15,11 @@ public class DaoReservas {
         a = new SQLgen<reserva>();
     }   
     
+    public boolean insertar(reserva p) throws IllegalArgumentException, IllegalAccessException {
+        boolean respuesta = false;
+        respuesta = a.insertar(p);
+        return respuesta;
+    }
  
     public ArrayList<reserva> listarTodo() {
         ArrayList<reserva> respuesta = new ArrayList();

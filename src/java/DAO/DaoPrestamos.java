@@ -16,6 +16,11 @@ public class DaoPrestamos {
         a = new SQLgen<prestamo>();
     }   
     
+    public boolean insertar(prestamo p) throws IllegalArgumentException, IllegalAccessException {
+        boolean respuesta = false;
+        respuesta = a.insertar(p);
+        return respuesta;
+    }
  
     public ArrayList<prestamo> listarTodo() {
         ArrayList<prestamo> respuesta = new ArrayList();
@@ -23,5 +28,7 @@ public class DaoPrestamos {
         respuesta = a.listarTodo(inv);
         return respuesta;
     }
+    
+    
     
 }
