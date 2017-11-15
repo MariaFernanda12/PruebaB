@@ -1,7 +1,5 @@
 package TX;
 
-import DAO.DaoElementos;
-import Modelo.inventario;
 import java.lang.reflect.Field;
 import java.net.URISyntaxException;
 import java.sql.Connection;
@@ -21,36 +19,38 @@ public class SQLgen<T> {
         conexion = Util.conexion.getConnection();
     }
 
-//    public boolean insertar(inventario elm) throws IllegalArgumentException, IllegalAccessException {
-//        boolean resultado = false;
-//        try {
-//            Field[] f = elm.getClass().getDeclaredFields();
-//            String consulta = "insert into " + elm.getClass().getSimpleName() + " values(" + "'";
-//            for (int i = 0; i < f.length; i++) {
-//                if (i == f.length - 1) {
-//                    consulta = consulta + f[i].get(elm) + "'";
-//                } else {
-//                    consulta = consulta + f[i].get(elm) + "'" + "," + "'";
-//                }
-//
-//            }
-//            consulta = consulta + ")";
-//            System.out.println(consulta);
-//            PreparedStatement statement = this.conexion.prepareStatement(consulta);
-//            statement.execute();
-//
-//        } catch (SQLException ex) {
-//            ex.printStackTrace();
-//        }
-//
-//        return resultado;
-//    }
-//
+    //insert into ... values 
+    public boolean insertar(T p) throws IllegalArgumentException, IllegalAccessException {
+        boolean resultado = false;
+        try {
+            Field[] f = p.getClass().getDeclaredFields();
+            String consulta = "insert into " + p.getClass().getSimpleName() + " values(" + "'";
+            for (int i = 0; i < f.length; i++) {
+                if (i == f.length - 1) {
+                    consulta = consulta + f[i].get(p) + "'";
+                } else {
+                    consulta = consulta + f[i].get(p) + "'" + "," + "'";
+                }
+
+            }
+            consulta = consulta + ")";
+            System.out.println(consulta);
+            PreparedStatement statement = this.conexion.prepareStatement(consulta);
+            statement.execute();
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+        return resultado;
+    }
+
+    //Select * from 
     public ArrayList<T> listarTodo(T p) {
         ArrayList<T> res = new ArrayList<T>();
         Field[] f = p.getClass().getDeclaredFields();
         String query = "select * from " + p.getClass().getSimpleName();
-        try {            
+        try {
             System.out.println(query);
             Statement st = this.conexion.createStatement();
             ResultSet rs = st.executeQuery(query);
@@ -74,60 +74,6 @@ public class SQLgen<T> {
         return res;
     }
 
-//    public ArrayList<inventario> buscarPorNombre(String nombre) {
-//        ArrayList<inventario> respuesta = new ArrayList();
-//        try {
-//            String consulta = "select * from inventario where nombre like '%" + nombre + "%'";
-//            PreparedStatement statement
-//                    = this.conexion.prepareStatement(consulta);
-//            ResultSet resultado = statement.executeQuery();
-//            while (resultado.next()) {
-//                inventario elm = new inventario();
-//                elm.setEtiqueta(resultado.getInt("etiqueta"));
-//                elm.setNombre(resultado.getString("nombre"));
-//                elm.setCantidadDisponible(resultado.getInt("cantidadDisponible"));
-//                elm.setUbicacion(resultado.getString("ubicacion"));
-//                elm.setPropiedad(resultado.getString("propiedad"));
-//                elm.setResponsable(resultado.getString("responsable"));
-//                elm.setArea(resultado.getString("area"));
-//                respuesta.add(elm);
-//            }
-//
-//        } catch (SQLException ex) {
-//            Logger.getLogger(DaoElementos.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//
-//        return respuesta;
-//    }
-//
-//    public inventario buscar(int etiqueta) {
-//        inventario elm = null;
-//
-//        try {
-//            String consulta = "select * from inventario where etiqueta = ?";
-//            PreparedStatement statement
-//                    = this.conexion.prepareStatement(consulta);
-//
-//            statement.setInt(1, etiqueta);
-//
-//            ResultSet resultado = statement.executeQuery();
-//            if (resultado.next()) {
-//                elm = new inventario();
-//                elm.setEtiqueta(resultado.getInt("etiqueta"));
-//                elm.setNombre(resultado.getString("nombre"));
-//                elm.setCantidadDisponible(resultado.getInt("cantidadDisponible"));
-//                elm.setUbicacion(resultado.getString("ubicacion"));
-//                elm.setPropiedad(resultado.getString("propiedad"));
-//                elm.setResponsable(resultado.getString("responsable"));
-//                elm.setArea(resultado.getString("area"));
-//            }
-//
-//        } catch (SQLException ex) {
-//            Logger.getLogger(DaoElementos.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        return elm;
-//    }
-//
 //    public boolean modificarElemento(int etiqueta, int newCantidad, String newUbicacion) {
 //        boolean resultado = false;
 //
@@ -146,22 +92,33 @@ public class SQLgen<T> {
 //        return resultado;
 //
 //    }
-//
-//    public boolean borrarElemento(int etiqueta) {
-//        boolean retorno = false;
-//        try {
-//
-//            String consulta = "delete from inventario where etiqueta = ?";
-//            PreparedStatement statement = this.conexion.prepareStatement(consulta);
-//            statement.setInt(1, etiqueta);
-//            retorno = statement.execute();
-//
-//        } catch (SQLException ex) {
-//            Logger.getLogger(DaoElementos.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        return retorno;
-//
-//    }
+    
+    
+    //delete from where
+    public boolean borrar(T p) {
+        boolean retorno = false;
+        Field[] f = p.getClass().getDeclaredFields();
+        String query = "delelte from " + p.getClass().getSimpleName() + " where ";
+        try {
+            for (int i = 0; i < f.length; i++) {
+                if (f[i].get(p) != null) {
+                    query += f[i].getName() + " = '" + f[i].get(p) + "'";
+                    break;
+                }
+            }
+            System.out.println(query);
+            PreparedStatement statement = this.conexion.prepareStatement(query);
+            retorno = statement.execute();
+        } catch (SQLException ex) {
+            System.out.println("Failed to make update!");
+            ex.printStackTrace();
+        } catch (IllegalArgumentException ex) {
+            Logger.getLogger(SQLgen.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(SQLgen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return retorno;
+    }
 //
 //    public ArrayList<inventario> cantidadElementosPorArea() {
 //        ArrayList<inventario> arr = new ArrayList<inventario>();
@@ -186,6 +143,7 @@ public class SQLgen<T> {
 //
 //        return arr;
 //    }
+    //select * from where
 
     public ArrayList<T> Select(T p) {
         ArrayList<T> res = new ArrayList<T>();
