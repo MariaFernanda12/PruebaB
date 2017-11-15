@@ -58,7 +58,7 @@ public class Registro extends HttpServlet {
         try {
             DaoUsuario daoU = new DaoUsuario();
             ArrayList<Boolean> arr1 = null;
-            arr1 = daoU.validarRegistro(identificador, clave, colegio, correo);
+            arr1 = daoU.validarRegistro(identificador, clave, colegio);
             Properties props = new Properties();
             props.setProperty("mail.smtp.host", "smtp.gmail.com");
             props.setProperty("mail.smtp.starttls.enable", "true");

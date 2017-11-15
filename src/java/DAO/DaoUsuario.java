@@ -20,5 +20,11 @@ public class DaoUsuario {
         respuesta = a.Select2(user);
         return respuesta;
     }
+    public ArrayList<Boolean> validarRegistro(String id, String clave, String colegio) {
+        ArrayList<Boolean> respuesta = new ArrayList();
+        usuarios user = new usuarios(id, null, null, null, colegio, clave, null, null, "null");
+        respuesta = a.Select3(user);
+        return respuesta;
+    }
 
 }

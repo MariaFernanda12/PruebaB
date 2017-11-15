@@ -26,7 +26,7 @@ public class Sesion extends HttpServlet {
                 String password = (String) session.getAttribute("pass");
                 usuarios user;
                 DaoUsuario daoU = new DaoUsuario();
-                user = daoU.validarUsuario(usuario, password);
+                user = daoU.validarUsuario(usuario, password).get(0);
                 String json = new Gson().toJson(user);
                 response.setContentType("application/json");
                 response.getWriter().write(json);
