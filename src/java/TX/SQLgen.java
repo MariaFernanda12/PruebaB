@@ -248,8 +248,12 @@ public class SQLgen<T> {
                 contador++;
             }
             System.out.println(query);
-            PreparedStatement statement = this.conexion.prepareStatement(query);
-            res = statement.execute();
+            Statement st = this.conexion.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+                res = true;
+            }
+            st.close();
         } catch (SQLException ex) {
             System.out.println("Failed to make update!");
             ex.printStackTrace();
