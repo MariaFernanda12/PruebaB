@@ -37,5 +37,23 @@ public class DaoUsuario {
         respuesta = a.update(user);
         return respuesta;
     }
+    public boolean modificarClave2(String id, String clave) {
+        boolean respuesta = false;
+        usuarios user = new usuarios(id, null, null, null, null, clave, null, null, null);
+        respuesta = a.update(user);
+        return respuesta;
+    }
+    public boolean modificarEstado(String id) {
+        boolean respuesta = false;
+        usuarios user = new usuarios(id, null, null, null, null, null, null, null, "true");
+        respuesta = a.update(user);
+        return respuesta;
+    }
+    public boolean modificarImagen(String id, String ruta) {
+        boolean respuesta = false;
+        usuarios user = new usuarios(id, null, null, null, null, null, ruta, null, null);
+        respuesta = a.update(user);
+        return respuesta;
+    }
 
 }

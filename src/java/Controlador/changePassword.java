@@ -1,7 +1,6 @@
 package Controlador;
 
 import DAO.DaoUsuario;
-import Modelo.usuarios;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -33,7 +32,6 @@ public class changePassword extends HttpServlet {
                 DaoUsuario daoU = new DaoUsuario();
                 if (oldClave.equals(Clave)) {
                     change = daoU.modificarClave2(usuario, newClave);
-                    System.out.println(change);
                     a.add(usuario);
                     a.add(newClave);                    
                     String json = new Gson().toJson(a);

@@ -1,14 +1,12 @@
 package Controlador;
 
 import DAO.DaoUsuario;
-import Modelo.usuarios;
 import Util.conexion;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;

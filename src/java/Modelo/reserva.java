@@ -57,20 +57,19 @@ public class reserva {
         this.estado = estado;
     }
 
-    @Override
-    public String toString() {
-        return "reserva{" + "idElemento=" + idElemento + ", fechaActual=" + fechaActual + ", fechaReserva=" + fechaReserva + ", idSol=" + idSol + ", cantidad=" + cantidad + ", estado=" + estado + '}';
-    }
-
-    public reserva(String idSol) {
-        this.idElemento = null;
-        this.fechaActual = null;
-        this.fechaReserva = null;
+    public reserva(String idElemento, String fechaActual, String fechaReserva, String idSol, String cantidad, String estado) {
+        this.idElemento = idElemento;
+        this.fechaActual = fechaActual;
+        this.fechaReserva = fechaReserva;
         this.idSol = idSol;
-        this.cantidad = null;
-        this.estado = null;
+        this.cantidad = cantidad;
+        this.estado = estado;
     }
 
+    public reserva() {
+    }
+
+    
     
 
 }

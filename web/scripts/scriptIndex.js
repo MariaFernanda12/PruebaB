@@ -115,15 +115,11 @@ function validarRegistro() {
 
                                 }).done(function (response) {
                                     console.log(response);
-                                    var valor = response;
-                                    if (valor == true) {
-                                        alert("Usuario registrado satisfactoriamente, por favor verifique su correo para terminar el registro");
+                                    if (response == true) {
+                                        alert("Usuario registrado satisfactoriamente, por favor verifique su correo para terminar el registro ☺ ");
                                     } else {
-                                        if (valor == false) {
-                                            alert("Usted no se encuentra asociado a esta institución");
-                                        } else {
-                                            alert("Problemas durante el registro");
-                                        }
+                                        alert("Las credenciales no son correctas.");
+                                        alert("Usted no se encuentra asociado a esta institución o no está registrado en nuestra base de datos.");
                                     }
                                 });
 

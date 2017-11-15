@@ -85,7 +85,7 @@ public class Registro extends HttpServlet {
                     + "Porfavor haga click en el siguiente enlace\n"
                     + "para verificar su cuenta \n"
                     + "<br> \n"
-                    + " <a href='http://localhost:8080/LibrarySoft-1.0/ConfirmacionCorreo?usuario=" + identificador + "&aleatorio=" + cadena
+                    + " <a href='http://localhost:8080/LibrarySoft-2.0/ConfirmacionCorreo?usuario=" + identificador + "&aleatorio=" + cadena
                     + "'>Enlace de verificación</a>  ", "ISO-8859-1", "html");
 
             // Lo enviamos.
