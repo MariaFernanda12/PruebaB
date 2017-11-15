@@ -22,7 +22,7 @@ public class ElementosPorArea extends HttpServlet {
         try {
             ArrayList<inventario> lista = null;
             SQLgen sql = new SQLgen();
-            lista = sql.cantidadElementosPorArea();
+//            lista = sql.cantidadElementosPorArea();
             String a = "";
 //            for (inventario model : lista) {
                 a = "{\n"

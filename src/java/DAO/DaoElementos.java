@@ -38,5 +38,12 @@ public class DaoElementos {
         return respuesta;
     }
     
+    public boolean borrar(String et){
+        boolean respuesta = false;
+        inventario inv1 = new inventario(et, null, null, null, null, null, null, null);
+        respuesta = a.borrar(inv1);
+        return respuesta;
+    }
+    
     
 }

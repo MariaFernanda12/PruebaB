@@ -24,7 +24,7 @@ public class Inicio extends HttpServlet {
         try {
             usuarios user;
             DaoUsuario daoU = new DaoUsuario();
-            user = daoU.validarUsuario(identificador, clave);
+            user = daoU.validarUsuario(identificador, clave).get(0);
             if (identificador.equals(user.getIdentificador())) {
                 HttpSession session = request.getSession();
                 session.setAttribute("user", identificador);

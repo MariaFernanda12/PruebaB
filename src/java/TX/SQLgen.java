@@ -92,8 +92,6 @@ public class SQLgen<T> {
 //        return resultado;
 //
 //    }
-    
-    
     //delete from where
     public boolean borrar(T p) {
         boolean retorno = false;
@@ -155,6 +153,52 @@ public class SQLgen<T> {
                     query += f[i].getName() + " = '" + f[i].get(p) + "'";
                     break;
                 }
+            }
+            System.out.println(query);
+            Statement st = this.conexion.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+                T f2 = p;
+                Field[] f3 = f2.getClass().getDeclaredFields();
+                for (int i = 0; i < f.length; i++) {
+                    String r = rs.getString("" + f3[i].getName());
+                    f3[i].set(f2, r);
+                }
+                res.add((T) f2);
+            }
+            st.close();
+        } catch (SQLException ex) {
+            System.out.println("Failed to make update!");
+            ex.printStackTrace();
+        } catch (IllegalArgumentException ex) {
+            Logger.getLogger(SQLgen.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(SQLgen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return res;
+    }
+
+    //select * from .... where .... = .... and ..... = .......
+    public ArrayList<T> Select2(T p) {
+        ArrayList<T> res = new ArrayList<T>();
+        int contador = 0;
+        Field[] f = p.getClass().getDeclaredFields();
+        String query = "select * from " + p.getClass().getSimpleName() + " where ";
+        try {
+            for (int i = 0; i < f.length; i++) {
+                if (contador == 0) {
+                    if (f[i].get(p) != null) {
+                        query += f[i].getName() + " = '" + f[i].get(p) + "'";
+
+                    }
+                } else {
+                    if (f[i].get(p) != null) {
+                        query += " and " + f[i].getName() + " = '" + f[i].get(p) + "'";
+
+                    }
+                }
+
+                contador++;
             }
             System.out.println(query);
             Statement st = this.conexion.createStatement();
