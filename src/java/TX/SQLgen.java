@@ -1,5 +1,6 @@
 package TX;
 
+import DAO.DaoElementos;
 import java.lang.reflect.Field;
 import java.net.URISyntaxException;
 import java.sql.Connection;
@@ -223,9 +224,10 @@ public class SQLgen<T> {
         }
         return res;
     }
+
     //select * from .... where .... = .... and ..... = .......
-    public ArrayList<Boolean> Select3(T p) {
-        ArrayList<Boolean> res = new ArrayList<Boolean>();
+    public boolean Select3(T p) {
+        boolean res = false;
         int contador = 0;
         Field[] f = p.getClass().getDeclaredFields();
         String query = "select * from " + p.getClass().getSimpleName() + " where ";
@@ -246,18 +248,8 @@ public class SQLgen<T> {
                 contador++;
             }
             System.out.println(query);
-            Statement st = this.conexion.createStatement();
-            ResultSet rs = st.executeQuery(query);
-            while (rs.next()) {
-                T f2 = p;
-                Field[] f3 = f2.getClass().getDeclaredFields();
-                for (int i = 0; i < f.length; i++) {
-                    String r = rs.getString("" + f3[i].getName());
-                    f3[i].set(f2, r);
-                }
-                res.add(true);
-            }
-            st.close();
+            PreparedStatement statement = this.conexion.prepareStatement(query);
+            res = statement.execute();
         } catch (SQLException ex) {
             System.out.println("Failed to make update!");
             ex.printStackTrace();
@@ -267,6 +259,43 @@ public class SQLgen<T> {
             Logger.getLogger(SQLgen.class.getName()).log(Level.SEVERE, null, ex);
         }
         return res;
+    }
+
+    public boolean update(T p) {
+        boolean res = false;
+        int contador = 0;
+        Field[] f = p.getClass().getDeclaredFields();
+        String query = "update " + p.getClass().getSimpleName() + " set ";
+        try {
+            for (int i = 0; i < f.length; i++) {
+                if (contador == 0) {
+                    if (f[i].get(p) != null) {
+                        query += f[i].getName() + " = '" + f[i].get(p) + "'";
+
+                    }
+                } else {
+                    if (f[i].get(p) != null) {
+                        query += ", " + f[i].getName() + " = '" + f[i].get(p) + "'";
+
+                    }
+                }
+
+                contador++;
+            }
+            query += " where " + f[0].getName() + " = '" + f[0].get(p) + "'";
+            System.out.println(query);
+            PreparedStatement statement = this.conexion.prepareStatement(query);
+            res = statement.execute();
+        } catch (SQLException ex) {
+            System.out.println("Failed to make update!");
+            ex.printStackTrace();
+        } catch (IllegalArgumentException ex) {
+            Logger.getLogger(SQLgen.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(SQLgen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return res;
+
     }
 
 }
