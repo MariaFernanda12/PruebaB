@@ -26,11 +26,11 @@ public class inventario {
         this.colegio = colegio;
     }
 
-    public String getEtiqueta() {
+    public String getetiqueta() {
         return etiqueta;
     }
 
-    public void setEtiqueta(String etiqueta) {
+    public void setetiqueta(String etiqueta) {
         this.etiqueta = etiqueta;
     }
 
@@ -38,65 +38,62 @@ public class inventario {
     
 
 
-    public String getNombre() {
+    public String getnombre() {
         return nombre;
     }
 
-    public void setNombre(String nombre) {
+    public void setnombre(String nombre) {
         this.nombre = nombre;
     }
 
-    public String getCantidadDisponible() {
+    public String getcantidadDisponible() {
         return cantidadDisponible;
     }
 
-    public void setCantidadDisponible(String cantidadDisponible) {
+    public void setcantidadDisponible(String cantidadDisponible) {
         this.cantidadDisponible = cantidadDisponible;
     }
 
-    public String getUbicacion() {
+    public String getubicacion() {
         return ubicacion;
     }
 
-    public void setUbicacion(String ubicacion) {
+    public void setubicacion(String ubicacion) {
         this.ubicacion = ubicacion;
     }
 
-    public String getPropiedad() {
+    public String getpropiedad() {
         return propiedad;
     }
 
-    public void setPropiedad(String propiedad) {
+    public void setpropiedad(String propiedad) {
         this.propiedad = propiedad;
     }
 
-    public String getResponsable() {
+    public String getresponsable() {
         return responsable;
     }
 
-    public void setResponsable(String responsable) {
+    public void setresponsable(String responsable) {
         this.responsable = responsable;
     }
 
-    public String getArea() {
+    public String getarea() {
         return area;
     }
 
-    public void setArea(String area) {
+    public void setarea(String area) {
         this.area = area;
     }
 
-    public String getColegio() {
+    public String getcolegio() {
         return colegio;
     }
 
-    public void setColegio(String colegio) {
+    public void setcolegio(String colegio) {
         this.colegio = colegio;
     }
 
-    @Override
-    public String toString() {
-        return "inventario{" + "etiqueta=" + etiqueta + ", nombre=" + nombre + ", cantidadDisponible=" + cantidadDisponible + ", ubicacion=" + ubicacion + ", propiedad=" + propiedad + ", responsable=" + responsable + ", area=" + area + ", colegio=" + colegio + '}';
-    }
+    
 
 }

@@ -6,6 +6,7 @@ import Modelo.inventario;
 import Modelo.reserva;
 import com.google.gson.Gson;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.net.URISyntaxException;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -34,12 +35,12 @@ public class Reservas extends HttpServlet {
             String cantidad = request.getParameter("cantidad");
             String estado = "Pendiente";
             reserva reserva = new reserva();
-            reserva.setIdElemento(idElm);
-            reserva.setCantidad(cantidad);
-            reserva.setFechaReserva(fechaRes);
-            reserva.setFechaActual(sqlDate.toString());
-            reserva.setEstado(estado);
-            reserva.setIdSol(usuario);
+            reserva.setidElemento(idElm);
+            reserva.setcantidad(cantidad);
+            reserva.setfechaReserva(fechaRes);
+            reserva.setfechaActual(sqlDate.toString());
+            reserva.setestado(estado);
+            reserva.setidSol(usuario);
             boolean respuesta = false;
             DaoReservas daoR = new DaoReservas();
             respuesta = daoR.insertar(reserva);
@@ -74,6 +75,12 @@ public class Reservas extends HttpServlet {
         } catch (SQLException ex) {
             Logger.getLogger(Reservas.class.getName()).log(Level.SEVERE, null, ex);
         } catch (URISyntaxException ex) {
+            Logger.getLogger(Reservas.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InvocationTargetException ex) {
+            Logger.getLogger(Reservas.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            Logger.getLogger(Reservas.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NoSuchMethodException ex) {
             Logger.getLogger(Reservas.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

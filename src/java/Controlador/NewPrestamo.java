@@ -33,12 +33,12 @@ public class NewPrestamo extends HttpServlet {
 
             DaoPrestamos pretamos = new DaoPrestamos();
             prestamo prestamo = new prestamo();
-            prestamo.setEtiquetaInv(idlibro);
-            prestamo.setCantidadPrestamo(cantidad);
-            prestamo.setFechaDev(fechadev);
-            prestamo.setFechaActual(sqlDate.toString());
-            prestamo.setEstado("prestado");
-            prestamo.setIdentificadorSol(idsol);
+            prestamo.setetiquetaInv(idlibro);
+            prestamo.setcantidadPrestamo(cantidad);
+            prestamo.setfechaDev(fechadev);
+            prestamo.setfechaActual(sqlDate.toString());
+            prestamo.setestado("prestado");
+            prestamo.setidentificadorSol(idsol);
             boolean respuesta = false;
             respuesta = pretamos.insertar(prestamo);
             String json = new Gson().toJson(respuesta);

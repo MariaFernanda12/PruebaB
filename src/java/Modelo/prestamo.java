@@ -9,51 +9,51 @@ public class prestamo {
     public String cantidadPrestamo;
     public String estado;
 
-    public String getEtiquetaInv() {
+    public String getetiquetaInv() {
         return etiquetaInv;
     }
 
-    public void setEtiquetaInv(String etiquetaInv) {
+    public void setetiquetaInv(String etiquetaInv) {
         this.etiquetaInv = etiquetaInv;
     }
 
-    public String getIdentificadorSol() {
+    public String getidentificadorSol() {
         return identificadorSol;
     }
 
-    public void setIdentificadorSol(String identificadorSol) {
+    public void setidentificadorSol(String identificadorSol) {
         this.identificadorSol = identificadorSol;
     }
 
-    public String getFechaDev() {
+    public String getfechaDev() {
         return fechaDev;
     }
 
-    public void setFechaDev(String fechaDev) {
+    public void setfechaDev(String fechaDev) {
         this.fechaDev = fechaDev;
     }
 
-    public String getFechaActual() {
+    public String getfechaActual() {
         return fechaActual;
     }
 
-    public void setFechaActual(String fechaActual) {
+    public void setfechaActual(String fechaActual) {
         this.fechaActual = fechaActual;
     }
 
-    public String getCantidadPrestamo() {
+    public String getcantidadPrestamo() {
         return cantidadPrestamo;
     }
 
-    public void setCantidadPrestamo(String cantidadPrestamo) {
+    public void setcantidadPrestamo(String cantidadPrestamo) {
         this.cantidadPrestamo = cantidadPrestamo;
     }
 
-    public String getEstado() {
+    public String getestado() {
         return estado;
     }
 
-    public void setEstado(String estado) {
+    public void setestado(String estado) {
         this.estado = estado;
     }
 

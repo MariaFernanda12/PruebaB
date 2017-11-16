@@ -9,51 +9,51 @@ public class reserva {
     public String cantidad;
     public String estado;
 
-    public String getIdElemento() {
+    public String getidElemento() {
         return idElemento;
     }
 
-    public void setIdElemento(String idElemento) {
+    public void setidElemento(String idElemento) {
         this.idElemento = idElemento;
     }
 
-    public String getFechaActual() {
+    public String getfechaActual() {
         return fechaActual;
     }
 
-    public void setFechaActual(String fechaActual) {
+    public void setfechaActual(String fechaActual) {
         this.fechaActual = fechaActual;
     }
 
-    public String getFechaReserva() {
+    public String getfechaReserva() {
         return fechaReserva;
     }
 
-    public void setFechaReserva(String fechaReserva) {
+    public void setfechaReserva(String fechaReserva) {
         this.fechaReserva = fechaReserva;
     }
 
-    public String getIdSol() {
+    public String getidSol() {
         return idSol;
     }
 
-    public void setIdSol(String idSol) {
+    public void setidSol(String idSol) {
         this.idSol = idSol;
     }
 
-    public String getCantidad() {
+    public String getcantidad() {
         return cantidad;
     }
 
-    public void setCantidad(String cantidad) {
+    public void setcantidad(String cantidad) {
         this.cantidad = cantidad;
     }
 
-    public String getEstado() {
+    public String getestado() {
         return estado;
     }
 
-    public void setEstado(String estado) {
+    public void setestado(String estado) {
         this.estado = estado;
     }
 

@@ -2,6 +2,7 @@ package DAO;
 
 import Modelo.usuarios;
 import TX.SQLgen;
+import java.lang.reflect.InvocationTargetException;
 import java.net.URISyntaxException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -14,10 +15,14 @@ public class DaoUsuario {
         a = new SQLgen<usuarios>();
     }
 
-    public ArrayList<usuarios> validarUsuario(String id, String clave) {
+    public ArrayList<usuarios> validarUsuario(String id, String clave) throws InstantiationException, NoSuchMethodException, InvocationTargetException {
         ArrayList<usuarios> respuesta = new ArrayList();
         usuarios user = new usuarios(id, null, null, null, null, clave, null, null, null);
         respuesta = a.Select2(user);
+        if (respuesta.isEmpty()) {
+            user = new usuarios();
+            respuesta.add(user);
+        }
         return respuesta;
     }
 

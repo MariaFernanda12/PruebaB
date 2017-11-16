@@ -1,10 +1,11 @@
 package TX;
 
-
 import Modelo.inventario;
 import Modelo.prestamo;
 import Modelo.reserva;
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.net.URISyntaxException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -49,106 +50,6 @@ public class SQLgen<T> {
         return rs;
     }
 
-    //Select * from 
-    public ArrayList<inventario> listarTodoInventario(inventario p) {
-
-        ArrayList<inventario> res2 = new ArrayList<>();
-
-        Field[] f = p.getClass().getDeclaredFields();
-        String query = "select * from " + p.getClass().getSimpleName();
-        try {
-            System.out.println(query);
-            Statement st = this.conexion.createStatement();
-            ResultSet rs = st.executeQuery(query);
-            
-            while (rs.next()) {
-                inventario elm = new inventario();
-                elm.setEtiqueta(rs.getString("etiqueta"));
-                elm.setNombre(rs.getString("nombre"));
-                elm.setCantidadDisponible(rs.getString("cantidadDisponible"));
-                elm.setUbicacion(rs.getString("ubicacion"));
-                elm.setPropiedad(rs.getString("propiedad"));
-                elm.setResponsable(rs.getString("responsable"));
-                elm.setArea(rs.getString("area"));
-                elm.setColegio(rs.getString("colegio"));
-
-                res2.add(elm);
-            }
-
-            st.close();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        } catch (IllegalArgumentException ex) {
-            Logger.getLogger(SQLgen.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return res2;
-    }
-    
-    public ArrayList<prestamo> listarTodoPrestamo(prestamo p) {
-
-        ArrayList<prestamo> res2 = new ArrayList<>();
-
-        Field[] f = p.getClass().getDeclaredFields();
-        String query = "select * from " + p.getClass().getSimpleName();
-        try {
-            System.out.println(query);
-            Statement st = this.conexion.createStatement();
-            ResultSet resultado = st.executeQuery(query);
-    
-
-            while (resultado.next()) {
-                prestamo elm = new prestamo();
-                elm.setEtiquetaInv(resultado.getString("etiquetaInv"));
-                elm.setFechaActual(resultado.getString("fechaActual"));
-                elm.setFechaDev(resultado.getString("fechaDev"));
-                elm.setIdentificadorSol(resultado.getString("identificadorSol"));
-                elm.setCantidadPrestamo(resultado.getString("cantidadPrestamo"));
-                elm.setEstado(resultado.getString("estado"));
-                res2.add(elm);              
-            }
-
-            st.close();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        } catch (IllegalArgumentException ex) {
-            Logger.getLogger(SQLgen.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return res2;
-    }
-    
-     public ArrayList<reserva> listarTodoReserva(reserva p) {
-        //1.Consulta
-
-        ArrayList<reserva> res2 = new ArrayList<>();
-
-        Field[] f = p.getClass().getDeclaredFields();
-        String query = "select * from " + p.getClass().getSimpleName();
-        try {
-            //Statement
-            Statement statement
-                    = this.conexion.createStatement();
-            //Ejecucion
-            ResultSet resultado
-                    = statement.executeQuery(query);
-            //----------------------------
-            //Recorrido sobre el resultado
-            while (resultado.next()) {
-                reserva elm = new reserva();
-                elm.setIdElemento(resultado.getString("idElemento"));
-                elm.setFechaActual(resultado.getString("fechaActual"));
-                elm.setFechaReserva(resultado.getString("fechaReserva"));
-                elm.setIdSol(resultado.getString("idSol"));
-                elm.setCantidad(resultado.getString("cantidad"));
-                elm.setEstado(resultado.getString("estado"));
-                res2.add(elm);
-            }
-
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-
-        return res2;
-    }
 
     //delete from where
     public boolean borrar(T p) {
@@ -177,7 +78,7 @@ public class SQLgen<T> {
     }
 
     //select * from where
-    public ArrayList<T> Select(T p) {
+    public ArrayList<T> Select(T p) throws InvocationTargetException, NoSuchMethodException, InstantiationException {
         ArrayList<T> res = new ArrayList<T>();
         Field[] f = p.getClass().getDeclaredFields();
         String query = "select * from " + p.getClass().getSimpleName() + " where ";
@@ -192,11 +93,13 @@ public class SQLgen<T> {
             Statement st = this.conexion.createStatement();
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
-                T f2 = p;
+                T f2 = (T) p.getClass().newInstance();
                 Field[] f3 = f2.getClass().getDeclaredFields();
                 for (int i = 0; i < f.length; i++) {
+                    String methodName = "set" + f3[i].getName();
+                    Method setNameMethod = f2.getClass().getMethod(methodName, String.class);
                     String r = rs.getString("" + f3[i].getName());
-                    f3[i].set(f2, r);
+                    setNameMethod.invoke(f2, r);
                 }
                 res.add((T) f2);
             }
@@ -211,7 +114,7 @@ public class SQLgen<T> {
         }
         System.out.println(res);
         return res;
-        
+
     }
 
     //select * from .... where .... = .... and ..... = .......
@@ -335,6 +238,47 @@ public class SQLgen<T> {
         }
         return res;
 
+    }
+
+    public ArrayList<T> Select4(T p) {
+        ArrayList<T> res = new ArrayList<T>();
+        Field[] f = p.getClass().getDeclaredFields();
+        String query = "select * from " + p.getClass().getSimpleName();
+        try {
+            System.out.println(query);
+            Statement st = this.conexion.createStatement();
+            ResultSet rs = st.executeQuery(query);
+
+            while (rs.next()) {
+                T f2 = (T) p.getClass().newInstance();
+                Field[] f3 = f2.getClass().getDeclaredFields();
+                for (int i = 0; i < f.length; i++) {
+                    String methodName = "set" + f3[i].getName();
+                    Method setNameMethod = f2.getClass().getMethod(methodName, String.class);
+                    String r = rs.getString("" + f3[i].getName());
+                    setNameMethod.invoke(f2, r);
+                }
+                res.add((T) f2);
+            }
+            st.close();
+        } catch (SQLException ex) {
+            // TODO Auto-generated catch block
+            System.out.println("Failed to make update!");
+            ex.printStackTrace();
+        } catch (IllegalArgumentException ex) {
+            Logger.getLogger(SQLgen.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(SQLgen.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NoSuchMethodException ex) {
+            Logger.getLogger(SQLgen.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SecurityException ex) {
+            Logger.getLogger(SQLgen.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InvocationTargetException ex) {
+            Logger.getLogger(SQLgen.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            Logger.getLogger(SQLgen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return res;
     }
 
 }

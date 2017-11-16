@@ -25,7 +25,7 @@ public class DaoPrestamos {
     public ArrayList<prestamo> listarTodo() {
         ArrayList<prestamo> respuesta = new ArrayList();
         prestamo pr = new prestamo();
-        respuesta = a.listarTodoPrestamo(pr);
+        respuesta = a.Select4(pr);
         return respuesta;
     }
     

@@ -12,75 +12,75 @@ public class usuarios {
     public String correo;/*Correo*/
     public String estado;/*Estado de verificación*/
 
-    public String getCorreo() {
+    public String getcorreo() {
         return correo;
     }
 
-    public void setCorreo(String correo) {
+    public void setcorreo(String correo) {
         this.correo = correo;
     }
 
-    public String getEstado() {
+    public String getestado() {
         return estado;
     }
 
-    public void setEstado(String estado) {
+    public void setestado(String estado) {
         this.estado = estado;
     }
 
-    public String getClave() {
+    public String getclave() {
         return clave;
     }
 
-    public String getImagen() {
+    public String getimagen() {
         return imagen;
     }
 
-    public void setImagen(String imagen) {
+    public void setimagen(String imagen) {
         this.imagen = imagen;
     }
 
-    public void setClave(String clave) {
+    public void setclave(String clave) {
         this.clave = clave;
     }
 
-    public String getIdentificador() {
+    public String getidentificador() {
         return identificador;
     }
 
-    public void setIdentificador(String identificador) {
+    public void setidentificador(String identificador) {
         this.identificador = identificador;
     }
 
-    public String getNombreSol() {
+    public String getnombreSol() {
         return nombreSol;
     }
 
-    public void setNombreSol(String nombreSol) {
+    public void setnombreSol(String nombreSol) {
         this.nombreSol = nombreSol;
     }
 
-    public String getTipo() {
+    public String gettipo() {
         return tipo;
     }
 
-    public void setTipo(String tipo) {
+    public void settipo(String tipo) {
         this.tipo = tipo;
     }
 
-    public String getCursoArea() {
+    public String getcursoArea() {
         return cursoArea;
     }
 
-    public void setCursoArea(String cursoArea) {
+    public void setcursoArea(String cursoArea) {
         this.cursoArea = cursoArea;
     }
 
-    public String getColegio() {
+    public String getcolegio() {
         return colegio;
     }
 
-    public void setColegio(String colegio) {
+    public void setcolegio(String colegio) {
         this.colegio = colegio;
     }
 
@@ -95,5 +95,9 @@ public class usuarios {
         this.correo = correo;
         this.estado = estado;
     }
+
+    public usuarios() {
+    }
+    
 
 }
