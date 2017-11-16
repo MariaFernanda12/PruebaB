@@ -63,6 +63,7 @@ public class Reservas extends HttpServlet {
             throws ServletException, IOException {
         try {
             String valor = request.getParameter("identificador");
+            System.out.println(valor);
             inventario elm = new inventario();
             DaoElementos daoR = new DaoElementos();
             elm = daoR.buscar(valor).get(0);

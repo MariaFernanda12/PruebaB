@@ -30,8 +30,8 @@
                     , async: true
                     , cache: false
                     , success: function (resp) {
-                        $.each(resp, function (indice, Elemento) {
-                            $("#tabla").append($("<tr id='" + indic + "' onclick='pp(this);'> ").append(("<td>" + Elemento.etiqueta + "</td>" + "<td>" + Elemento.nombre + "</td>" + "<td>" + Elemento.cantidadDisponible + "</td>" + "<td>" + Elemento.ubicacion + "</td>" + "<td>" + Elemento.propiedad + "</td>" + "<td>" + Elemento.responsable + "</td>" + "<td>" + Elemento.area + "</td>" + "<td>" + Elemento.colegio + "</td>")))
+                        $.each(resp, function (indice, inventario) {
+                            $("#tabla").append($("<tr id='" + indic + "' onclick='pp(this);'> ").append(("<td>" + inventario.etiqueta + "</td>" + "<td>" + inventario.nombre + "</td>" + "<td>" + inventario.cantidadDisponible + "</td>" + "<td>" + inventario.ubicacion + "</td>" + "<td>" + inventario.propiedad + "</td>" + "<td>" + inventario.responsable + "</td>" + "<td>" + inventario.area + "</td>" + "<td>" + inventario.colegio + "</td>")))
                             indic++;
                         });
                     }
@@ -39,6 +39,7 @@
             }
             function pp(x) {
                 var y = x.rowIndex;
+                
                 var parametros = {
                     "identificador": y
                 };

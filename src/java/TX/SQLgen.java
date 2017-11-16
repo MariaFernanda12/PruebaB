@@ -209,7 +209,9 @@ public class SQLgen<T> {
         } catch (IllegalAccessException ex) {
             Logger.getLogger(SQLgen.class.getName()).log(Level.SEVERE, null, ex);
         }
+        System.out.println(res);
         return res;
+        
     }
 
     //select * from .... where .... = .... and ..... = .......

@@ -4,7 +4,7 @@ use biblioteca;
 
 
 create table inventario(
-  etiqueta varchar(100) primary key, /*Número de identificación del libro o el elemento, único y clave primaria*/
+  etiqueta int primary key, /*Número de identificación del libro o el elemento, único y clave primaria*/
   nombre varchar(200) not null, /*Nombre del libro o del elemento*/
   cantidadDisponible varchar(50),   /*Si la cantidad disponible es <= 0 entonces no se puede prestar*/
   ubicacion varchar(30) not null, /*Puede ser en aulas de clase biblioteca o incluso otra sede*/
@@ -28,7 +28,7 @@ create table usuarios(
 
 
 create table reserva(
-    idElemento varchar(40),
+    idElemento int,
     fechaActual varchar(40),
     fechaReserva varchar(40),
     idSol varchar(40),
@@ -40,7 +40,7 @@ create table reserva(
 );
 
 create table prestamo(
-   etiquetaInv varchar(40), /*Clave foranea*/
+   etiquetaInv int, /*Clave foranea*/
    identificadorSol varchar(40),/*Clave foranea*/   
    fechaDev varchar(20),/*Fecha de devolución*/
    fechaActual varchar(20),/*Fecha en la que se pide el prestamo*/
@@ -670,7 +670,7 @@ insert into inventario values('616','Hurry Furry Feet (B) Literatra Ed Scott','1
 insert into inventario values('617','Our Singing Planet © Literatura Ed Scott','11','Biblioteca','I. E. Antonio Nariño','Arnulfo','Ingles','Colegio 1');
 insert into inventario values('618','My Favorite Foodles (D) Literatura Ed Scott','10','Biblioteca','I. E. Antonio Nariño','Arnulfo','Ingles','Colegio 1');
 insert into inventario values('619','Happy faces (E ) Literatura Ed Scott','11','Biblioteca','I. E. Antonio Nariño','Arnulfo','Ingles','Colegio 1');
-insert into inventario values('001','Grandes Personajes Ed. Nauta','3','Biblioteca','I. E. Antonio Nariño','Arnulfo','Enciclopedia','Colegio 1');
+insert into inventario values('620','Grandes Personajes Ed. Nauta','3','Biblioteca','I. E. Antonio Nariño','Arnulfo','Enciclopedia','Colegio 1');
 insert into inventario values('621','Once upon a hiccops (F) Literatura Ed Scott','10','Biblioteca','I. E. Antonio Nariño','Arnulfo','Ingles','Colegio 1');
 insert into inventario values('622','The Big Blank piece of paper (B) Litartura Ed. Scott.','13','Biblioteca','I. E. Antonio Nariño','Arnulfo','Ingles','Colegio 1');
 insert into inventario values('623','You Be Brad an I will be the  cheese Ed. Scott','9','Biblioteca','I. E. Antonio Nariño','Arnulfo','Ingles','Colegio 1');

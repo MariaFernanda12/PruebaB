@@ -11,6 +11,10 @@ public class inventario {
     public String area;/*Area o tipo de elemento*/
     public String colegio;
 
+    
+    public inventario() {
+    }
+
     public inventario(String etiqueta, String nombre, String cantidadDisponible, String ubicacion, String propiedad, String responsable, String area, String colegio) {
         this.etiqueta = etiqueta;
         this.nombre = nombre;
@@ -22,10 +26,6 @@ public class inventario {
         this.colegio = colegio;
     }
 
-    public inventario() {
-    }
-    
-
     public String getEtiqueta() {
         return etiqueta;
     }
@@ -33,6 +33,10 @@ public class inventario {
     public void setEtiqueta(String etiqueta) {
         this.etiqueta = etiqueta;
     }
+
+   
+    
+
 
     public String getNombre() {
         return nombre;
