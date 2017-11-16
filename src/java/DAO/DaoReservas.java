@@ -24,7 +24,7 @@ public class DaoReservas {
     public ArrayList<reserva> listarTodo() {
         ArrayList<reserva> respuesta = new ArrayList();
         reserva res = new reserva();
-        respuesta = a.listarTodo(res);
+        respuesta = a.listarTodoReserva(res);
         return respuesta;
     }
     

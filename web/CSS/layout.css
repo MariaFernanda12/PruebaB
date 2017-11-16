@@ -85,7 +85,7 @@
 
 #carga {
     border: 13px solid #ccc;
-    border-top-color: #EA5616;
+    border-top-color: #B35900;
     border-top-style: groove;
     height: 70px;
     width: 70px;
@@ -150,7 +150,7 @@
     cursor: pointer;
     border-color: transparent;
     color: #FFFFFF;
-    background-color: #EA5616;
+    background-color: #B35900;
     outline: none;
     border: none;
     border-radius: 15px;
@@ -235,7 +235,7 @@
     cursor: pointer;
     border-color: transparent;
     color: #FFFFFF;
-    background-color: #EA5616;
+    background-color: #B35900;
     outline: none;
     border: none;
     border-radius: 15px;
@@ -729,7 +729,7 @@
     cursor: pointer;
     border-color: transparent;
     color: #FFFFFF;
-    background-color: #EA5616;
+    background-color: #B35900;
     margin-right: 0;
 }
 
@@ -1137,7 +1137,7 @@ body {
 }
 
 a {
-    color: #EA5616;
+    color: #B35900;
 }
 
 a:active,
@@ -1161,7 +1161,7 @@ label span {
 input:focus,
 textarea:focus,
 *:required:focus {
-    border-color: #EA5616;
+    border-color: #B35900;
 }
 
 .overlay {
@@ -1189,8 +1189,8 @@ textarea:focus,
 .btn,
 .btn.inverse:hover {
     color: #FFFFFF;
-    background-color: #EA5616;
-    border-color: #EA5616;
+    background-color: #B35900;
+    border-color: #B35900;
 }
 
 .btn:hover,
@@ -1207,7 +1207,7 @@ textarea:focus,
 }
 
 .row0 a:hover {
-    color: #EA5616;
+    color: #B35900;
 }
 
 .row1 {
@@ -1251,12 +1251,12 @@ textarea:focus,
 /* Content Area */
 
 .elements article i {
-    border-color: #EA5616;
+    border-color: #B35900;
 }
 
 .elements article:hover i {
     color: #FFFFFF;
-    background-color: #EA5616;
+    background-color: #B35900;
 }
 
 .latest article figure figcaption {
@@ -1328,7 +1328,7 @@ textarea {
 #mainav .active a,
 #mainav a:hover,
 #mainav li:hover>a {
-    color: #EA5616;
+    color: #B35900;
     background-color: inherit;
 }
 
@@ -1342,7 +1342,7 @@ textarea {
 #mainav li li:hover>a,
 #mainav .active .active>a {
     color: #FFFFFF;
-    background-color: #EA5616;
+    background-color: #B35900;
 }
 
 #mainav form select {
@@ -1357,7 +1357,7 @@ textarea {
 }
 
 #breadcrumb li:last-child a {
-    color: #EA5616;
+    color: #B35900;
 }
 
 .container .sidebar nav a {
@@ -1366,7 +1366,7 @@ textarea {
 }
 
 .container .sidebar nav a:hover {
-    color: #EA5616;
+    color: #B35900;
 }
 
 .pagination a,
@@ -1376,12 +1376,12 @@ textarea {
 
 .pagination .current * {
     color: #FFFFFF;
-    background-color: #EA5616;
+    background-color: #B35900;
 }
 
 #backtotop {
     color: #FFFFFF;
-    background-color: #EA5616;
+    background-color: #B35900;
 }
 
 table,
@@ -1396,7 +1396,7 @@ td,
 #comments input:focus,
 #comments textarea:focus,
 #comments *:required:focus {
-    border-color: #EA5616;
+    border-color: #B35900;
 }
 
 th {

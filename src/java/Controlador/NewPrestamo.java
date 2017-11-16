@@ -27,8 +27,8 @@ public class NewPrestamo extends HttpServlet {
 
             java.sql.Date sqlDate = new java.sql.Date(lnMilisegundos);
             String idsol = request.getParameter("idSol");
-            int idlibro = Integer.valueOf(request.getParameter("idElm"));
-            int cantidad = Integer.valueOf(request.getParameter("cantidad"));
+            String idlibro = request.getParameter("idElm");
+            String cantidad = request.getParameter("cantidad");
             String fechadev = request.getParameter("fechaRes");
 
             DaoPrestamos pretamos = new DaoPrestamos();

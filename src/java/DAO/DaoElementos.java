@@ -27,7 +27,7 @@ public class DaoElementos {
     public ArrayList<inventario> listarTodo() {
         ArrayList<inventario> respuesta = new ArrayList();
         inventario inv = new inventario();
-        respuesta = a.listarTodo(inv);
+        respuesta = a.listarTodoInventario(inv);
         return respuesta;
     }
      
