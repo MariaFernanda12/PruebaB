@@ -22,17 +22,8 @@ public class ElementosPorArea extends HttpServlet {
         try {
             ArrayList<inventario> lista = null;
             SQLgen sql = new SQLgen();
-//            lista = sql.cantidadElementosPorArea();
-            String a = "";
-//            for (inventario model : lista) {
-                a = "{\n"
-                        + " label: 'Español',\n"
-                        + " backgroundColor: \"rgba(151,187,205,0.5)\",\n"
-                        + " data: [50]\n"
-                        + " }\n"
-                        + " \n";
-//            }            
-            String json = new Gson().toJson(a);
+            lista = sql.cantidadPorArea();                
+            String json = new Gson().toJson(lista);
             response.setContentType("application/json");
             response.getWriter().write(json);
 

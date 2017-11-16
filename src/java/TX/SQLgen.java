@@ -50,7 +50,6 @@ public class SQLgen<T> {
         return rs;
     }
 
-
     //delete from where
     public boolean borrar(T p) {
         boolean retorno = false;
@@ -279,6 +278,30 @@ public class SQLgen<T> {
             Logger.getLogger(SQLgen.class.getName()).log(Level.SEVERE, null, ex);
         }
         return res;
+    }
+
+    public ArrayList<inventario> cantidadPorArea() {
+        ArrayList<inventario> arr = new ArrayList<inventario>();
+
+        try {
+            String consulta = "select area,  sum(cantidaddisponible) as Total from inventario group by area";
+            PreparedStatement statement
+                    = this.conexion.prepareStatement(consulta);
+
+            ResultSet resultado = statement.executeQuery();
+            while (resultado.next()) {
+                inventario elm = new inventario();
+                elm = new inventario();
+                elm.setarea(resultado.getString("area"));
+                elm.setcantidadDisponible(resultado.getString("total"));
+                arr.add(elm);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(SQLgen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return arr;
     }
 
 }
