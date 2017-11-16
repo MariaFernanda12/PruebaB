@@ -24,10 +24,7 @@ public class BuscarElementoPorNombre extends HttpServlet {
 
             dao = new DaoElementos();
             ArrayList<inventario> c = new ArrayList<inventario>();
-            c = dao.listarTodo();
-            for (int i = 0; i < c.size(); i++) {
-                System.out.println(c.get(i)+"¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿");
-            }
+            c = dao.listarTodo();            
             String json = new Gson().toJson(c);
             response.setContentType("application/json;");
             response.getWriter().write(json);
